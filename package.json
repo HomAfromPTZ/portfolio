@@ -1,7 +1,7 @@
 {
   "name": "hm_ portfolio",
   "version": "1.0.0",
-  "author": "a.kalin",
+  "author": "Lembinen Nikolay",
   "license": "ISC",
   "scripts": {
     "postinstall": "bower install"
