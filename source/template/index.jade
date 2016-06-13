@@ -17,6 +17,23 @@ html
 				button.login-button Авторизоваться
 		section.welcome-page__content
 			.welcome-card
+				.welcome-card__front-side
+					.author
+						.author__avatar
+							img(src="/assets/img/avatar.jpg" title="Frontend. Wordpress. Разработка сайтов под ключ." alt="Лембинен Николай")
+						p.author__name Лембинен Николай
+						p.author__description Ба-дум тссс! - портфолио
+						ul.social-links
+							- var socials = {"vk" : "http://vk.com/homafromptz", "github-alt" : "https://github.com/HomAfromPTZ", "stack-overflow" : "http://stackoverflow.com/cv/homawebdev"}
+							each s_url, s_name in socials
+								li.social-links__item
+									a(class="fa fa-" + s_name, href=s_url)
+					ul.page-links
+						- var pages = {"Мои работы" : "/works", "Обо мне" : "/about", "Блог" : "/blog"}
+						each p_url, p_name in pages
+							li.page-links__item
+								a(class="page-link" href=p_url)= p_name
+				.welcome-card__back-side
 		footer.welcome-page__footer
 			.footer-content
 				span.copyright &copy; Лембинен Николай

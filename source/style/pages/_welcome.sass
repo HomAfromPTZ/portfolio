@@ -1,3 +1,29 @@
+.welcome-axis-parallax
+	position: absolute
+	width: 100%
+	height: 100%
+	z-index: -1
+	margin: 0
+	padding: 0
+	overflow: hidden
+	li
+		width: 100%
+		height: 100%
+		left: -20%
+		div
+			position: absolute
+			width: 140%
+			height: 110%
+			left: -20%
+			top: -5%
+			background-repeat: no-repeat
+			background-size: cover
+			background-position: center center
+
+	@for $i from 0 to 10
+		.layer_#{$i}
+			background-image: url("../img/theme_mountains/parallax/layer_#{$i}.png")
+
 .welcome-page
 	display: table
 	width: 100%
@@ -44,39 +70,95 @@
 		transform: translateX(-50%)
 		z-index: -1
 		opacity: 0
+		border-radius: 5px
 		background-color: $white
 		transition: all $transition-time_medium
 	&:hover
 		color: darken($white, 50%)
 		&::before
-			width: 100%
+			width: 110%
 			opacity: .7
 
+.welcome-card
+	display: table-cell
+	vertical-align: middle
+	&__front-side
+		margin: 0 auto
+		width: 380px
+		border-radius: 5px
+		overflow: hidden
+		&:hover
+			.author
+				&__avatar
+					box-shadow: 0 0 200px 4px rgba($maincolor, .5)
+			img
+				transform: scale(1.05)
+	.author
+		padding: 40px
+		background-color: rgba(252, 252, 252, .851)
+		&__avatar
+			margin: 0 auto
+			width: 137px
+			height: 137px
+			border-radius: 50%
+			overflow: hidden
+			perspective: 500px
+			box-shadow: 0
+			transition: all $transition-time_slow
+			img
+				max-width: 100%
+				display: block
+				transition: all $transition-time_slow
+		&__name
+			font-size: em(28)
+			color: $text-color
+			line-height: 1
+			margin: 20px auto 10px
+		&__description
+			font-family: "roboto_regular"
+			opacity: .8
+			color: $text-color
+			margin: 5px auto
+			line-height: 1
 
-.welcome-axis-parallax
-	position: absolute
-	width: 100%
-	height: 100%
-	z-index: -1
-	margin: 0
+.social-links
+	margin: 30px auto 0
 	padding: 0
-	overflow: hidden
-	li
-		width: 100%
-		height: 100%
-		left: -20%
-		div
-			position: absolute
-			width: 140%
-			height: 110%
-			left: -20%
-			background-repeat: no-repeat
-			background-size: cover
-			background-position: center center
+	list-style: none
+	&__item
+		display: inline-block
+		font-size: em(28)
+		line-height: 1
+		margin: 0 12px
+		a
+			color: $maincolor
+			text-decoration: none
+			opacity: .5
+			transition: opacity $transition-time
+			&:hover
+				opacity: 1
 
-	@for $i from 0 to 10
-		.layer_#{$i}
-			background-image: url("../img/theme_mountains/parallax/layer_#{$i}.png")
+.page-links
+	padding: 0
+	margin: 0
+	list-style: none
+	display: table
+	width: 100%
+	&__item
+		display: table-cell
+		border-right: 2px solid rgba(lighten($maincolor, 15%), .851)
+		&:last-child
+			border: none
+		a
+			display: block
+			width: 100%
+			padding: 10px 25px 12px
+			color: $white
+			background-color: rgba($maincolor, .851)
+			text-decoration: none
+			transition: all $transition-time
+			&:hover
+				background-color: rgba($maincolor, .6)
 
 .copyright
 	font-family: "Roboto_light"
