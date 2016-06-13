@@ -2,7 +2,9 @@
 	'use strict';
 
 	$('#scene').parallax({
-		scalarX: 2,
-		scalarY: 4,
+		scalarX: 3,
+		scalarY: 3,
+		frictionX: 0.5,
+		frictionY: 0.5
 	});
 })(jQuery);

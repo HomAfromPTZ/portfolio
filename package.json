@@ -2,6 +2,7 @@
 	"name": "hm_ portfolio",
 	"version": "1.0.0",
 	"author": "Lembinen Nikolay",
+	"desctiption": "hm_ portfolio frontend template",
 	"license": "ISC",
 	"scripts": {
 		"postinstall": "bower install"
@@ -26,5 +27,14 @@
 	},
 	"dependencies": {
 		"normalize.css": "^4.1.1"
-	}
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/HomAfromPTZ/portfolio.git"
+	},
+	"author": "Lembinen Nikolay",
+	"bugs": {
+		"url": "https://github.com/HomAfromPTZ/portfolio/issues"
+	},
+	"homepage": "https://github.com/HomAfromPTZ/portfolio#readme"
 }

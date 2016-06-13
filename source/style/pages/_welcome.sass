@@ -1,30 +1,65 @@
 .welcome-page
 	display: table
 	width: 100%
-	// overflow: hidden
 
-.welcome-page__header,
-.welcome-page__content,
-.welcome-page__footer
-	display: table-row
+	&__header,
+	&__content,
+	&__footer
+		display: table-row
 
-.welcome-page__header
-	text-align: right
+	&__header
+		text-align: right
+	&__content,
+	&__footer
+		text-align: center
 
-.welcome-page__content,
-.welcome-page__footer
+	&__content
+		height: 100%
+
+
+.header-content,
+.footer-content
+	max-width: 1200px
+	margin: 0 auto
+	padding: 25px 20px
+
+.login-button
+	position: relative
+	background-color: transparent
+	border: 1px solid $white
+	border-radius: 5px
+	color: $white
+	padding: 10px 25px
+	cursor: pointer
+	overflow: hidden
 	text-align: center
+	transition: all $transition-time
+	&::before
+		content: ''
+		position: absolute
+		width: 0
+		height: 100%
+		top: 0
+		left: 50%
+		transform: translateX(-50%)
+		z-index: -1
+		opacity: 0
+		background-color: $white
+		transition: all $transition-time_medium
+	&:hover
+		color: darken($white, 50%)
+		&::before
+			width: 100%
+			opacity: .7
 
-.welcome-page__content
-	height: 100%
 
-.welcome-page__parallax
-	margin: 0
-	padding: 0
+.welcome-axis-parallax
 	position: absolute
-	z-index: -1
 	width: 100%
 	height: 100%
+	z-index: -1
+	margin: 0
+	padding: 0
 	overflow: hidden
 	li
 		width: 100%
@@ -38,11 +73,17 @@
 			background-repeat: no-repeat
 			background-size: cover
 			background-position: center center
-	img
-		display: block
-		width: 100%
-		max-width: 100%
 
 	@for $i from 0 to 10
 		.layer_#{$i}
 			background-image: url("../img/theme_mountains/parallax/layer_#{$i}.png")
+
+.copyright
+	font-family: "Roboto_light"
+	color: $white
+	&_slogan
+		&::before,
+		&::after
+			content: "|"
+			position: relative
+			margin: 0 5px
