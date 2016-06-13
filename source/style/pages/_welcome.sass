@@ -1,3 +1,6 @@
+// =================================
+// Mountains positioning
+// =================================
 .welcome-axis-parallax
 	position: absolute
 	width: 100%
@@ -13,17 +16,22 @@
 		div
 			position: absolute
 			width: 140%
-			height: 110%
+			height: 120%
 			left: -20%
-			top: -5%
+			top: -10%
 			background-repeat: no-repeat
 			background-size: cover
-			background-position: center center
+			background-position: center 40%
 
 	@for $i from 0 to 10
 		.layer_#{$i}
 			background-image: url("../img/theme_mountains/parallax/layer_#{$i}.png")
 
+
+
+// =================================
+// Content Align and Positioning
+// =================================
 .welcome-page
 	display: table
 	width: 100%
@@ -41,7 +49,17 @@
 
 	&__content
 		height: 100%
+		.content__inner
+			display: table-cell
+			vertical-align: middle
+			perspective: 1000px
 
+	&_flipped
+		.login-button
+			transform: translateY(-100%)
+			opacity: 0
+		.flip-card
+			transform: rotateY(180deg) !important
 
 .header-content,
 .footer-content
@@ -49,6 +67,11 @@
 	margin: 0 auto
 	padding: 25px 20px
 
+
+
+// =================================
+// Header
+// =================================
 .login-button
 	position: relative
 	background-color: transparent
@@ -59,7 +82,8 @@
 	cursor: pointer
 	overflow: hidden
 	text-align: center
-	transition: all $transition-time
+	transition: all $transition-time_medium
+	outline: none
 	&::before
 		content: ''
 		position: absolute
@@ -79,47 +103,74 @@
 			width: 110%
 			opacity: .7
 
-.welcome-card
-	display: table-cell
-	vertical-align: middle
-	&__front-side
-		margin: 0 auto
-		width: 380px
+
+
+// =================================
+// Flip Card styles
+// =================================
+.flip-card
+	position: relative
+	width: 380px
+	margin: 0 auto
+	opacity: 0
+	transform-style: preserve-3d
+	transform-origin: top center
+	transform: rotateX(-40deg) translateY(-20px)
+	transition: all $transition-time_medium
+	&.loaded
+		opacity: 1
+		transform: rotateX(0) translateY(0)
+	&:hover
+		box-shadow: 0 0px 10px 2px rgba(invert($white), .3)
+	&__front-side,
+	&__back-side
 		border-radius: 5px
 		overflow: hidden
-		&:hover
-			.author
-				&__avatar
-					box-shadow: 0 0 200px 4px rgba($maincolor, .5)
-			img
-				transform: scale(1.05)
-	.author
-		padding: 40px
-		background-color: rgba(252, 252, 252, .851)
-		&__avatar
-			margin: 0 auto
-			width: 137px
-			height: 137px
-			border-radius: 50%
-			overflow: hidden
-			perspective: 500px
-			box-shadow: 0
+		backface-visibility: hidden
+
+	&__back-side
+		position: absolute
+		top: 0
+		left: 0
+		bottom: 0
+		right: 0
+		width: 100%
+		height: 100%
+		transform: rotateY(180deg)
+
+.no-js
+	.flip-card
+		opacity: 1
+
+// =====================================
+// Avatar, Name, Description, Profiles
+// =====================================
+.author-bio
+	padding: 40px
+	background-color: rgba($white_matte, .851)
+	&__avatar
+		margin: 0 auto
+		width: 137px
+		height: 137px
+		border-radius: 50%
+		overflow: hidden
+		box-shadow: 0
+		transition: all $transition-time_slow
+		img
+			max-width: 100%
+			display: block
 			transition: all $transition-time_slow
-			img
-				max-width: 100%
-				display: block
-				transition: all $transition-time_slow
-		&__name
-			font-size: em(28)
-			color: $text-color
-			line-height: 1
-			margin: 20px auto 10px
-		&__description
-			font-family: "roboto_regular"
-			opacity: .8
-			color: $text-color
-			margin: 5px auto
-			line-height: 1
+	&__name
+		font-size: em(28)
+		color: $text-color
+		line-height: 1
+		margin: 20px auto 10px
+	&__description
+		font-family: "roboto_regular"
+		opacity: .8
+		color: $text-color
+		margin: 5px auto
+		line-height: 1
 
 .social-links
 	margin: 30px auto 0
@@ -138,6 +189,19 @@
 			&:hover
 				opacity: 1
 
+
+
+// =================================
+// Login Form
+// =================================
+.login-form
+	background-color: $white_matte
+
+
+
+// =================================
+// Page Links
+// =================================
 .page-links
 	padding: 0
 	margin: 0
@@ -160,8 +224,13 @@
 			&:hover
 				background-color: rgba($maincolor, .6)
 
+
+// =================================
+// Footer
+// =================================
 .copyright
 	font-family: "Roboto_light"
+	opacity: .8
 	color: $white
 	&_slogan
 		&::before,
