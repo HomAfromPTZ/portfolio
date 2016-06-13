@@ -40,6 +40,7 @@ body
 // =================================
 h1, h2, h3, h4, h5, h6
 	font-family: "bernier_regular", sans-serif
+	color: $text-color
 	line-height: 1
 	font-weight: normal
 	margin: 0
@@ -65,17 +66,17 @@ h4, h5, h6
 	&::after
 		content: ""
 		position: relative
-		height: 4px
-		width: 30px
+		height: 5px
+		width: 22px
 		display: inline-block
 		vertical-align: middle
-		background-color: $text-color
+		background-color: $gray_light
 	&::before
 		// right: 100%
-		margin-right: 15px
+		margin-right: 20px
 	&::after
 		// left: 100%
-		margin-left: 15px
+		margin-left: 20px
 
 .double_sidestripes
 	position: relative
