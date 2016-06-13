@@ -40,10 +40,13 @@ body
 // =================================
 h1, h2, h3, h4, h5, h6
 	font-family: "bernier_regular", sans-serif
+	line-height: 1
+	font-weight: normal
 	margin: 0
 
 h1
 	font-size: em(63,16)
+	line-height: 1.5em
 
 h2
 	font-size: em(35,16)
@@ -58,23 +61,20 @@ h4, h5, h6
 // Text header style
 // =================================
 .sidestripes
-	color: $text-color
-	position: relative
-	display: inline-block
-	margin: 20px 0 50px
 	&::before,
 	&::after
 		content: ""
-		position: absolute
-		height: 2px
-		background-color: $text-color
-		top: 50%
+		position: relative
+		height: 4px
 		width: 30px
+		display: inline-block
+		vertical-align: middle
+		background-color: $text-color
 	&::before
-		right: 100%
+		// right: 100%
 		margin-right: 15px
 	&::after
-		left: 100%
+		// left: 100%
 		margin-left: 15px
 
 .double_sidestripes
