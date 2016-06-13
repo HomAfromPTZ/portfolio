@@ -1,13 +1,22 @@
 doctype html
 html
 	include common/_head
-	body
+	body(class="welcome-page")
 		<!--[if lt IE 7]>
 		<p class="browsehappy">Вы используете <strong>устаревший</strong> браузер. Пожалуйста <a href="http://browsehappy.com/">обновите его</a></p>
 		<![endif]-->
 
 		.preloader
-		.page-wrapper
-			.content
-				
-			.footer
+
+		ul.welcome-page__parallax#scene
+			- for (var n = 0; n < 10; n++)
+				li.layer(data-depth=(0.1*n))
+					div(class = "layer_" + n)
+		header.welcome-page__header
+			button.login-button Авторизоваться
+		section.welcome-page__content
+			.welcome-card
+		footer.welcome-page__footer
+			span.copyright &copy; Лембинен Николай
+			span.copyright To boldly go where no man has gone before
+				span.copyright__year 2016
