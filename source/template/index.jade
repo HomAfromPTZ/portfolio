@@ -1,22 +1,20 @@
+include common/_mixins
 doctype html
 html
 	include common/_head
-	body(class="welcome-page")
+	body
 		<!--[if lt IE 7]>
 		<p class="browsehappy">Вы используете <strong>устаревший</strong> браузер. Пожалуйста <a href="http://browsehappy.com/">обновите его</a></p>
 		<![endif]-->
 
 		.preloader
 
-		ul.welcome-axis-parallax#scene
-			- for (var n = 0; n < 10; n++)
-				li.layer(data-depth=(0.1*n))
-					div(class = "layer_" + n)
-		header.welcome-page__header
-			.header-content
+		include common/_parallax
+		header.header.header_welcome
+			.container
 				button.login-button Авторизоваться
 
-		section.welcome-page__content
+		section.content.content_welcome
 			.content__inner
 				h1 За голову ок
 				.flip-card
@@ -27,46 +25,30 @@ html
 							p.author-bio__name Лембинен Николай
 							p.author-bio__description Ба-дум тссс! - портфолио
 
-							ul.social-links
-								- var socials = {"vk" : "http://vk.com/homafromptz", "github-alt" : "https://github.com/HomAfromPTZ", "stack-overflow" : "http://stackoverflow.com/cv/homawebdev"}
-								each s_url, s_name in socials
-									li.social-links__item
-										a(class="fa fa-" + s_name, href=s_url)
+							+social_links("welcome")
 
 						ul.page-links
-							- var pages = {"Мои работы" : "/works", "Обо мне" : "/about", "Блог" : "/blog"}
+							- var pages = {"Мои работы" : "works.html", "Обо мне" : "#", "Блог" : "#"}
 							each p_url, p_name in pages
 								li.page-links__item
-									a(class="page-link" href=p_url)= p_name
+									a(class="page-links__link" href=p_url)= p_name
 
 					.flip-card__back-side
 						form.login-form(type="POST" action="/")
 							h2.sidestripes Авторизуйтесь
-							label.login-form__label
-								input.input_text(placeholder="Логин" type="text")
-								span.fa.fa-user
-							label.login-form__label
-								input.input_text(placeholder="Пароль" type="password")
-								span.fa.fa-key
-							label.login-form__label.login-form__label_checkbox
-								input(type="checkbox")
-								span Я человек
-							p.login-form__shure-not Вы точно не робот?
-							label.login-form__label.login-form__label_radio
-								input(type="radio" name="robocheck" value="Shure")
-								span Да
-							label.login-form__label.login-form__label_radio
-								input(type="radio" name="robocheck" value="Who knows")
-								span Не уверен
+							+input_iconed([["user", "Логин", "text"], ["key", "Пароль", "password"]])
+							+input_checkers([["checkbox", "robot_check", "not a robot", "Я человек"]])
+							p.login-form__plain-text Вы точно не робот?
+							+input_checkers([["radio", "robot_radio", "shure", "Да"], ["radio", "robot_radio", "who knows", "Не уверен"]])
 
 						ul.page-links
-							- var pages = {"На главную" : "#", "Войти" : "#"}
-							each p_url, p_name in pages
+							- var buttons = {"На главную" : "unflip-card", "Войти" : "log-me"}
+							each b_action, b_name in buttons
 								li.page-links__item
-									a(class="page-link" href=p_url)= p_name
+									button(class="page-links__link", id=b_action)= b_name
 
-		footer.welcome-page__footer
-			.footer-content
+		footer.footer.footer_welcome
+			.container
 				span.copyright &copy; Лембинен Николай
 				span.copyright(class="copyright_slogan") To boldly go where no man has gone before
 				span.copyright(class="copyright_year") 2016

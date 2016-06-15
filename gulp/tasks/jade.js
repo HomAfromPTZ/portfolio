@@ -3,7 +3,7 @@
 module.exports = function() {
 	$.gulp.task('jade', function() {
 		return $.gulp.src($.path.template)
-			.pipe($.gp.jade({ pretty: true }))
+			.pipe($.gp.jade({ pretty: '\t' }))
 			.on('error', $.gp.notify.onError(function(error) {
 				console.log(123);
 				return {

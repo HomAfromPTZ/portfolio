@@ -13,10 +13,23 @@ html
 html,
 body
 	height: 100%
-	// min-width: 320px
+	min-width: 320px
 	position: relative
 	font-size: 100%
 	font-family: "Roboto_medium", sans-serif
+
+body
+	display: table
+	width: 100%
+	perspective: 1000px
+
+.header,
+.content,
+.footer
+	display: table-row
+
+.content
+	height: 100%
 
 .preloader
 	position: absolute
@@ -33,6 +46,13 @@ body
 .no-js
 	.preloader
 		display: none
+
+.container
+	max-width: 1800px
+	margin: 0 auto
+	padding: 25px 20px
+
+
 
 
 // =================================
@@ -78,25 +98,21 @@ h4, h5, h6
 		// left: 100%
 		margin-left: 20px
 
-.double_sidestripes
-	position: relative
-	display: inline-block
-	margin: 0 0 50px
-	text-transform: uppercase
-	max-width: 80%
-	&::before,
-	&::after
-		content: ""
-		position: absolute
-		height: 6px
-		background-color: transparent
-		border-top: 2px solid $text-color
-		border-bottom: 2px solid $text-color
-		top: 42%
-		width: 20px
-	&::before
-		right: 100%
-		margin-right: 15px
-	&::after
-		left: 100%
-		margin-left: 15px
+.social-links
+	margin: 30px auto 0
+	padding: 0
+	list-style: none
+	&__item
+		display: inline-block
+		font-size: em(28)
+		line-height: 1
+		margin: 0 12px
+	&__link
+		color: $white
+		text-decoration: none
+		opacity: .5
+		transition: opacity $transition-time
+		&:hover
+			opacity: 1
+		&_welcome
+			color: $maincolor

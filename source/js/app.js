@@ -1,5 +1,5 @@
 (function($) {
-	'use strict';
+	"use strict";
 
 	$("#scene").parallax({
 		scalarX: 3,
@@ -8,16 +8,12 @@
 		frictionY: 0.5
 	});
 
-	$(".welcome-page .login-button").click(function() {
-		$("body").addClass("welcome-page_flipped");
+	$(".login-button").click(function() {
+		$("body").addClass("card_flipped");
 	});
 
-	$(window).click(function(e) {
-		$("body").removeClass("welcome-page_flipped");
-	});
-
-	$(".welcome-page .flip-card, .welcome-page .login-button").click(function(e){
-		e.stopPropagation();
+	$("#unflip-card").click(function() {
+		$("body").removeClass("card_flipped");
 	});
 
 	setTimeout(function(){
@@ -25,5 +21,5 @@
 			.fadeOut(400, function(){
 				$(".flip-card").addClass("loaded");
 			});
-	}, 1000);
+	}, 500);
 })(jQuery);
