@@ -34,7 +34,13 @@ html
 					+svg-heading("Мои работы", "icon-works_header")
 
 
-		section.portfolio-slider.fullheight.fullheight_mih
+		section.portfolio-slider
+			.portfolio-slider__module.portfolio-slider__preview-container
+				.portfolio-previews
+					.portfolio-previews__preview
+						img(src="/assets/img/works/bringcar.png", alt="Bringcar")
+					.portfolio-previews__preview
+						img(src="/assets/img/works/unspoken.png", alt="Bringcar")
 
 			.portfolio-slider__module.portfolio-slider__projects-container
 				.portfolio-projects
@@ -42,13 +48,6 @@ html
 						h3.sidestripes.project__title Сайт транспортной компании bringcar.ru
 						p.project__tech html, bootstrap, sass, jquery
 						a(href="#").project__link Посмотреть сайт
-
-			.portfolio-slider__module.portfolio-slider__preview-container
-				.portfolio-previews
-					.portfolio-previews__preview
-						img(src="/assets/img/works/bringcar.png", alt="Bringcar")
-					.portfolio-previews__preview
-						img(src="/assets/img/works/unspoken.png", alt="Bringcar")
 
 			.portfolio-slider__module.portfolio-slider__navigation-container
 				.navigation-box.navigation-box_prev
@@ -63,6 +62,8 @@ html
 					.portfolio-thumbnails
 						.portfolio-thumbnails__thumbnail
 							img(src="/assets/img/works/karakalpakiya.png", alt="Karakalpakiya")
+
+
 
 		section.talks
 			h2.sidestripes Что обо мне говорят

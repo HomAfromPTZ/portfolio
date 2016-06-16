@@ -9,17 +9,49 @@
 /* Medium Devices, Desktops */
 @media only screen and (max-width : 992px)
 	/**/
+	h1, h2
+		font-size: em(49,16)
+
+	h3
+		font-size: em(30,16)
+
+	h4, h5, h6
+		font-size: em(24,16)
+
+	.portfolio-slider
+		&__projects-container
+			.portfolio-projects
+				.project
+					padding: 5% 10%
 
 /* Small Devices, Tablets */
 @media only screen and (max-width : 768px)
 	/**/
+	// h1, h2
+	// 	font-size: em(49,16)
+
+	// h3
+	// 	font-size: em(30,16)
+
+	// h4, h5, h6
+	// 	font-size: em(24,16)
+
+	.portfolio-slider
+		height: auto
+		min-height: auto
+		&__module
+			width: 100%
+			float: none
+		&__preview-container
+			height: 400px
+		&__navigation-container
+			height: 150px
 
 /* Extra Small Devices, Phones */
 @media only screen and (max-width : 480px)
 	/**/
 	h1
 		font-size: em(35,16)
-		line-height: 1.5em
 
 	h2
 		font-size: em(35,16)
@@ -41,6 +73,14 @@
 			font-size: em(40)
 	.header_welcome
 		text-align: center
+
+	.portfolio-slider
+		&__preview-container
+			height: 200px
+		&__navigation-container
+			height: 100px
+
+
 	.copyright
 		&:first-child
 			display: block

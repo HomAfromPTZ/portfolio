@@ -11,6 +11,7 @@
 // 		width: 50%
 
 .portfolio-slider
+	@extend .fullheight, .fullheight_mih
 	background-color: $pastel_dark
 	text-align: center
 	img
@@ -25,10 +26,10 @@
 		vertical-align: middle
 	&__module
 		width: 50%
-		float: left
-		// display: table
+		// float: left
 
 	&__projects-container
+		float: left
 		height: 100%
 		background-color: $pastel
 		.portfolio-projects
@@ -69,6 +70,7 @@
 						background-color: darken($maincolor, 10%)
 
 	&__preview-container
+		float: right
 		height: 70%
 		overflow: hidden
 		.portfolio-previews
@@ -81,6 +83,7 @@
 
 	&__navigation-container
 		height: 30%
+		float: right
 		.portfolio-button
 			position: absolute
 			top: 0
