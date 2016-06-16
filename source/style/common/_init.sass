@@ -94,6 +94,30 @@ body
 // =================================
 // Typography
 // =================================
+@mixin sidestripes($height)
+	padding: 0 42px
+	margin: 0 20px
+	display: inline-block
+	&::before,
+	&::after
+		height: 1em
+		color: $stripes-color
+		content: ""
+		position: absolute
+		top: 50%
+		height: 5px
+		width: 22px
+		display: inline-block
+		vertical-align: middle
+		background-color: $gray_light
+		opacity: .8
+	&::before
+		left: 0
+		// margin-right: 20px
+	&::after
+		right: 0
+		// margin-left: 20px
+
 h1, h2, h3, h4, h5, h6
 	font-family: "bernier_regular", sans-serif
 	color: $text-color
@@ -109,33 +133,51 @@ h1
 	// line-height: 1.5em
 
 h2
-	font-size: em(35,16)
+	font-size: em(63,16)
 
 h3
+	font-size: em(35,16)
+
+h4
 	font-size: em(26,16)
 
-h4, h5, h6
+h5, h6
 	font-size: em(20,16)
+
+
+
+
 
 // =================================
 // Text header style
 // =================================
 .sidestripes
+	padding: 0 42px
+	margin: 0 20px
+	display: inline-block
 	&::before,
 	&::after
+		color: $stripes-color
 		content: ""
-		position: relative
+		position: absolute
+		top: .5em
+		margin-top: -2.5px
 		height: 5px
 		width: 22px
 		display: inline-block
 		vertical-align: middle
 		background-color: $gray_light
+		opacity: .8
 	&::before
-		// right: 100%
-		margin-right: 20px
+		left: 0
+		// margin-right: 20px
 	&::after
-		// left: 100%
-		margin-left: 20px
+		right: 0
+		// margin-left: 20px
+
+
+
+
 
 // =================================
 // Elements
