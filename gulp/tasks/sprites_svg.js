@@ -8,7 +8,7 @@ var svg_config = {
 	},
 	mode : {
 		symbol : {
-			prefix : "icon-%s",
+			prefix : "%s",
 			sprite : "bg-sprite.svg",
 			render : { scss : true }
 		}
