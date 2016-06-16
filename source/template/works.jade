@@ -7,14 +7,71 @@ html
 		<p class="browsehappy">Вы используете <strong>устаревший</strong> браузер. Пожалуйста <a href="http://browsehappy.com/">обновите его</a></p>
 		<![endif]-->
 
+		include common/_sprites
 		.preloader
 
 		include common/_parallax
-		header.header
-			.container
-				+social_links
+		+main-menu(1)
 
-		section.page__content
-			.content__inner
+		header.header.fullheight.table-box
+			.table-box__top
+				.container.container_padded
+					+social_links
+					button.menu-button#menu-toggle
+						.menu-button__line
+			.table-box__middle
+				.vertical-aligned
+					+avatar("me.jpg", "Frontend. Wordpress. Разработка сайтов под ключ.", "Лембинен Николай")
+					p.author-name Лембинен Николай
+					p.author-desctiption Еще одна страничка
+					button.go-down.fa.fa-chevron-down
+					svg(preserveAspectRatio="none" viewBox="0 0 2000 354.69").header__svg-corner
+						use(xlink:href="#icon-bg" class="icon-use")
+			.table-box__bottom.header__title
+				h1.header__title-text.sidestripes Мои работы
 
-		footer.page__footer
+
+		.content.clearfix
+			section.works.fullheight
+				.container.container_fullwidth
+					.column.column_half
+						.vertical-aligned
+							h3.sidestripes.works__title Сайт транспортно-логистической компании bringcar.ru
+							p.works__tech html, bootstrap, sass, jquery
+							a(href="#").works__link Посмотреть сайт
+					.column.column_half
+						.slider
+							.slider__current
+								.vertical-aligned
+									img(src="/assets/img/works/bringcar.png", alt="Bringcar")
+							.slider__nav
+								.slider__previous
+									img(src="/assets/img/works/alpha.png", alt="Alpha Capital Education")
+									button.fa.fa-chevton-down.slide-previous
+								.slider__next
+									img(src="/assets/img/works/karakalpakiya.png", alt="Karakalpakiya")
+									button.fa.fa-chevton-up.slide-next
+			section.talks
+				h2.sidestripes Что обо мне говорят
+				.container.container_slim.clearfix
+					.column.column_half
+						.testimonial
+							p.testimonial__text Этот парень был одним из тех, кто просто хочет спать
+							.testimonial__author
+								+avatar("dima.png", "Сооснователь школы LoftSchool", "Ковальчук Дмитрий")
+								p.name Ковальчук Дмитрий
+								p.description сооснователь LoftSchool
+
+					.column.column_half
+						.testimonial
+							p.testimonial__text Этот парень был одним из тех, кто просто хочет спать
+							.testimonial__author
+								+avatar("zar.png", "Сооснователь школы LoftSchool", "Зар Захаров")
+								p.name Зар Захаров
+								p.description сооснователь LoftSchool
+
+				.contact-form
+				button.go-up.fa.fa-chevron-up
+
+		footer.footer
+			include common/_footer

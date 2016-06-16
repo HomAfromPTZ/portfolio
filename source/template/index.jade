@@ -2,7 +2,7 @@ include common/_mixins
 doctype html
 html
 	include common/_head
-	body
+	body.table-box
 		<!--[if lt IE 7]>
 		<p class="browsehappy">Вы используете <strong>устаревший</strong> браузер. Пожалуйста <a href="http://browsehappy.com/">обновите его</a></p>
 		<![endif]-->
@@ -10,18 +10,17 @@ html
 		.preloader
 
 		include common/_parallax
-		header.header.header_welcome
-			.container
+		header.header.header_welcome.table-box__top
+			.container.container_padded
 				button.login-button Авторизоваться
 
-		section.content.content_welcome
-			.content__inner
+		.content.table-box__middle
+			.vertical-aligned.perspective-box
 				h1 За голову ок
 				.flip-card
 					.flip-card__front-side
 						.author-bio
-							.author-bio__avatar
-								img(src="/assets/img/avatar.jpg" title="Frontend. Wordpress. Разработка сайтов под ключ." alt="Лембинен Николай")
+							+avatar("me.jpg", "Frontend. Wordpress. Разработка сайтов под ключ.", "Лембинен Николай")
 							p.author-bio__name Лембинен Николай
 							p.author-bio__description Ба-дум тссс! - портфолио
 
@@ -47,8 +46,8 @@ html
 								li.page-links__item
 									button(class="page-links__link", id=b_action)= b_name
 
-		footer.footer.footer_welcome
-			.container
+		footer.footer.footer_welcome.table-box__bottom
+			.container.container_padded
 				span.copyright &copy; Лембинен Николай
 				span.copyright(class="copyright_slogan") To boldly go where no man has gone before
 				span.copyright(class="copyright_year") 2016

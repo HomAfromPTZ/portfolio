@@ -16,6 +16,10 @@
 		$("body").removeClass("card_flipped");
 	});
 
+	$("#menu-toggle").click(function(){
+		$(this).add(".main-menu").toggleClass("active");
+	});
+
 	setTimeout(function(){
 		$(".preloader")
 			.fadeOut(400, function(){

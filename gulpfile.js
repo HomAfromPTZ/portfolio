@@ -31,7 +31,6 @@ $.gulp.task('default', $.gulp.series(
 		'vendor_libs',
 		'js.lint',
 		'js.process',
-		'sprites_png',
 		'sprites_svg',
 		'copy.image'
 		),

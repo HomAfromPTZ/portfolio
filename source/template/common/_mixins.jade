@@ -1,3 +1,8 @@
+//- Rounded avatar widget
+mixin avatar(img, title, alt)
+	.avatar
+		img(src="/assets/img/"+img, title=title, alt=alt)
+
 //- Social profiles
 //- style - BEM modidifier
 mixin social_links(style)
@@ -23,3 +28,13 @@ mixin input_checkers(elements)
 		label(class="login-form__label login-form__label_" + params[0])
 			input(class="input input_#{params[0]}", type=params[0], name=params[1], value=params[2])
 			span=params[3]
+
+//- Fullscreen Menu widget
+mixin main-menu(active)
+	- var pages = {"Мои работы":"#", "Блог":"#", "Обо мне":"#", "Авторизация":"/"}
+	nav.main-menu
+		ul.main-menu__content
+			- var i = 1
+			each p_url, p_title in pages
+				li.main-menu__item
+					a(class="main-menu__link" + ((i++ == active) ? " active":""), href=p_url)=p_title
