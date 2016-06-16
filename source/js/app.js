@@ -20,6 +20,10 @@
 		$(this).add(".main-menu").toggleClass("active");
 	});
 
+	$(".main-menu__item").each(function(index) {
+		$(this).css("transition-delay", 0.3+0.1*index + "s");
+	});
+
 	setTimeout(function(){
 		$(".preloader")
 			.fadeOut(400, function(){

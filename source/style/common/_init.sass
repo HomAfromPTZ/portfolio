@@ -266,8 +266,8 @@ button
 		list-style: none
 		text-align: center
 		opacity: 0
-		transform: scale(0.5)
-		transition: all $transition-time
+		transform: scale(0)
+		transition: none
 	&__link
 		font-family: "bernier_regular"
 		font-size: em(63,16)
@@ -289,7 +289,7 @@ button
 			padding: 0
 			overflow: hidden
 			background-color: rgba($white, .7)
-			transition: all $transition-time
+			transition: all $transition-time_fast
 		&::before
 			left: 0
 			margin-right: 15px
@@ -310,5 +310,6 @@ button
 	.main-menu
 		&__item
 			opacity: 1
+			// visibility: visible
 			transform: scale(1)
-			transition: all $transition-time cubic-bezier(.77,.6,.31,1) $transition-time_medium
+			transition: all $transition-time cubic-bezier(.77,.6,.31,1.2) $transition-time_medium
