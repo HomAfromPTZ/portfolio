@@ -13,65 +13,71 @@ html
 		include common/_parallax
 		+main-menu(1)
 
-		header.header.fullheight.table-box
+		header.header.table-box.fullheight.fullheight_mih
 			.table-box__top
-				.container.container_padded
-					+social_links
-					button.menu-button#menu-toggle
-						.menu-button__line
+				+header-top
 			.table-box__middle
 				.vertical-aligned
-					+avatar("me.jpg", "Frontend. Wordpress. Разработка сайтов под ключ.", "Лембинен Николай")
-					p.author-name Лембинен Николай
-					p.author-desctiption Еще одна страничка
+					.site-author
+						+avatar("me.jpg", "Frontend. Wordpress. Разработка сайтов под ключ.", "Лембинен Николай")
+						p.site-author__name Лембинен Николай
+						p.site-author__desctiption Еще одна страничка
+
+					svg.header__svg-bg
+						use(xlink:href="#icon-portfolio_header")
 					button.go-down.fa.fa-chevron-down
-					svg(preserveAspectRatio="none" viewBox="0 0 2000 354.69").header__svg-corner
-						use(xlink:href="#icon-bg" class="icon-use")
-			.table-box__bottom.header__title
-				h1.header__title-text.sidestripes Мои работы
+
+					svg(preserveAspectRatio="none" viewBox="0 0 2032 360.368").header__svg-corner
+						use(xlink:href="#icon-bg")
+			.table-box__bottom
+				.header__title
+					+svg-heading("Мои работы", "icon-works_header")
 
 
-		.content.clearfix
-			section.works.fullheight
-				.container.container_fullwidth
-					.column.column_half
-						.vertical-aligned
-							h3.sidestripes.works__title Сайт транспортно-логистической компании bringcar.ru
-							p.works__tech html, bootstrap, sass, jquery
-							a(href="#").works__link Посмотреть сайт
-					.column.column_half
-						.slider
-							.slider__current
-								.vertical-aligned
-									img(src="/assets/img/works/bringcar.png", alt="Bringcar")
-							.slider__nav
-								.slider__previous
-									img(src="/assets/img/works/alpha.png", alt="Alpha Capital Education")
-									button.fa.fa-chevton-down.slide-previous
-								.slider__next
-									img(src="/assets/img/works/karakalpakiya.png", alt="Karakalpakiya")
-									button.fa.fa-chevton-up.slide-next
-			section.talks
-				h2.sidestripes Что обо мне говорят
-				.container.container_slim.clearfix
-					.column.column_half
-						.testimonial
-							p.testimonial__text Этот парень был одним из тех, кто просто хочет спать
-							.testimonial__author
-								+avatar("dima.png", "Сооснователь школы LoftSchool", "Ковальчук Дмитрий")
-								p.name Ковальчук Дмитрий
-								p.description сооснователь LoftSchool
+		section.portfolio-slider.fullheight.fullheight_mih
+			.column.column_half.fullheight
+				.vertical-aligned.portfolio-slider__projects-container
+					.project
+						h2.sidestripes.project__title Сайт транспортно-логистической компании bringcar.ru
+						p.project__tech html, bootstrap, sass, jquery
+						a(href="#").project__link Посмотреть сайт
+			.column.column_half
+				.vertical-aligned.portfolio-slider__preview-container
+					.preview
+						img.preview(src="/assets/img/works/bringcar.png", alt="Bringcar")
+				.vertical-aligned.portfolio-slider__navigation-container
+					.navigation__content-prev
+						button.button-prev.fa.fa-chevron-down
+						.thumbnails-wrapper
+							.thumbnail
+								img(src="/assets/img/works/alpha.png", alt="Alpha Capital Education")
+					.navigation__content-next
+						button.button-next.fa.fa-chevron-up
+						.thumbnails-wrapper
+							.thumbnail
+								img(src="/assets/img/works/karakalpakiya.png", alt="Karakalpakiya")
 
-					.column.column_half
-						.testimonial
-							p.testimonial__text Этот парень был одним из тех, кто просто хочет спать
-							.testimonial__author
-								+avatar("zar.png", "Сооснователь школы LoftSchool", "Зар Захаров")
-								p.name Зар Захаров
-								p.description сооснователь LoftSchool
+		section.talks
+			h2.sidestripes Что обо мне говорят
+			.container.container_slim.clearfix
+				.column.column_half
+					.testimonial
+						p.testimonial__text Этот парень был одним из тех, кто просто хочет спать
+						.testimonial__author
+							+avatar("dima.png", "Сооснователь школы LoftSchool", "Ковальчук Дмитрий")
+							p.name Ковальчук Дмитрий
+							p.description сооснователь LoftSchool
 
-				.contact-form
-				button.go-up.fa.fa-chevron-up
+				.column.column_half
+					.testimonial
+						p.testimonial__text Этот парень был одним из тех, кто просто хочет спать
+						.testimonial__author
+							+avatar("zar.png", "Сооснователь школы LoftSchool", "Зар Захаров")
+							p.name Зар Захаров
+							p.description сооснователь LoftSchool
+
+			.contact-form
+			button.go-up.fa.fa-chevron-up
 
 		footer.footer
 			include common/_footer

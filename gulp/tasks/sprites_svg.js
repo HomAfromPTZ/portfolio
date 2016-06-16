@@ -10,7 +10,8 @@ var svg_config = {
 		symbol : {
 			prefix : "%s",
 			sprite : "bg-sprite.svg",
-			render : { scss : true }
+			render : { scss : true },
+			example : true
 		}
 	}
 };

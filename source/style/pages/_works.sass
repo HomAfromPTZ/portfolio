@@ -1,22 +1,51 @@
 
 .fullheight
 	height: 100%
-	min-height: 650px
-	overflow: hidden
+	&_mih
+		min-height: 650px
+		overflow: hidden
 
 .column
+	float: left
 	&_half
 		width: 50%
-		float: left
 
-.works
-	.container
-		height: 100%
-	.column_half
+.portfolio-slider
+	.column
 		height: 100%
 		display: table
-	.vertical-aligned
-		height: 100%
+
+	&__projects-container
+		text-align: center
+		padding: 10% 16%
+		background-color: $pastel
+		.project
+			&__tech,
+			&__link
+				font-family: "roboto_medium"
+				font-size: em(16)
+				line-height: 1
+			&__tech
+				text-transform: uppercase
+				color: $maincolor
+				border-top: 1px solid $maincolor
+				border-bottom: 1px solid $maincolor
+				padding: 20px 15px
+				margin: 40px auto
+			&__link
+				text-decoration: none
+				display: inline-block
+				color: $white
+				padding: 15px
+				background-color: $maincolor
+				border-radius: 5px
+				&::before
+					content: "\f0c1"
+					position: relative
+					font-family: "FontAwesome"
+					font-size: em(20)
+					margin-right: 8px
+
 
 	.slider
 		height: 100%

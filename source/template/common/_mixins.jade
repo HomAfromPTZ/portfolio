@@ -1,3 +1,11 @@
+//- Lorem ipsum mixin
+mixin lorem(n)
+	- var words_num = n || 10
+	- var tpl = "Donec sed velit neque. Fusce suscipit vel lorem id fermentum. Vivamus ex massa, suscipit a mi nec, dapibus facilisis mi. Integer cursus mi orci, et auctor dui interdum nec. Pellentesque ipsum nisl, aliquam at molestie eu, varius eu urna. Quisque sed metus auctor, malesuada tortor ut, hendrerit enim. Vestibulum gravida arcu vitae est pretium, vel accumsan sapien iaculis. Vestibulum commodo hendrerit dolor ut malesuada. Duis non pellentesque velit, eu vulputate est. Quisque aliquet congue leo at molestie. Nunc ac risus tellus. Cras urna purus, suscipit non pharetra vel, facilisis ut sapien. Etiam mattis est at arcu venenatis laoreet. Nulla accumsan massa libero, in efficitur purus vulputate vitae."
+
+	- var words = tpl.split(/\s+/,words_num)
+	span=words.join(" ")
+
 //- Rounded avatar widget
 mixin avatar(img, title, alt)
 	.avatar
@@ -38,3 +46,17 @@ mixin main-menu(active)
 			each p_url, p_title in pages
 				li.main-menu__item
 					a(class="main-menu__link" + ((i++ == active) ? " active":""), href=p_url)=p_title
+
+//- Header top row with socials and menu button
+mixin header-top
+	.container.header__top-row
+		+social_links
+		button.menu-button#menu-toggle
+			.menu-button__line
+
+//- Heading with SVG
+mixin svg-heading(heading_text, svg_id, heading_type)
+	- var h_type = heading_type || "h1"
+	.svg-heading
+		#{h_type}.svg-heading__text.sidestripes= heading_text
+		svg.svg-heading__img: use(xlink:href="#"+svg_id)
