@@ -5,11 +5,10 @@
 		min-height: 650px
 		overflow: hidden
 
-// .column
-// 	float: left
-// 	&_half
-// 		width: 50%
 
+// =================================
+// Portfolio with works preview
+// =================================
 .portfolio-slider
 	@extend .fullheight, .fullheight_mih
 	background-color: $pastel_dark
@@ -24,12 +23,17 @@
 		max-height: 90%
 		margin: auto
 		vertical-align: middle
+
 	&__module
 		width: 50%
-		// float: left
-
 	&__projects-container
 		float: left
+	&__preview-container
+		float: right
+	&__navigation-container
+		float: right
+
+	&__projects-container
 		height: 100%
 		background-color: $pastel
 		.portfolio-projects
@@ -44,6 +48,8 @@
 					font-family: "roboto_medium"
 					font-size: em(16)
 					line-height: 1
+				&__title
+					margin: 0 20px
 				&__tech
 					text-transform: uppercase
 					color: $maincolor
@@ -70,7 +76,6 @@
 						background-color: darken($maincolor, 10%)
 
 	&__preview-container
-		float: right
 		height: 70%
 		overflow: hidden
 		.portfolio-previews
@@ -83,7 +88,6 @@
 
 	&__navigation-container
 		height: 30%
-		float: right
 		.portfolio-button
 			position: absolute
 			top: 0
@@ -91,9 +95,16 @@
 			width: 100%
 			height: 100%
 			z-index: 1
-			font-size: em(36)
-			color: $white
 			transition: all $transition-time
+			.fa
+				position: relative
+				top: 0
+				font-size: em(36)
+				color: $white
+				transition: all $transition-time
+			&:hover
+				.fa
+					transform: scale(1.4)
 			&_prev
 				background-color: rgba($thumb-overlay-color_prev, .5)
 				&:hover
@@ -117,22 +128,112 @@
 
 
 
+// =================================
+// About me
+// =================================
+.talks
+	background-color: $white
+	text-align: center
+	padding-bottom: 300px
+	margin-bottom: -300px
+	&__wrapper
+		width: 66.66666666666667%
+		max-width: 960px
+		margin: 0 auto
+		.testimonial
+			float: left
+			text-align: left
+			width: 50%
+			font-size: em(16)
+			padding: 0 10px
+			&__text
+				font-family: "roboto_regular"
+				color: $text-color
+				margin: 25px 0
+				&::before
+					content: "\f10d"
+					font-family: "FontAwesome"
+					font-size: em(36,16)
+					position: relative
+					display: block
+					opacity: .2
+					margin-bottom: 30px
+			&__author
+				width: 100%
+				.avatar
+					width: 87px
+					height: 87px
+					max-width: 30%
+					display: inline-block
+					vertical-align: middle
+				.author
+					max-width: 65%
+					padding-left: 2%
+					color: $maincolor
+					display: inline-block
+					vertical-align: middle
+					&__name,
+					&__description
+						margin: 0
+					&__name
+						font-family: "roboto_bold"
+					&__description
+						font-family: "roboto_regular"
+
+.talks, .contact-form__bg
+	background-image: url("/assets/img/theme_mountains/about-bg.png")
+	background-size: cover
+	background-repeat: no-repeat
+
+.talks
+	background-position: center center
+.contact-form__bg
+	position: absolute
+	top: 0
+	right: 0
+	bottom: 0
+	left: 0
+	z-index: 0
+	background-position: center center
+	filter: blur(25px)
+
+.contact-form
+	display: block
+	margin: 70px auto
+	width: 380px
+	max-width: 90%
+	border-radius: 5px
+	overflow: hidden
+	text-align: center
+	position: relative
+	&__content
+		position: relative
+		padding: 0 20px
+		background: transparent
+	&__heading
+		margin: 30px 0 0
+	&__field
+		border-radius: 5px
+		display: block
+		margin: 20px auto
+		padding: 15px
+		border: 0
+		width: 100%
+		background-color: $white
+		&_textarea
+			height: 140px
+		&::placeholder
+			font-family: "roboto_regular"
+			font-size: em(16)
+			line-height: 1
+			opacity: .5
+	.page-links
+		position: relative
 
 
-
-	// .slider
-	// 	height: 100%
-	// 	overflow: hidden
-	// 	&__current
-	// 		height: 70%
-	// 		float: left
-	// 		display: table
-	// 		width: 100%
-	// 		img
-	// 			width: 100%
-	// 	&__nav
-	// 		height: 30%
-	// 	&__previous,
-	// 	&__next
-	// 		width: 50%
-	// 		float: left
+.footer_common
+	background-color: rgba(#000, .5)
+	height: 300px
+	color: $white
+	text-align: center
+	padding: 30px

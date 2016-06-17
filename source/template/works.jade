@@ -65,27 +65,40 @@ html
 
 
 
-		section.talks
-			h2.sidestripes Что обо мне говорят
-			.container.container_slim.clearfix
-				.column.column_half
-					.testimonial
-						p.testimonial__text Этот парень был одним из тех, кто просто хочет спать
-						.testimonial__author
-							+avatar("dima.png", "Сооснователь школы LoftSchool", "Ковальчук Дмитрий")
-							p.name Ковальчук Дмитрий
-							p.description сооснователь LoftSchool
+		section.talks.clearfix
+			+svg-heading("Что обо мне говорят", "icon-about_header")
+			.talks__wrapper.clearfix
+				.testimonial
+					blockquote.testimonial__text Этот парень был одним из тех, кто просто хочет спать
+					.testimonial__author.author
+						+avatar("dima.png", "Сооснователь школы LoftSchool", "Ковальчук Дмитрий")
+						.author
+							p.author__name Ковальчук Дмитрий
+							p.author__description сооснователь LoftSchool
 
-				.column.column_half
-					.testimonial
-						p.testimonial__text Этот парень был одним из тех, кто просто хочет спать
-						.testimonial__author
-							+avatar("zar.png", "Сооснователь школы LoftSchool", "Зар Захаров")
-							p.name Зар Захаров
-							p.description сооснователь LoftSchool
+				.testimonial
+					blockquote.testimonial__text Этот парень был одним из тех, кто просто хочет спать
+					.testimonial__author
+						+avatar("zar.png", "Сооснователь школы LoftSchool", "Зар Захаров")
+						.author
+							p.author__name Зар Захаров
+							p.author__description сооснователь LoftSchool
 
-			.contact-form
+			form.contact-form(type="POST" action="/")
+				.contact-form__bg
+				.contact-form__content
+					h3.contact-form__heading.sidestripes Связаться со мной
+					input.contact-form__field(type="text" name="name" placeholder="Имя")
+					input.contact-form__field(type="text" name="email" placeholder="Email")
+					textarea.contact-form__field.contact-form__field_textarea(name="message" placeholder="Ваше сообщение")
+
+				ul.page-links
+					- var buttons = {"Отправить" : "form-submit", "Очистить" : "form-clear"}
+					each b_action, b_name in buttons
+						li.page-links__item
+							button(class="page-links__link", id=b_action)= b_name
+
 			button.go-up.fa.fa-chevron-up
 
-		footer.footer
+		footer.footer.footer_common
 			include common/_footer

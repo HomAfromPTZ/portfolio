@@ -5,6 +5,14 @@
 /* Large Devices, Wide Screens */
 @media only screen and (max-width : 1200px)
 	/**/
+	.talks
+		&__wrapper
+			.testimonial
+				font-size: em(14)
+				&__author
+					.avatar
+						width: 60px
+						height: 60px
 
 /* Medium Devices, Desktops */
 @media only screen and (max-width : 992px)
@@ -24,17 +32,16 @@
 				.project
 					padding: 5% 10%
 
+	.talks
+		&__wrapper
+			width: 80%
+
 /* Small Devices, Tablets */
 @media only screen and (max-width : 768px)
 	/**/
-	// h1, h2
-	// 	font-size: em(49,16)
-
-	// h3
-	// 	font-size: em(30,16)
-
-	// h4, h5, h6
-	// 	font-size: em(24,16)
+	.talks
+		&__wrapper
+			width: 90%
 
 	.portfolio-slider
 		height: auto
@@ -79,6 +86,25 @@
 			height: 200px
 		&__navigation-container
 			height: 100px
+
+
+	.talks
+		&__wrapper
+			.testimonial
+				float: none
+				text-align: left
+				width: 90%
+				&__author
+					.avatar
+						width: 49px
+						height: 49px
+				&__text
+					font-family: "roboto_regular"
+					color: $text-color
+					margin: 15px 0
+					&::before
+						text-align: center
+						margin-bottom: 20px
 
 
 	.copyright

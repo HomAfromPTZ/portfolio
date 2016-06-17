@@ -153,7 +153,6 @@ h5, h6
 // =================================
 .sidestripes
 	padding: 0 42px
-	margin: 0 20px
 	display: inline-block
 	&::before,
 	&::after
@@ -175,6 +174,25 @@ h5, h6
 		right: 0
 		// margin-left: 20px
 
+.svg-heading
+	position: relative
+	display: block
+	padding: 65px 15px
+	text-align: center
+	&__wrapper
+	&__text
+		position: relative
+		width: 380px
+		z-index: 3
+	&__img
+		position: absolute
+		z-index: 0
+		top: 50%
+		left: 50%
+		width: 100%
+		height: auto
+		transform: translate(-50%,-55%)
+		opacity: .07
 
 
 
@@ -182,6 +200,10 @@ h5, h6
 // =================================
 // Elements
 // =================================
+.go-up
+	margin: 0 auto 70px
+	font-size: em(40)
+
 img
 	max-width: 100%
 
@@ -286,6 +308,7 @@ button
 	min-height: 650px
 	display: table
 	visibility: hidden
+	overflow: hidden
 	&::before,
 	&::after
 		content: ""
@@ -356,3 +379,4 @@ button
 			// visibility: visible
 			transform: scale(1)
 			transition: all $transition-time cubic-bezier(.77,.6,.31,1.2) $transition-time_medium
+
