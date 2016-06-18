@@ -23,15 +23,29 @@
 		max-height: 90%
 		margin: auto
 		vertical-align: middle
+	+media(s)
+		height: auto
+		min-height: auto
 
 	&__module
 		width: 50%
+		+media(s)
+			width: 100%
+			float: none
 	&__projects-container
 		float: left
 	&__preview-container
 		float: right
+		+media(s)
+			height: 400px
+		+media(xs)
+			height: 200px
 	&__navigation-container
 		float: right
+		+media(s)
+			height: 150px
+		+media(xs)
+			height: 100px
 
 	&__projects-container
 		height: 100%
@@ -43,6 +57,8 @@
 			.project
 				@extend .vertical-aligned
 				padding: 10% 16%
+				+media(m)
+					padding: 5% 10%
 				&__tech,
 				&__link
 					font-family: "roboto_medium"
@@ -129,27 +145,37 @@
 
 
 // =================================
-// About me
+// Testimonials
 // =================================
 .talks
 	background-color: $white
 	text-align: center
-	padding-bottom: 300px
-	margin-bottom: -300px
 	&__wrapper
 		width: 66.66666666666667%
 		max-width: 960px
 		margin: 0 auto
+		+media(m)
+			width: 80%
+		+media(s)
+			width: 90%
 		.testimonial
 			float: left
 			text-align: left
 			width: 50%
 			font-size: em(16)
 			padding: 0 10px
+			+media(l)
+				font-size: em(14)
+			+media(xs)
+				float: none
+				text-align: left
+				width: 90%
 			&__text
 				font-family: "roboto_regular"
 				color: $text-color
-				margin: 25px 0
+				margin: 0 0 25px
+				+media(xs)
+					margin: 0 0 15px
 				&::before
 					content: "\f10d"
 					font-family: "FontAwesome"
@@ -158,6 +184,9 @@
 					display: block
 					opacity: .2
 					margin-bottom: 30px
+					+media(xs)
+						text-align: center
+						margin-bottom: 20px
 			&__author
 				width: 100%
 				.avatar
@@ -166,6 +195,12 @@
 					max-width: 30%
 					display: inline-block
 					vertical-align: middle
+					+media(l)
+						width: 60px
+						height: 60px
+					+media(xs)
+						width: 49px
+						height: 49px
 				.author
 					max-width: 65%
 					padding-left: 2%
@@ -180,26 +215,9 @@
 					&__description
 						font-family: "roboto_regular"
 
-.talks, .contact-form__bg
-	background-image: url("/assets/img/theme_mountains/about-bg.png")
-	background-size: cover
-	background-repeat: no-repeat
-
-.talks
-	background-position: center center
-.contact-form__bg
-	position: absolute
-	top: 0
-	right: 0
-	bottom: 0
-	left: 0
-	z-index: 0
-	background-position: center center
-	filter: blur(25px)
-
 .contact-form
 	display: block
-	margin: 70px auto
+	margin: 70px auto 0
 	width: 380px
 	max-width: 90%
 	border-radius: 5px
@@ -231,9 +249,123 @@
 		position: relative
 
 
-.footer_common
-	background-color: rgba(#000, .5)
-	height: 300px
-	color: $white
-	text-align: center
-	padding: 30px
+
+.talks, .contact-form__bg
+	background: url("/assets/img/theme_mountains/about-bg.png") $white
+	background-repeat: no-repeat
+	background-size: 1200px
+
+.talks
+	background-position: center bottom
+.contact-form__bg
+	position: absolute
+	top: 0
+	right: 0
+	bottom: 0
+	left: 0
+	z-index: 0
+	background-position: center calc(100% + #{$footer-height})
+	filter: blur(5px)
+	+media(s)
+		background-position: center calc(100% + #{$footer-height_small})
+	+media(xs)
+		background-position: center calc(100% + #{$footer-height_xsmall})
+
+
+
+// =================================
+// Last section
+// =================================
+.last-section
+	padding-bottom: $footer-height
+	margin-bottom: -$footer-height
+	+media(s)
+		padding-bottom: $footer-height_small
+		margin-bottom: -$footer-height_small
+	+media(xs)
+		padding-bottom: $footer-height_xsmall
+		margin-bottom: -$footer-height_xsmall
+
+.go-up
+	display: block
+	margin: 70px auto
+	width: 50px
+	height: 50px
+	font-size: em(40)
+
+
+
+// =================================
+// Footer
+// =================================
+
+.footer
+	&__wrapper
+		background-color: rgba($stripes-color, .85)
+		height: ($footer-height - 190px)
+		color: $white
+		text-align: center
+		+media(s)
+			height: ($footer-height_small - 190px)
+		+media(xs)
+			height: ($footer-height_xsmall - 190px)
+	&__row
+		border-bottom: 1px solid rgba($white, .1)
+		padding: 30px
+		@extend .clearfix
+		&:last-child
+			border: none
+	&__column
+		float: left
+		width: 50%
+		+media(s)
+			margin-bottom: 20px
+			float: none
+			width: 100%
+			text-align: center !important
+			&:last-child
+				margin-bottom: 0
+		&_left
+			text-align: left
+		&_right
+			text-align: right
+
+	&__link
+		position: relative
+		color: $white
+		text-decoration: none
+		margin: 0 20px
+		padding: 10px 0
+		vertical-align: middle
+		display: inline-block
+		+media(m)
+			margin: 0 10px
+			font-size: em(14)
+		&:first-child
+			margin-left: 0
+		&:last-child
+			margin-right: 0
+		&::after
+			content: ""
+			position: absolute
+			bottom: 0
+			left: 50%
+			transform: translateX(-50%)
+			display: block
+			height: 2px
+			background-color: $white
+			opacity: 0
+			width: 0
+			transition: all $transition-time
+		&:hover
+			&::after
+				opacity: 1
+				width: 100%
+
+	&__quote
+		opacity: .5
+		font-family: "roboto_light"
+
+	&_common
+		.copyright
+			opacity: .5

@@ -22,9 +22,10 @@ body
 	text-align: center
 	&_welcome
 		text-align: right
+		+media(s)
+			text-align: center
 
 .content
-	// height: 100%
 	&_welcome
 		text-align: center
 
@@ -46,7 +47,7 @@ body
 	height: 100%
 	left: 0
 	top: 0
-	z-index: 10
+	z-index: 99999
 	background-image: url("../img/theme_mountains/preloader.gif")
 	background-repeat: no-repeat
 	background-size: cover
@@ -90,33 +91,9 @@ body
 
 
 
-
 // =================================
 // Typography
 // =================================
-@mixin sidestripes($height)
-	padding: 0 42px
-	margin: 0 20px
-	display: inline-block
-	&::before,
-	&::after
-		height: 1em
-		color: $stripes-color
-		content: ""
-		position: absolute
-		top: 50%
-		height: 5px
-		width: 22px
-		display: inline-block
-		vertical-align: middle
-		background-color: $gray_light
-		opacity: .8
-	&::before
-		left: 0
-		// margin-right: 20px
-	&::after
-		right: 0
-		// margin-left: 20px
 
 h1, h2, h3, h4, h5, h6
 	font-family: "bernier_regular", sans-serif
@@ -127,22 +104,27 @@ h1, h2, h3, h4, h5, h6
 	text-align: center
 	position: relative
 
-h1
+h1, h2
 	font-size: em(63,16)
-	line-height: 1
-	// line-height: 1.5em
-
-h2
-	font-size: em(63,16)
+	+media(m)
+		font-size: em(49,16)
+	+media(xs)
+		font-size: em(35,16)
 
 h3
 	font-size: em(35,16)
+	+media(m)
+		font-size: em(30,16)
+	+media(xs)
+		font-size: em(21,16)
 
-h4
+
+h4, h5, h6
 	font-size: em(26,16)
-
-h5, h6
-	font-size: em(20,16)
+	+media(m)
+		font-size: em(24,16)
+	+media(xs)
+		font-size: em(21,16)
 
 
 
@@ -169,10 +151,8 @@ h5, h6
 		opacity: .8
 	&::before
 		left: 0
-		// margin-right: 20px
 	&::after
 		right: 0
-		// margin-left: 20px
 
 .svg-heading
 	position: relative
@@ -184,6 +164,8 @@ h5, h6
 		position: relative
 		width: 380px
 		z-index: 3
+		+media(m)
+			width: auto
 	&__img
 		position: absolute
 		z-index: 0
@@ -200,10 +182,6 @@ h5, h6
 // =================================
 // Elements
 // =================================
-.go-up
-	margin: 0 auto 70px
-	font-size: em(40)
-
 img
 	max-width: 100%
 
@@ -231,152 +209,34 @@ button
 	z-index: 10
 	&__item
 		display: inline-block
-		font-size: em(28)
-		line-height: 1
 		margin: 0 12px
+		text-align: center
 		&:first-child
 			margin-left: 0
 		&:last-child
 			margin-right: 0
+		&_welcome
+			.social-links__link
+				color: $maincolor
+		&_circle
+			margin: 0 5px
+			.social-links__link
+				border: 2px solid $white
+				border-radius: 50%
+				font-size: em(18)
+				line-height: 34px
+				width: 38px
+				height: 38px
+				&:hover
+					background-color: $white
+					&::before
+						color: invert($white)
 	&__link
 		color: $white
 		text-decoration: none
+		font-size: em(28,16)
+		line-height: 1
 		opacity: .5
 		transition: opacity $transition-time
 		&:hover
 			opacity: 1
-		&_welcome
-			color: $maincolor
-
-
-
-// =================================
-// Fullscreen Main menu
-// =================================
-.menu-button
-	position: relative
-	width: 35px
-	height: 35px
-	padding: 0
-	z-index: 10
-	&__line,
-	&::before,
-	&::after
-		position: absolute
-		height: 5px
-		width: 100%
-		background-color: $white
-		border-radius: 5px
-		transform-origin: center center
-		transition: all $transition-time
-	&::before,
-	&::after
-		content: ""
-		display: block
-	&__line
-		opacity: 1
-		top: 50%
-		transform: translateY(-50%)
-	&::before
-		top: 0
-	&::after
-		bottom: 0
-	&:hover
-		&::before
-			// transform: translateY(2px)
-		&::after
-			// transform: translateY(-2px)
-
-.menu-button.active
-	.menu-button__line
-		opacity: 0
-	&::before
-		top: 50%
-		transform: translateY(-50%) rotate(-45deg)
-	&::after
-		bottom: 50%
-		transform: translateY(50%) rotate(45deg)
-
-.main-menu
-	position: absolute
-	top: 0
-	left: 0
-	right: 0
-	z-index: 10
-	width: 100%
-	height: 100%
-	min-height: 650px
-	display: table
-	visibility: hidden
-	overflow: hidden
-	&::before,
-	&::after
-		content: ""
-		position: absolute
-		top: 0
-		width: 0
-		height: 100%
-		background-color: rgba($maincolor, 0.87)
-		transition: all $transition-time_medium
-	&::before
-		left: 0
-	&::after
-		right: 0
-	&__content
-		position: relative
-		z-index: 1
-		display: table-cell
-		vertical-align: middle
-		padding: 35px
-	&__item
-		list-style: none
-		text-align: center
-		opacity: 0
-		transform: scale(0)
-		transition: none
-	&__link
-		font-family: "bernier_regular"
-		font-size: em(63,16)
-		line-height: em(132, 63)
-		color: $white
-		text-decoration: none
-		padding: 0 35px
-		position: relative
-		&::before,
-		&::after
-			content: ""
-			position: absolute
-			top: 50%
-			margin-top: -2px
-			vertical-align: middle
-			display: inline-block
-			height: 5px
-			width: 0
-			padding: 0
-			overflow: hidden
-			background-color: rgba($white, .7)
-			transition: all $transition-time_fast
-		&::before
-			left: 0
-			margin-right: 15px
-		&::after
-			right: 0
-			margin-left: 15px
-		&:hover,
-		&.active
-			&::before,
-			&::after
-				width: 22px
-
-.main-menu.active
-	visibility: visible
-	&::before,
-	&::after
-		width: 50%
-	.main-menu
-		&__item
-			opacity: 1
-			// visibility: visible
-			transform: scale(1)
-			transition: all $transition-time cubic-bezier(.77,.6,.31,1.2) $transition-time_medium
-

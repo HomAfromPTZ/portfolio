@@ -1,1 +1,17 @@
-p Общий футер
+footer.footer.footer_common
+	button.go-up.fa.fa-chevron-up
+	.footer__wrapper
+		.footer__row
+			.footer__column.footer__column_left
+				- var pages = {"Мои работы":"#", "Блог":"#", "Обо мне":"#", "Авторизация":"/"}
+				each p_url, p_title in pages
+					a.footer__link(href=p_url)=p_title
+			.footer__column.footer__column_right
+				+social_links("circle")
+		.footer__row
+			.footer__column.footer__column_left
+				span.footer__quote “It is so shocking to find out how many people do not believe that they can learn, and how many more believe learning to be difficult.” 
+			.footer__column.footer__column_right
+				span.copyright &copy; Лембинен Николай
+				span.copyright(class="copyright_slogan") To boldly go where no man has gone before
+				span.copyright(class="copyright_year") 2016

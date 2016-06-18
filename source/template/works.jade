@@ -65,7 +65,7 @@ html
 
 
 
-		section.talks.clearfix
+		section.talks.clearfix.last-section
 			+svg-heading("Что обо мне говорят", "icon-about_header")
 			.talks__wrapper.clearfix
 				.testimonial
@@ -98,7 +98,4 @@ html
 						li.page-links__item
 							button(class="page-links__link", id=b_action)= b_name
 
-			button.go-up.fa.fa-chevron-up
-
-		footer.footer.footer_common
-			include common/_footer
+		include common/_footer
