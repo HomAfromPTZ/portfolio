@@ -37,6 +37,22 @@
 	});
 
 
+	// ==============================
+	// Buttons
+	// ==============================
+	$("button.go-down").click(function(){
+		$("html, body").stop().animate({
+			scrollTop: $(".portfolio-slider").offset().top
+		}, 700, "swing");
+	});
+
+	$("button.go-up").click(function(){
+		$("html, body").stop().animate({
+			scrollTop: 0
+		}, 700, "swing");
+	});
+
+
 
 	// ==============================
 	// Fake preloader
@@ -48,24 +64,36 @@
 			});
 	}, 500);
 
+	// Page change
+	$(document).on("click", "a", function(e) {
+		var href = $(this).attr("href");
+		e.preventDefault();
+
+		return $(".preloader")
+			.fadeIn(500, function(){
+				return document.location = href != null ? href : "/";
+			});
+	});
 
 	// ==============================
 	// Testimonials section bg size
 	// ==============================
-	if( $(window).width()>1200){
-		$(".talks, .contact-form__bg").css("background-size", $(window).width() + "px");
-	}
+	// if( $(window).width()>2000){
+	// 	$(".talks, .contact-form__bg").css("background-size", $(window).width() + "px");
+	// }
 
 
 
 	// ==============================
 	// Contact form blur position
 	// ==============================
-/*	var talks_offset = $("section.talks").offset(),
-		cform_offset = $(".contact-form__bg").offset();
+	// document.addEventListener("DOMContentLoaded", blurPosition);
+	// function blurPosition(){
+	// 	var talks_offset = $("section.talks").offset(),
+	// 		cform_offset = $(".contact-form__bg").offset();
 
-	$(".contact-form__bg").css("background-position", "center -" + (cform_offset.top - talks_offset.top) +"px");
-*/
+	// 	$(".contact-form__bg").css("background-position", "center -" + (cform_offset.top - talks_offset.top) +"px");
+	// };
 
 	// ==============================
 	// SCROLL EVENTS
@@ -82,14 +110,14 @@
 	$(window).resize(function() {
 
 		// Testimonials section bg size
-		if( $(window).width()>1200){
+		if( $(window).width()>2000){
 			$(".talks, .contact-form__bg").css("background-size", $(window).width() + "px");
 		}
 
 
 		// Contact form blur position
-		/*talks_offset = $("section.talks").offset();
-		cform_offset = $(".contact-form__bg").offset();
-		$(".contact-form__bg").css("background-position", "center -" + (cform_offset.top - talks_offset.top) +"px");*/
+		// var talks_offset = $("section.talks").offset(),
+		// 	cform_offset = $(".contact-form__bg").offset();
+		// $(".contact-form__bg").css("background-position", "center -" + (cform_offset.top - talks_offset.top) +"px");
 	});
 })(jQuery);

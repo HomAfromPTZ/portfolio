@@ -18,6 +18,9 @@ body
 	font-size: 100%
 	font-family: "Roboto_medium", sans-serif
 
+html
+	overflow-y: scroll
+
 .header
 	text-align: center
 	&_welcome
@@ -42,7 +45,7 @@ body
 	perspective: 1000px
 
 .preloader
-	position: absolute
+	position: fixed
 	width: 100%
 	height: 100%
 	left: 0
@@ -159,7 +162,6 @@ h4, h5, h6
 	display: block
 	padding: 65px 15px
 	text-align: center
-	&__wrapper
 	&__text
 		position: relative
 		width: 380px

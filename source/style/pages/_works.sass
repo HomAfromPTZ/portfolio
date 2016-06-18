@@ -36,16 +36,8 @@
 		float: left
 	&__preview-container
 		float: right
-		+media(s)
-			height: 400px
-		+media(xs)
-			height: 200px
 	&__navigation-container
 		float: right
-		+media(s)
-			height: 150px
-		+media(xs)
-			height: 100px
 
 	&__projects-container
 		height: 100%
@@ -94,6 +86,10 @@
 	&__preview-container
 		height: 70%
 		overflow: hidden
+		+media(s)
+			height: 400px
+		+media(xs)
+			height: 200px
 		.portfolio-previews
 			width: 100%
 			height: 100%
@@ -104,6 +100,10 @@
 
 	&__navigation-container
 		height: 30%
+		+media(s)
+			height: 150px
+		+media(xs)
+			height: 100px
 		.portfolio-button
 			position: absolute
 			top: 0
@@ -163,7 +163,7 @@
 			text-align: left
 			width: 50%
 			font-size: em(16)
-			padding: 0 10px
+			padding: 0 10px 20px
 			+media(l)
 				font-size: em(14)
 			+media(xs)
@@ -224,6 +224,7 @@
 	overflow: hidden
 	text-align: center
 	position: relative
+	box-shadow: 0 0 10px 0 rgba($white, .4)
 	&__content
 		position: relative
 		padding: 0 20px
@@ -240,6 +241,7 @@
 		background-color: $white
 		&_textarea
 			height: 140px
+			resize: none
 		&::placeholder
 			font-family: "roboto_regular"
 			font-size: em(16)
@@ -249,14 +251,16 @@
 		position: relative
 
 
-
+// =================================
+// Testimonials blur
+// =================================
 .talks, .contact-form__bg
-	background: url("/assets/img/theme_mountains/about-bg.png") $white
+	background: url("/assets/img/theme_mountains/about-bg_big.png") $white
 	background-repeat: no-repeat
-	background-size: 1200px
+	background-size: 2000px
 
 .talks
-	background-position: center bottom
+	background-position: center calc(100% + 200px)
 .contact-form__bg
 	position: absolute
 	top: 0
@@ -264,12 +268,12 @@
 	bottom: 0
 	left: 0
 	z-index: 0
-	background-position: center calc(100% + #{$footer-height})
-	filter: blur(5px)
+	background-position: center calc(100% + #{$footer-height} + 200px)
+	filter: blur(3px)
 	+media(s)
-		background-position: center calc(100% + #{$footer-height_small})
+		background-position: center calc(100% + #{$footer-height_small} + 200px)
 	+media(xs)
-		background-position: center calc(100% + #{$footer-height_xsmall})
+		background-position: center calc(100% + #{$footer-height_xsmall} + 200px)
 
 
 
@@ -327,8 +331,10 @@
 				margin-bottom: 0
 		&_left
 			text-align: left
+			padding-right: 10px
 		&_right
 			text-align: right
+			padding-left: 10px
 
 	&__link
 		position: relative
