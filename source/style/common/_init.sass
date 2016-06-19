@@ -56,18 +56,31 @@ html
 	top: 0
 	z-index: 99999
 	background-color: $maincolor
-	&__percentage
+	text-align: center
+	&__progress
 		position: absolute
 		top: 0
 		right: 0
 		bottom: 0
 		left: 0
-		width: 100px
-		height: 100px
-		font-size: em(30)
+		width: 144px
+		height: 144px
 		margin: auto
 		z-index: 999999
-		color: $white
+	#preloader-svg
+		&__percentage
+			position: absolute
+			top: 50%
+			left: 51%
+			transform: translate(-50%,-50%)
+			color: $white
+			font-size: em(24)
+		&__img
+			opacity: 0
+			transition: all $transition-time_slow
+			.bar
+				transition: all 1s
+
 
 .no-js
 	.preloader

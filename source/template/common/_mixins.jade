@@ -22,23 +22,7 @@ mixin social_links(style)
 		- var socials = {"vk" : "http://vk.com/homafromptz", "github-alt" : "https://github.com/HomAfromPTZ", "stack-overflow" : "http://stackoverflow.com/cv/homawebdev"}
 		each s_url, s_name in socials
 			li(class="social-links__item" + ((style) ? " social-links__item_#{style}" : ""))
-				a(class="social-links__link fa fa-" + s_name, href=s_url)
-
-
-
-//- Social profiles
-//- svg icons
-mixin social_links_svg()
-	ul.social-links
-		- var socials = {"vk" : "http://vk.com/homafromptz", "github" : "https://github.com/HomAfromPTZ", "in" : "https://ru.linkedin.com/in/homafromptz"}
-		each s_url, s_name in socials
-			li(class="social-links__item")
-				a(class="social-links__svg-link", href=s_url)
-					svg
-						use(xlink:href="#icon-" + s_name + "_round")
-
-
-
+				a(class="social-links__link fa fa-" + s_name, href=s_url, target="_blank")
 
 
 

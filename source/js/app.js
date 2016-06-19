@@ -219,29 +219,47 @@
 		var duration = 1500;
 		var st = new Date().getTime();
 
+		var $circle__o = $("#preloader-svg__img .bar__outer"),
+			$circle__c = $("#preloader-svg__img .bar__center"),
+			$circle__i = $("#preloader-svg__img .bar__inner");
+
+		var c_o = Math.PI*($circle__o.attr("r") * 2),
+			c_c = Math.PI*($circle__c.attr("r") * 2),
+			c_i = Math.PI*($circle__i.attr("r") * 2);
+
+
 		var interval = setInterval(function() {
 			var diff = Math.round(new Date().getTime() - st),
 				val = Math.round(diff / duration * 100);
 
 			val = val > 100 ? 100 : val;
 
-			$("#preloader__percentage").text(val + "%");
+			var pct_o = ((100-val)/100)*c_o,
+				pct_c = ((100-val)/100)*c_c,
+				pct_i = ((100-val)/100)*c_i;
+
+			$circle__o.css({strokeDashoffset: pct_o});
+			$circle__c.css({strokeDashoffset: pct_c});
+			$circle__i.css({strokeDashoffset: pct_i});
+
+			$("#preloader-svg__percentage").text(val);
+			$("#preloader-svg__img").css({opacity:1});
 
 			if (diff >= duration) {
 				clearInterval(interval);
 
 				if($(".flip-card").length){
-					$("#preloader").delay(200).fadeOut(700, function(){
-						$("#preloader__percentage").remove();
+					$("#preloader").delay(1000).fadeOut(700, function(){
+						$("#preloader__progress").remove();
 						$(".flip-card").addClass("loaded");
 					});
 				} else {
-					$("#preloader").delay(200).fadeOut(700, function(){
-						$("#preloader__percentage").remove();
+					$("#preloader").delay(1000).fadeOut(700, function(){
+						$("#preloader__progress").remove();
 					});
 				}
 			}
-		}, 50);
+		}, 200);
 	}
 
 	preloader();
