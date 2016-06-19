@@ -48,7 +48,7 @@ html
 .perspective-box
 	perspective: 1000px
 
-.preloader
+#preloader
 	position: fixed
 	width: 100%
 	height: 100%
@@ -56,10 +56,18 @@ html
 	top: 0
 	z-index: 99999
 	background-color: $maincolor
-	// background-image: url("../img/theme_mountains/preloader.gif")
-	// background-repeat: no-repeat
-	// background-size: cover
-	// background-position: center center
+	&__percentage
+		position: absolute
+		top: 0
+		right: 0
+		bottom: 0
+		left: 0
+		width: 100px
+		height: 100px
+		font-size: em(30)
+		margin: auto
+		z-index: 999999
+		color: $white
 
 .no-js
 	.preloader

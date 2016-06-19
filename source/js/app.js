@@ -187,27 +187,63 @@
 	// ==============================
 	// Fake preloader
 	// ==============================
-	if($(".flip-card").length){
-		setTimeout(function(){
-			$(".preloader")
-				.delay(200)
-				.fadeOut(400, function(){
-					$(".flip-card").addClass("loaded");
-				});
-		}, 500);
-	} else {
-		$(".preloader").delay(500).fadeOut(500);
-	}
+	// if($(".flip-card").length){
+	// 	setTimeout(function(){
+	// 		$("#preloader")
+	// 			.delay(200)
+	// 			.fadeOut(700, function(){
+	// 				$(".flip-card").addClass("loaded");
+	// 			});
+	// 	}, 500);
+	// } else {
+	// 	$("#preloader").delay(500).fadeOut(700);
+	// }
 
-	// Page change
+	// ==============================
+	// Page changer
+	// ==============================
 	$(document).on("click", "a.preload-link", function(e) {
 		var href = $(this).attr("href");
 		e.preventDefault();
 
-		return $(".preloader")
+		return $("#preloader")
 			.fadeIn(500, function(){
 				return document.location = href != null ? href : "/";
 			});
 	});
+
+	// ==============================
+	// Preloader with percentage
+	// ==============================
+	function preloader() {
+		var duration = 1500;
+		var st = new Date().getTime();
+
+		var interval = setInterval(function() {
+			var diff = Math.round(new Date().getTime() - st),
+				val = Math.round(diff / duration * 100);
+
+			val = val > 100 ? 100 : val;
+
+			$("#preloader__percentage").text(val + "%");
+
+			if (diff >= duration) {
+				clearInterval(interval);
+
+				if($(".flip-card").length){
+					$("#preloader").delay(200).fadeOut(700, function(){
+						$("#preloader__percentage").remove();
+						$(".flip-card").addClass("loaded");
+					});
+				} else {
+					$("#preloader").delay(200).fadeOut(700, function(){
+						$("#preloader__percentage").remove();
+					});
+				}
+			}
+		}, 50);
+	}
+
+	preloader();
 
 })(jQuery);
