@@ -40,7 +40,9 @@
 		return $this.css("height", maxHeight);
 	};
 
-	$(".about-me>div>div").equalHeights();
+	setTimeout(function(){
+		$(".about-me>div>div").equalHeights();
+	}, 200);
 
 	// ==============================
 	// Axis Parallax

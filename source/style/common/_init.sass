@@ -232,7 +232,10 @@ button
 				&:hover
 					background-color: $white
 					&::before
-						color: invert($white)
+						color: $text-color
+		&_svg
+			margin: 0 5px
+
 	&__link
 		color: $white
 		text-decoration: none
@@ -242,3 +245,25 @@ button
 		transition: opacity $transition-time
 		&:hover
 			opacity: 1
+
+	&__svg-link
+		text-decoration: none
+		svg
+			width: 38px
+			height: 38px
+			border-radius: 50%
+			box-shadow: inset 0 0 0 1px $white
+			overflow: hidden
+		.mask__path
+			transition: all $transition-time
+		.mask__rect_inner
+			fill: white
+			transition: all $transition-time
+		.mask__rect_outer
+			fill: white
+			transition: all $transition-time
+		&:hover
+			.mask__path
+				fill: $white
+			.mask__rect_inner
+				fill: transparent

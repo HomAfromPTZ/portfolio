@@ -26,6 +26,23 @@ mixin social_links(style)
 
 
 
+//- Social profiles
+//- svg icons
+mixin social_links_svg()
+	ul.social-links
+		- var socials = {"vk" : "http://vk.com/homafromptz", "github" : "https://github.com/HomAfromPTZ", "in" : "https://ru.linkedin.com/in/homafromptz"}
+		each s_url, s_name in socials
+			li(class="social-links__item")
+				a(class="social-links__svg-link", href=s_url)
+					svg
+						use(xlink:href="#icon-" + s_name + "_round")
+
+
+
+
+
+
+
 //- Text/Password inputs with Font Awesome icons
 //- elements = [[FontAwesome-class, input-placeholder, input-type], [...]]
 mixin input_iconed(elements)
