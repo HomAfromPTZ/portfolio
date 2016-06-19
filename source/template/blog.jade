@@ -6,83 +6,84 @@ html
 		<!--[if lt IE 7]>
 		<p class="browsehappy">Вы используете <strong>устаревший</strong> браузер. Пожалуйста <a href="http://browsehappy.com/">обновите его</a></p>
 		<![endif]-->
-		include common/_gmap
+
 		include common/_sprites
 		.preloader
 
 		include common/_parallax
-		+main-menu(3)
+		+main-menu(2)
 
 		header.header.table-box.fullheight.fullheight_mih
 			.table-box__top
 				+header-top
 			.table-box__middle
 				.vertical-aligned
-					.site-author
+					.site-author.site-author_blog
 						+avatar("me.jpg", "Frontend. Wordpress. Разработка сайтов под ключ.", "Лембинен Николай")
-						p.site-author__name Лембинен Николай
-						p.site-author__desctiption Еще одна страничка
+						+svg-heading("Блог", "icon-blog_header")
+						p.site-author__description Статьи
 
-					svg.header__svg-bg
-						use(xlink:href="#icon-portfolio_header")
-					button.go-down.fa.fa-chevron-down(data-link=".about-me")
 
-					svg(preserveAspectRatio="none" viewBox="0 0 1000 360").header__svg-corner.header__svg-corner_left
+					button.go-down.fa.fa-chevron-down(data-link=".blog")
+
+					svg(preserveAspectRatio="none" viewBox="0 0 1000 360").header__svg-corner.header__svg-corner_left.header__svg-corner_blog
 						use(xlink:href="#icon-about_bg_left")
-					svg(preserveAspectRatio="none" viewBox="0 0 1000 360").header__svg-corner.header__svg-corner_right
+					svg(preserveAspectRatio="none" viewBox="0 0 1000 360").header__svg-corner.header__svg-corner_right.header__svg-corner_blog
 						use(xlink:href="#icon-about_bg_right")
 
 
+		.blog.last-section
+			aside.blog-navigation
+				button.blog-navigation__toggle
+				nav.blog-navigation__wrapper
+					ul.blog-navigation__links-list
+						li.links-list__item
+							a.links-list__link.active(href="#google") Никаких распродаж! В Госдуме приняли закон о «налоге на Google»
+						li.links-list__item
+							a.links-list__link(href="#alph") «Актер, которого никто не знал» — умер Альф
 
-		section.about-me
-			.about-me__bio
-				.bio
-					+svg-heading("Обо мне", "icon-about_header")
-					.bio__main-image
-						img(src="/assets/img/avatar_main.jpg", alt="Лембинен Николай", title="Разработка сайтов под ключ. Frontend. Wordpress.")
-					h3.bio__heading.sidestripes Кто я?
-					.bio__about
-						p.
-							Муууув бич! Гераут де вей, гераут де вей бич гераут де вей
-							Муууув бич! Гераут де вей, гераут де вей бич гераут де вей
-
-			.about-me__skills
-				.skills
-					h3.skills__heading.sidestripes Чем я могу быть вам полезен
-					.skills__descr Не бородат, не свитерат, АТ-АТ Не бородат, не свитерат, АТ-АТ Не бородат, не свитерат, АТ-АТ Не бородат, не свитерат, АТ-АТ
-					.skills__group
-						.group__title Frontend
-						.group__item
-						.group__item
-					.skills__group
-						.group__title Backend
-						.group__item
-						.group__item
+			section.blog-content
+				.article#google
+					h3.article__title Никаких распродаж! В Госдуме приняли закон о «налоге на Google»
+					p.article__date 15 июня 2016
+					.article__content.
+						<p>15 июня депутаты Государственной думы России приняли закон о «налоге на Google», который вводит 18% взыскания для западных IT-компаний. Таким образом, дополнительной стоимостью будут облагаться иностранные конторы, продающие цифровой контент.</p>
 
 
+						<p>1 января 2017 года начнет действовать закон, облагающий добавленной стоимостью электронные товары, продающиеся на территории России. Он был принят 15 июня в окончательном чтении Госдумы. Теперь иностранным компаниям нужно зарегистрироваться в налоговой службе — сделать это можно уже сейчас подав заявление.</p>
 
-		section.contacts.last-section
-			.contacts__map
-				#map_wrapper
-			.contacts__info
-				.contacts__heading
-					h3.sidestripes Контакты
-				ul.contacts__links
-					li.link-wrapper
-						a.link(href="#")
-							i.fa.fa-skype
-							| скайп
-					li.link-wrapper
-						a.link(href="#")
-							i.fa.fa-envelope
-							|почта
-					li.link-wrapper
-						a.link(href="#")
-							i.fa.fa-phone
-							| телефон
-					li.link-wrapper
-						a.link(href="#")
-							i.fa.fa-map-marker
-							| адрес
+						<p>НДС коснется цифровых прав на использование игр, программ, приложений, услуг провайдера, регистрации доменов и прочего. Больше никаких скидок и распродаж от Steam и Origin.</p>
+
+						<img src="/assets/img/articles/fpalm.gif">
+
+						<p>Документ внесли на рассмотрение в декабре депутаты из «Справедливой России» и ЛДПР. Вначале была идея облагать налогом еще и российских продавцов, но позже решили оставить 18% налог только для западных представителей. Тогда говорилось о том, что «налог на Google» принесет государству дополнительные 10 миллиардов рублей. В планах запустить такую же добавочную стоимость к зарубежным интернет-магазинам.</p>
+
+				.article#alph
+					h3.article__title «Актер, которого никто не знал» — умер Альф
+					p.article__timestamp 14 июня 2016
+					.article__content.
+						<p>В киноиндустрии работает огромное количество людей, чьи имена теряются в конце длинных титров. Вы едва ли знаете имена большинства каскадеров (с одним из них мы уже знакомили), дублеров, звукорежиссеров и прочих важных людей. Случается, что публика не знает даже актера, исполнившего главную роль в популярном телешоу. Что же, сегодня мы попытаемся это исправить.</p>
+						
+						<img src="/assets/img/articles/alph.gif">
+
+						<p>Как сообщает TMZ, 13 июня в возрасте 76 лет скончался сыгравший Альфа американский актер-карлик Михай Месарош. Неделю назад актер был случайно найден у себя дома без сознания. В госпиталь его доставили в состоянии комы, из которой он так и не вышел.</p>
+
+						<p>Михай родился 20 сентября 1939 года в Венгрии, в маленькой деревне Пели, недалеко от Будапешта. После окончания государственной школы циркового искусства, освоив несколько специальностей, в возрасте 14 лет начал выступать в Национальном цирке Венгрии. В 1973 году на одном из выступлений его заметили представители Ringling Bros. and Barnum & Bailey Circus — одного из крупнейших американских цирков.</p>
+
+						<p>В его составе Михай выступал на цирковых аренах США и Канады. Шоу посетили многие известные личности, включая двух президентов США Джимми Картера и Рональда Рейгана.</p>
+
+
+						<p>Чаще всего артист выступал в качестве дрессировщика пуделей, которые, кстати, нередко оказывались выше него ростом. Самого Михая вполне устраивала такая цирковая жизнь, но впереди его ждала карьера киноактера.</p>
+
+						<p>В 1986 году Михая Месароша пригласили на съемки ситкома «Альф» от телеканала NBC. Актер-карлик исполнил роль смешного инопланетянина во всех моментах, где персонаж появлялся во весь рост. Казалось бы, столь популярное телешоу должно было принести Михаю настоящую славу, но во время съемок чаще всего использовалась лишь верхняя часть Альфа, которой управляли создатель шоу Пол Фаско и несколько ассистентов. В результате, в титрах имя Михая Месероша стоит в списке тех самых ассистентов-кукольников.</p>
+
+						<p>На «Альфе» его работа в киноиндустрии не закончилась. Вы могли видеть его в таких фильмах как «Музей восковых фигур» (1988), «Чернокнижкик 2: Армагеддон» (1993) и «Уроды» (1993). Последней его ролью был Лепрекон в короткометражном фильме «Death to Cupid» (2015).</p>
+
+						<img src="/assets/img/articles/alph2.jpg">
+
+
+						<p>В то же время Михай Месерош продолжал выступать в цирке и даже подружился с Майклом Джексоном,. Михая часто видели в обществе короля поп-музыки и его детей в поместье Майкла Джексона Neverland Ranch. Несмотря на то, что этот артист так и не получил ни одной кинонаграды, его именем названа самая короткая улица города Хоторн, что недалеко от Лос-Анджелеса.</p>
+
+						<p>Менеджер Михая Деннис Варгас запустил сбор средств для оплаты больничных услуг и похорон артиста на портале GoFundMe, так что у вас есть возможность отдать дань уважения этому маленькому актеру, которого вы не знали.</p>
 
 		include common/_footer

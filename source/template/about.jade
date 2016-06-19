@@ -21,7 +21,7 @@ html
 					.site-author
 						+avatar("me.jpg", "Frontend. Wordpress. Разработка сайтов под ключ.", "Лембинен Николай")
 						p.site-author__name Лембинен Николай
-						p.site-author__desctiption Еще одна страничка
+						p.site-author__description Еще одна страничка
 
 					svg.header__svg-bg
 						use(xlink:href="#icon-portfolio_header")
@@ -35,31 +35,37 @@ html
 
 
 		section.about-me
-			.about-me__bio
-				.bio
-					+svg-heading("Обо мне", "icon-about_header")
-					.bio__main-image
-						img(src="/assets/img/avatar_main.jpg", alt="Лембинен Николай", title="Разработка сайтов под ключ. Frontend. Wordpress.")
-					h3.bio__heading.sidestripes Кто я?
-					.bio__about
-						p.
-							Муууув бич! Гераут де вей, гераут де вей бич гераут де вей
-							Муууув бич! Гераут де вей, гераут де вей бич гераут де вей
+			.about-me__stretcher.about-me__stretcher_dark
+				.about-me__stretcher.about-me__stretcher_light
+					.about-me__bio.bio
+						+svg-heading("Обо мне", "icon-about_header")
+						.bio__main-image
+							img(src="/assets/img/avatar_main.jpg", alt="Лембинен Николай", title="Разработка сайтов под ключ. Frontend. Wordpress.")
+						h3.bio__heading.sidestripes Кто я?
+						.bio__about
+							p.
+								Заполню ка я, пожалуй, этот блок каким-нибудь текстом. Не так чтобы очень большим, но и не маленьким. Чтобы видно было, что за чудеса тут вообще происходят.
+							p.
+								Да и второй абзац не помешает вовсе, а будет очень даже кстати.
 
-			.about-me__skills
-				.skills
-					h3.skills__heading.sidestripes Чем я могу быть вам полезен
-					.skills__descr Не бородат, не свитерат, АТ-АТ Не бородат, не свитерат, АТ-АТ Не бородат, не свитерат, АТ-АТ Не бородат, не свитерат, АТ-АТ
-					.skills__group
-						.group__title Frontend
-						.group__item
-							svg(width="120" height="120")
-								circle(cx="130" cy="60" r="50" transform="rotate(-90, 95, 95)")
-						.group__item
-					.skills__group
-						.group__title Backend
-						.group__item
-						.group__item
+					.about-me__skills.skills
+						h3.skills__heading.sidestripes Чем я могу быть вам полезен
+						.skills__descr
+							p.
+								Двумя руками и двумя ногами. А если нужно что-то посложнее, то могу сверстать сайт на коленке. Клиент вправе выбрать - на левой или на правой... На правой обычно лучше получается.
+							p.
+								А ниже располагается черная дыра, которая временно поглотила часть контента. Не пугайтесь - аварийная бригада уже работает над устранением проблемы.
+
+						.skills__group
+							.group__title Frontend
+							.group__item
+								svg(width="120" height="120")
+									circle(cx="130" cy="60" r="50" transform="rotate(-90, 95, 95)")
+							.group__item
+						.skills__group
+							.group__title Backend
+							.group__item
+							.group__item
 
 
 

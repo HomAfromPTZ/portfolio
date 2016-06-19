@@ -1,34 +1,48 @@
 .about-me
 	@extend .clearfix
+	&__stretcher
+		width: 100%
+		position: relative
+		float: left
+		&_dark
+			background-color: $pastel_dark
+			+media(s)
+				background-color: $pastel
+		&_light
+			background-color: $pastel
+			right: 50%
+			+media(s)
+				right: 0
+
+
 	&__bio,
 	&__skills
 		float: left
 		width: 50%
+		position: relative
+		left: 50%
 		min-height: 650px;
 		text-align: center
 		+media(s)
 			width: 100%
 			float: none
-	&__bio
-		background-color: $pastel
-	&__skills
-		background-color: $pastel_dark
+			left: 0
 
 	.bio
-		padding: 0 10%
+		padding: 0 5%
 		&__main-image
 		&__heading
-			margin: 40px auto 30px
+			margin: 40px auto 10px
 		&__about
 			padding-bottom: 40px
 			font-family: "roboto_regular"
 			color: $text-color
 			text-align: left
-			p
-				margin: 0
 
 	.skills
-		padding: 0 10%
+		padding: 0 5%
+		background-color: $pastel_dark
+		@extend .clearfix
 		&__heading
 			margin: 40px auto
 		&__descr
@@ -76,6 +90,7 @@
 			border-radius: 0
 			width: 100%
 			transform: translate(0, 0)
+			box-shadow: none
 		.contacts__heading
 			display: block
 			text-align: center

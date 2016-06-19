@@ -30,7 +30,7 @@ html
 							- var pages = {"Мои работы" : "works.html", "Обо мне" : "about.html", "Блог" : "blog.html"}
 							each p_url, p_name in pages
 								li.page-links__item
-									a(class="page-links__link" href=p_url)= p_name
+									a(class="preload-link page-links__link" href=p_url)= p_name
 
 					.flip-card__back-side
 						form.login-form(type="POST" action="/")

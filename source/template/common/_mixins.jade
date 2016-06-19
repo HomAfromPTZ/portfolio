@@ -71,7 +71,7 @@ mixin main-menu(active)
 			- var i = 1
 			each p_url, p_title in pages
 				li.main-menu__item
-					a(class="main-menu__link" + ((i++ == active) ? " active":""), href=p_url)=p_title
+					a(class="preload-link main-menu__link" + ((i++ == active) ? " active":""), href=p_url)=p_title
 
 
 
