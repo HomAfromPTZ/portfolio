@@ -190,6 +190,18 @@
 		left: 0
 		right: 0
 		fill: $pastel_light
+		&_left
+			left: 0
+			right: auto
+			width: 50%
+			fill: $pastel
+		&_right
+			right: 0
+			left: auto
+			width: 50%
+			fill: $pastel_dark
+			+media(s)
+				fill: $pastel
 
 	&__title
 		background-color: $pastel_light
@@ -197,7 +209,7 @@
 .go-down,
 .go-up
 	color: $white
-	font-size: em(40)
+	font-size: em(36)
 	opacity: .7
 	transition: all $transition-time
 	&:hover
@@ -206,9 +218,9 @@
 .go-down
 	position: absolute
 	z-index: 1
-	bottom: 30px
+	bottom: 40px
 	left: 50%
 	transform: translateX(-50%)
 	&:hover
 		padding-top: 10px
-		bottom: 20px
+		bottom: 30px

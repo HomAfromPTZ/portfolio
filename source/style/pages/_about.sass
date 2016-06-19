@@ -1,0 +1,93 @@
+.about-me
+	@extend .clearfix
+	&__bio,
+	&__skills
+		float: left
+		width: 50%
+		text-align: center
+		+media(s)
+			width: 100%
+			float: none
+	&__bio
+		background-color: $pastel
+	&__skills
+		background-color: $pastel_dark
+
+	.bio
+		padding: 0 10%
+		&__main-image
+		&__heading
+			margin: 40px auto 30px
+		&__about
+			padding-bottom: 40px
+			font-family: "roboto_regular"
+			color: $text-color
+			text-align: left
+			p
+				margin: 0
+
+	.skills
+		padding: 0 10%
+		&__heading
+			margin: 40px auto
+		&__descr
+			font-family: "roboto_regular"
+			color: $text-color
+			text-align: left
+			margin: 0 auto 50px
+		&__group
+			margin: 0 auto 40px
+			text-align: left
+			.group
+				&__title
+					font-size: em(28)
+					color: $text-color
+				&__item
+
+
+
+.contacts
+	position: relative
+	padding-bottom: 0
+	&__map
+		position: relative
+		z-index: 0
+		#map_wrapper
+			min-height: $footer-height*2
+			width: 100%
+			+media(s)
+				min-height: $footer-height*2.5
+
+	&__info
+		display: block
+		background-color: rgba($white, .7)
+		width: 400px
+		border-radius: 5px
+		position: absolute
+		top: 50%
+		left: 50%
+		transform: translate(-50%, -100%)
+		padding: 40px
+		+media(s)
+			top: 0
+			left: 0
+			border-radius: 0
+			width: 100%
+			transform: translate(0, 0)
+		.contacts__heading
+			display: block
+			text-align: center
+		.contacts__links
+			list-style: none
+			padding: 0
+			.link-wrapper
+				margin: 30px 0
+				.link
+					color: $text-color
+					text-decoration: none
+					vertical-align: middle
+					.fa
+						color: $maincolor
+						font-size: em(26)
+						vertical-align: middle
+						margin-right: 10px

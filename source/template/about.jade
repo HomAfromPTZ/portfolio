@@ -11,7 +11,7 @@ html
 		.preloader
 
 		include common/_parallax
-		+main-menu(1)
+		+main-menu(3)
 
 		header.header.table-box.fullheight.fullheight_mih
 			.table-box__top
@@ -25,77 +25,64 @@ html
 
 					svg.header__svg-bg
 						use(xlink:href="#icon-portfolio_header")
-					button.go-down.fa.fa-chevron-down
+					button.go-down.fa.fa-chevron-down(data-link=".about-me")
 
-					svg(preserveAspectRatio="none" viewBox="0 0 2032 360.368").header__svg-corner
-						use(xlink:href="#icon-bg")
-			.table-box__bottom
-				.header__title
-					+svg-heading("Мои работы", "icon-works_header")
-
-
-		section.portfolio-slider
-			.portfolio-slider__module.portfolio-slider__preview-container
-				.portfolio-previews
-					.portfolio-previews__preview
-						img(src="/assets/img/works/bringcar.png", alt="Bringcar")
-					.portfolio-previews__preview
-						img(src="/assets/img/works/unspoken.png", alt="Bringcar")
-
-			.portfolio-slider__module.portfolio-slider__projects-container
-				.portfolio-projects
-					.project
-						h3.sidestripes.project__title Сайт транспортной компании bringcar.ru
-						p.project__tech html, bootstrap, sass, jquery
-						a(href="#").project__link Посмотреть сайт
-
-			.portfolio-slider__module.portfolio-slider__navigation-container
-				.navigation-box.navigation-box_prev
-					button.portfolio-button.portfolio-button_prev
-						.fa.fa-chevron-down
-					.portfolio-thumbnails
-						.portfolio-thumbnails__thumbnail
-							img(src="/assets/img/works/alpha.png", alt="Alpha Capital Education")
-				.navigation-box.navigation-box_next
-					button.portfolio-button.portfolio-button_next
-						.fa.fa-chevron-up
-					.portfolio-thumbnails
-						.portfolio-thumbnails__thumbnail
-							img(src="/assets/img/works/karakalpakiya.png", alt="Karakalpakiya")
+					svg(preserveAspectRatio="none" viewBox="0 0 1000 360").header__svg-corner.header__svg-corner_left
+						use(xlink:href="#icon-about_bg_left")
+					svg(preserveAspectRatio="none" viewBox="0 0 1000 360").header__svg-corner.header__svg-corner_right
+						use(xlink:href="#icon-about_bg_right")
 
 
 
-		section.talks.clearfix.last-section
-			+svg-heading("Что обо мне говорят", "icon-about_header")
-			.talks__wrapper.clearfix
-				.testimonial
-					blockquote.testimonial__text Этот парень был одним из тех, кто просто хочет спать
-					.testimonial__author.author
-						+avatar("dima.png", "Сооснователь школы LoftSchool", "Ковальчук Дмитрий")
-						.author
-							p.author__name Ковальчук Дмитрий
-							p.author__description сооснователь LoftSchool
+		section.about-me
+			.about-me__bio
+				+svg-heading("Обо мне", "icon-about_header")
+				.bio
+					.bio__main-image
+						img(src="/assets/img/avatar_main.jpg", alt="Лембинен Николай", title="Разработка сайтов под ключ. Frontend. Wordpress.")
+					h3.bio__heading.sidestripes Кто я?
+					.bio__about
+						p.
+							Муууув бич! Гераут де вей, гераут де вей бич гераут де вей
+							Муууув бич! Гераут де вей, гераут де вей бич гераут де вей
 
-				.testimonial
-					blockquote.testimonial__text Этот парень был одним из тех, кто просто хочет спать
-					.testimonial__author
-						+avatar("zar.png", "Сооснователь школы LoftSchool", "Зар Захаров")
-						.author
-							p.author__name Зар Захаров
-							p.author__description сооснователь LoftSchool
+			.about-me__skills
+				.skills
+					h3.skills__heading.sidestripes Чем я могу быть вам полезен
+					.skills__descr Не бородат, не свитерат, АТ-АТ Не бородат, не свитерат, АТ-АТ Не бородат, не свитерат, АТ-АТ Не бородат, не свитерат, АТ-АТ
+					.skills__group
+						.group__title Frontend
+						.group__item
+						.group__item
+					.skills__group
+						.group__title Backend
+						.group__item
+						.group__item
 
-			form.contact-form(type="POST" action="/")
-				.contact-form__bg
-				.contact-form__content
-					h3.contact-form__heading.sidestripes Связаться со мной
-					input.contact-form__field(type="text" name="name" placeholder="Имя")
-					input.contact-form__field(type="text" name="email" placeholder="Email")
-					textarea.contact-form__field.contact-form__field_textarea(name="message" placeholder="Ваше сообщение")
 
-				ul.page-links
-					- var buttons = {"Отправить" : "form-submit", "Очистить" : "form-clear"}
-					each b_action, b_name in buttons
-						li.page-links__item
-							button(class="page-links__link", id=b_action)= b_name
+
+		section.contacts.last-section
+			.contacts__map
+				#map_wrapper
+			.contacts__info
+				.contacts__heading
+					h3.sidestripes Контакты
+				ul.contacts__links
+					li.link-wrapper
+						a.link(href="#")
+							i.fa.fa-skype
+							| скайп
+					li.link-wrapper
+						a.link(href="#")
+							i.fa.fa-envelope
+							|почта
+					li.link-wrapper
+						a.link(href="#")
+							i.fa.fa-phone
+							| телефон
+					li.link-wrapper
+						a.link(href="#")
+							i.fa.fa-map-marker
+							| адрес
 
 		include common/_footer

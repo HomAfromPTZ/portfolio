@@ -24,6 +24,7 @@ $.path.task.forEach(function(taskPath) {
 $.gulp.task('default', $.gulp.series(
 	'clean',
 	'vendor_css',
+	'sprites_svg',
 	$.gulp.parallel(
 		'copy_fonts',
 		'sass',
@@ -31,7 +32,6 @@ $.gulp.task('default', $.gulp.series(
 		'vendor_libs',
 		'js.lint',
 		'js.process',
-		'sprites_svg',
 		'copy.image'
 		),
 	$.gulp.parallel(

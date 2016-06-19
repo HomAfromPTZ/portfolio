@@ -3,7 +3,7 @@ footer.footer.footer_common
 	.footer__wrapper
 		.footer__row
 			.footer__column.footer__column_left
-				- var pages = {"Мои работы":"#", "Блог":"#", "Обо мне":"#", "Авторизация":"/"}
+				- var pages = {"Мои работы":"works.html", "Блог":"blog.html", "Обо мне":"about.html", "Авторизация":"/"}
 				each p_url, p_title in pages
 					a.footer__link(href=p_url)=p_title
 			.footer__column.footer__column_right

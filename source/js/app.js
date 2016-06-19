@@ -2,6 +2,47 @@
 	"use strict";
 
 	// ==============================
+	// Animations
+	// ==============================
+	$.fn.animated = function(inEffect) {
+		$(this).each(function() {
+			var ths = $(this);
+			ths.css("opacity", "0")
+				.addClass("animated")
+				.waypoint(function(dir) {
+					if (dir === "down") {
+						ths.addClass(inEffect).css("opacity", "1");
+					}
+				},
+				{
+					offset: "90%"
+				});
+		});
+	};
+
+	$(".svg-heading, .testimonial, .portfolio-slider__module>div").animated("fadeInUp");
+
+
+
+	// ==============================
+	// Equal Heights
+	// ==============================
+	$.fn.equalHeights = function() {
+		var maxHeight = 0,
+		$this = $(this);
+		$this.each( function() {
+			var height = $(this).innerHeight();
+			if ( height > maxHeight ) {
+				maxHeight = height;
+			}
+		});
+
+		return $this.css('height', maxHeight);
+	};
+
+	$(".about-me__bio, .about-me__skills").equalHeights();
+
+	// ==============================
 	// Axis Parallax
 	// ==============================
 	$("#scene").parallax({
@@ -41,8 +82,9 @@
 	// Buttons
 	// ==============================
 	$("button.go-down").click(function(){
+		var go = $(this).data("link");
 		$("html, body").stop().animate({
-			scrollTop: $(".portfolio-slider").offset().top
+			scrollTop: $(go).offset().top
 		}, 700, "swing");
 	});
 
@@ -107,6 +149,8 @@
 	// ==============================
 	// RESIZE EVENTS
 	// ==============================
+
+
 	$(window).resize(function() {
 
 		// Testimonials section bg size
@@ -114,6 +158,7 @@
 			$(".talks, .contact-form__bg").css("background-size", $(window).width() + "px");
 		}
 
+		$(".about-me__bio, .about-me__skills").css("height","auto").equalHeights();
 
 		// Contact form blur position
 		// var talks_offset = $("section.talks").offset(),
