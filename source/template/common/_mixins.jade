@@ -74,3 +74,12 @@ mixin svg-heading(heading_text, svg_id, heading_type)
 	.svg-heading
 		#{h_type}.svg-heading__text.sidestripes= heading_text
 		svg.svg-heading__img: use(xlink:href="#"+svg_id)
+
+
+
+mixin pie_chart(skill, percentage)
+	.group__item
+		.item-title=skill
+		svg(class="piechart" width="120" height="120")
+			circle(class="piechart__bg" fill="none" stroke-width="20" stroke-dasharray="314.159265" stroke-dashoffset="314.159265" cx="60" cy="60" r="50" transform="rotate(-90, 60, 60)")
+			circle(class="piechart__fill", data-percentage=((100-percentage)/100)*314.159265, fill="none", stroke-width="20", stroke-dasharray="314.159265", stroke-dashoffset="314.159265", cx="60", cy="60", r="50", transform="rotate(-90, 60, 60)")

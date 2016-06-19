@@ -18,11 +18,11 @@
 	$.fn.animated = function(inEffect) {
 		$(this).each(function() {
 			var ths = $(this);
-			ths.css("opacity", "0")
+			ths.css({opacity:0})
 				.addClass("animated")
 				.waypoint(function(dir) {
 					if (dir === "down") {
-						ths.addClass(inEffect).css("opacity", "1");
+						ths.addClass(inEffect).css({opacity:1});
 					}
 				},
 				{
@@ -31,8 +31,26 @@
 		});
 	};
 
-	$("header .svg-heading, .talks .svg-heading, .talks .testimonial, .portfolio-slider__module>div, .about-me__skills>div").animated("fadeInUp");
+	$("header .svg-heading, .talks .svg-heading, .talks .testimonial").animated("fadeInUp");
+	$(".portfolio-slider__module>div, .about-me__skills>div").animated("fadeInUp");
 	$(".article").animated("fadeIn");
+
+
+
+	// ==============================
+	// Piecharts animation
+	// ==============================
+	$(".piechart .piechart__fill").each(function(){
+		var pie = $(this);
+		pie.waypoint(function(dir) {
+			if (dir === "down") {
+				pie.css({strokeDashoffset:pie.data("percentage")});
+			}
+		},
+			{
+				offset: "90%"
+			});
+	});
 
 
 	// ==============================
@@ -113,7 +131,7 @@
 		
 		$("html, body").stop().animate({ 
 			scrollTop: offsetTop
-		}, 300);
+		}, 700, "swing");
 		e.preventDefault();
 	});
 
@@ -184,20 +202,6 @@
 	});
 
 
-	// ==============================
-	// Fake preloader
-	// ==============================
-	// if($(".flip-card").length){
-	// 	setTimeout(function(){
-	// 		$("#preloader")
-	// 			.delay(200)
-	// 			.fadeOut(700, function(){
-	// 				$(".flip-card").addClass("loaded");
-	// 			});
-	// 	}, 500);
-	// } else {
-	// 	$("#preloader").delay(500).fadeOut(700);
-	// }
 
 	// ==============================
 	// Page changer
@@ -207,7 +211,7 @@
 		e.preventDefault();
 
 		return $("#preloader")
-			.fadeIn(500, function(){
+			.fadeIn(300, function(){
 				return document.location = href != null ? href : "/";
 			});
 	});
@@ -216,7 +220,7 @@
 	// Preloader with percentage
 	// ==============================
 	function preloader() {
-		var duration = 1500;
+		var duration = 1000;
 		var st = new Date().getTime();
 
 		var $circle__o = $("#preloader-svg__img .bar__outer"),
@@ -261,7 +265,6 @@
 			}
 		}, 200);
 	}
-
 	preloader();
 
 })(jQuery);

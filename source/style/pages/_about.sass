@@ -53,11 +53,37 @@
 		&__group
 			margin: 0 auto 40px
 			text-align: left
-			.group
-				&__title
-					font-size: em(28)
-					color: $text-color
-				&__item
+			+media(s)
+				text-align: center
+
+		.group
+			&__title
+				font-size: em(28,16)
+				color: $text-color
+				margin: 10px 0 30px
+			&__item
+				display: inline-block
+				text-align: center
+				position: relative
+				border-radius: 50%
+				margin: 10px 
+				.item-title
+					position: absolute
+					width: 120px
+					padding: 20px
+					color: $maincolor
+					top: 50%
+					transform: translateY(-55%)
+		.piechart
+			width: 120px
+			height: 120px
+			&__bg
+				stroke: $gray_light
+				stroke-dashoffset: 0
+			&__fill
+				stroke: $maincolor
+				transition: stroke-dashoffset $transition-time_slow
+
 
 
 

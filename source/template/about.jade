@@ -4,7 +4,7 @@ html
 	include common/_head
 	body
 		include common/_preloader
-		
+
 		<!--[if lt IE 7]>
 		<p class="browsehappy">Вы используете <strong>устаревший</strong> браузер. Пожалуйста <a href="http://browsehappy.com/">обновите его</a></p>
 		<![endif]-->
@@ -60,15 +60,28 @@ html
 
 						.skills__group
 							.group__title Frontend
-							.group__item
-								svg(width="120" height="120")
-									circle(cx="130" cy="60" r="50" transform="rotate(-90, 95, 95)")
-							.group__item
+							+pie_chart("Html 5 & CSS 3",99)
+							+pie_chart("Js & Jquery",60)
+							+pie_chart("Less & Sass",70)
+							+pie_chart("Jade",80)
 						.skills__group
 							.group__title Backend
-							.group__item
-							.group__item
-
+							+pie_chart("Php",66)
+							+pie_chart("MySql",60)
+							+pie_chart("Node.js & npm",50)
+							+pie_chart("Mongo.db",0)
+						.skills__group
+							.group__title Workflow
+							+pie_chart("Git",88)
+							+pie_chart("Gulp",70)
+							+pie_chart("Bower",50)
+							+pie_chart("Ssh",40)
+						.skills__group
+							.group__title CMS
+							+pie_chart("Wordpress",90)
+							+pie_chart("Joomla",40)
+							+pie_chart("Борода",20)
+							+pie_chart("Усы",10)
 
 
 		section.contacts.last-section
