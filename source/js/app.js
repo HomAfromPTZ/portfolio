@@ -20,7 +20,7 @@
 		});
 	};
 
-	$(".svg-heading, .testimonial, .portfolio-slider__module>div").animated("fadeInUp");
+	$("header .svg-heading, talks .svg-heading .testimonial, .portfolio-slider__module>div, .about-me__skills>div").animated("fadeInUp");
 
 
 
@@ -29,18 +29,18 @@
 	// ==============================
 	$.fn.equalHeights = function() {
 		var maxHeight = 0,
-		$this = $(this);
+			$this = $(this);
 		$this.each( function() {
-			var height = $(this).innerHeight();
+			var height = $(this).height();
 			if ( height > maxHeight ) {
 				maxHeight = height;
 			}
 		});
 
-		return $this.css('height', maxHeight);
+		return $this.css("height", maxHeight);
 	};
 
-	$(".about-me__bio, .about-me__skills").equalHeights();
+	$(".about-me>div>div").equalHeights();
 
 	// ==============================
 	// Axis Parallax
@@ -158,7 +158,7 @@
 			$(".talks, .contact-form__bg").css("background-size", $(window).width() + "px");
 		}
 
-		$(".about-me__bio, .about-me__skills").css("height","auto").equalHeights();
+		$(".about-me>div>div").css("height","auto").equalHeights();
 
 		// Contact form blur position
 		// var talks_offset = $("section.talks").offset(),
