@@ -3,12 +3,13 @@ doctype html
 html
 	include common/_head
 	body
+		include common/_preloader
+
 		<!--[if lt IE 7]>
 		<p class="browsehappy">Вы используете <strong>устаревший</strong> браузер. Пожалуйста <a href="http://browsehappy.com/">обновите его</a></p>
 		<![endif]-->
 
 		include common/_sprites
-		.preloader
 
 		include common/_parallax
 		+main-menu(1)
