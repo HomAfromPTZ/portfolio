@@ -1,11 +1,4 @@
 
-.fullheight
-	height: 100%
-	&_mih
-		min-height: 650px
-		overflow: hidden
-
-
 // =================================
 // Portfolio with works preview
 // =================================
@@ -224,7 +217,6 @@
 	overflow: hidden
 	text-align: center
 	position: relative
-	// box-shadow: 0 0 10px 0 rgba($white, .4)
 	&__content
 		position: relative
 		padding: 0 20px
@@ -249,7 +241,7 @@
 			opacity: .5
 	.page-links
 		position: relative
-		
+
 
 
 // =================================
@@ -275,106 +267,3 @@
 		background-position: center calc(100% + #{$footer-height_small} + 200px)
 	+media(xs)
 		background-position: center calc(100% + #{$footer-height_xsmall} + 200px)
-
-
-
-// =================================
-// Last section
-// =================================
-.last-section
-	padding-bottom: $footer-height
-	margin-bottom: -$footer-height
-	+media(s)
-		padding-bottom: $footer-height_small
-		margin-bottom: -$footer-height_small
-	+media(xs)
-		padding-bottom: $footer-height_xsmall
-		margin-bottom: -$footer-height_xsmall
-
-.go-up
-	display: block
-	position: relative
-	margin: 70px auto
-	width: 50px
-	height: 50px
-	font-size: em(40)
-
-
-
-// =================================
-// Footer
-// =================================
-
-.footer
-	position: relative
-	&__wrapper
-		background-color: rgba($stripes-color, .85)
-		height: ($footer-height - 190px)
-		color: $white
-		text-align: center
-		+media(s)
-			height: ($footer-height_small - 190px)
-		+media(xs)
-			height: ($footer-height_xsmall - 190px)
-	&__row
-		border-bottom: 1px solid rgba($white, .1)
-		padding: 30px
-		@extend .clearfix
-		&:last-child
-			border: none
-	&__column
-		float: left
-		width: 50%
-		+media(s)
-			margin-bottom: 20px
-			float: none
-			width: 100%
-			text-align: center !important
-			&:last-child
-				margin-bottom: 0
-		&_left
-			text-align: left
-			padding-right: 10px
-		&_right
-			text-align: right
-			padding-left: 10px
-
-	&__link
-		position: relative
-		color: $white
-		text-decoration: none
-		margin: 0 20px
-		padding: 10px 0
-		vertical-align: middle
-		display: inline-block
-		+media(m)
-			margin: 0 10px
-			font-size: em(14)
-		&:first-child
-			margin-left: 0
-		&:last-child
-			margin-right: 0
-		&::after
-			content: ""
-			position: absolute
-			bottom: 0
-			left: 50%
-			transform: translateX(-50%)
-			display: block
-			height: 2px
-			background-color: $white
-			opacity: 0
-			width: 0
-			transition: all $transition-time
-		&:hover
-			&::after
-				opacity: 1
-				width: 100%
-
-	&__quote
-		opacity: .5
-		font-family: "roboto_light"
-
-	&_common
-		.copyright
-			opacity: .5

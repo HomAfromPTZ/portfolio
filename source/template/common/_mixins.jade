@@ -26,7 +26,6 @@ mixin social_links(style)
 
 
 
-
 //- Text/Password inputs with Font Awesome icons
 //- elements = [[FontAwesome-class, input-placeholder, input-type], [...]]
 mixin input_iconed(elements)
@@ -77,9 +76,10 @@ mixin svg-heading(heading_text, svg_id, heading_type)
 
 
 
+//- Skills Pie Charts
 mixin pie_chart(skill, percentage)
 	.group__item
 		.item-title=skill
-		svg(class="piechart" width="120" height="120")
+		svg(class="piechart" viewBox="0 0 120 120")
 			circle(class="piechart__bg" fill="none" stroke-width="20" stroke-dasharray="314.159265" stroke-dashoffset="314.159265" cx="60" cy="60" r="50" transform="rotate(-90, 60, 60)")
 			circle(class="piechart__fill", data-percentage=((100-percentage)/100)*314.159265, fill="none", stroke-width="20", stroke-dasharray="314.159265", stroke-dashoffset="314.159265", cx="60", cy="60", r="50", transform="rotate(-90, 60, 60)")
