@@ -216,55 +216,170 @@
 			});
 	});
 
-	// ==============================
-	// Preloader with percentage
-	// ==============================
+	// ==========================================
+	// Preloader with percentage by image count
+	// ==========================================
 	function preloader() {
-		var duration = 1000;
-		var st = new Date().getTime();
+		var preloader = $("#preloader-svg__img"),
+			preloader_stat = $("#preloader-svg__percentage"),
+			hasImageProperties = ["backgroundImage", "listStyleImage", "borderImage", "borderCornerImage", "cursor"],
+			hasImageAttributes = ["srcset"],
+			match_url = /url\(\s*(['"]?)(.*?)\1\s*\)/g,
+			all_images = [],
+			total = 0,
+			count = 0;
 
-		var $circle__o = $("#preloader-svg__img .bar__outer"),
-			$circle__c = $("#preloader-svg__img .bar__center"),
-			$circle__i = $("#preloader-svg__img .bar__inner");
+		var circle_o = $("#preloader-svg__img .bar__outer"),
+			circle_c = $("#preloader-svg__img .bar__center"),
+			circle_i = $("#preloader-svg__img .bar__inner"),
+			length_o = Math.PI*(circle_o.attr("r") * 2),
+			length_c = Math.PI*(circle_c.attr("r") * 2),
+			length_i = Math.PI*(circle_i.attr("r") * 2);
 
-		var c_o = Math.PI*($circle__o.attr("r") * 2),
-			c_c = Math.PI*($circle__c.attr("r") * 2),
-			c_i = Math.PI*($circle__i.attr("r") * 2);
 
+		$("body").find("*").addBack().each(function () {
+			var element = $(this);
 
-		var interval = setInterval(function() {
-			var diff = Math.round(new Date().getTime() - st),
-				val = Math.round(diff / duration * 100);
+			if (element.is("img") && element.attr("src")) {
+				all_images.push({
+					src: element.attr("src"),
+					element: element[0]
+				});
+			}
 
-			val = val > 100 ? 100 : val;
+			$.each(hasImageProperties, function (i, property) {
+				var propertyValue = element.css(property);
+				var match;
 
-			var pct_o = ((100-val)/100)*c_o,
-				pct_c = ((100-val)/100)*c_c,
-				pct_i = ((100-val)/100)*c_i;
+				if (!propertyValue) {
+					return true;
+				}
 
-			$circle__o.css({strokeDashoffset: pct_o});
-			$circle__c.css({strokeDashoffset: pct_c});
-			$circle__i.css({strokeDashoffset: pct_i});
+				match = match_url.exec(propertyValue);
 
-			$("#preloader-svg__percentage").text(val);
-			$("#preloader-svg__img").css({opacity:1});
-
-			if (diff >= duration) {
-				clearInterval(interval);
-
-				if($(".flip-card").length){
-					$("#preloader").delay(1000).fadeOut(700, function(){
-						$("#preloader__progress").remove();
-						$(".flip-card").addClass("loaded");
-					});
-				} else {
-					$("#preloader").delay(1000).fadeOut(700, function(){
-						$("#preloader__progress").remove();
+				if (match) {
+					all_images.push({
+						src: match[2],
+						element: element[0]
 					});
 				}
+			});
+
+			$.each(hasImageAttributes, function (i, attribute) {
+				var attributeValue = element.attr(attribute);
+
+				if (!attributeValue) {
+					return true;
+				}
+
+				all_images.push({
+					src: element.attr("src"),
+					srcset: element.attr("srcset"),
+					element: element[0]
+				});
+			});
+		});
+
+		function img_loaded(){
+			count += 1;
+			var percentage = Math.round(count / total * 100);
+
+			percentage = percentage > 100 ? 100 : percentage;
+
+			circle_o.css({strokeDashoffset: ((100-percentage)/100 )*length_o });
+			circle_c.css({strokeDashoffset: ((100-percentage)/100)*length_c });
+			circle_i.css({strokeDashoffset: ((100-percentage)/100)*length_i });
+			preloader_stat.text(percentage);
+
+			if(count === total) return done_loading();
+		}
+
+		function done_loading(){
+			if($(".flip-card").length){
+				$("#preloader").delay(1000).fadeOut(700, function(){
+					$("#preloader__progress").remove();
+					$(".flip-card").addClass("loaded");
+				});
+			} else {
+				$("#preloader").delay(1000).fadeOut(700, function(){
+					$("#preloader__progress").remove();
+				});
 			}
-		}, 200);
+		}
+
+
+		total = all_images.length;
+		if (total === 0) {
+			done_loading();
+		}
+
+		preloader.css({opacity:1});
+
+		$.each(all_images, function (i, img) {
+			var test_image = new Image();
+
+			test_image.onload = img_loaded;
+			test_image.onerror = img_loaded;
+
+			if (img.srcset) {
+				test_image.srcset = img.srcset;
+			}
+			test_image.src = img.src;
+		});
 	}
+
 	preloader();
+
+	// =======================================
+	// Preloader with percentage by interval
+	// =======================================
+	// function preloader() {
+	// 	var duration = 1000;
+	// 	var st = new Date().getTime();
+
+	// 	var $circle__o = $("#preloader-svg__img .bar__outer"),
+	// 		$circle__c = $("#preloader-svg__img .bar__center"),
+	// 		$circle__i = $("#preloader-svg__img .bar__inner");
+
+	// 	var c_o = Math.PI*($circle__o.attr("r") * 2),
+	// 		c_c = Math.PI*($circle__c.attr("r") * 2),
+	// 		c_i = Math.PI*($circle__i.attr("r") * 2);
+
+
+	// 	var interval = setInterval(function() {
+	// 		var diff = Math.round(new Date().getTime() - st),
+	// 			val = Math.round(diff / duration * 100);
+
+	// 		val = val > 100 ? 100 : val;
+
+	// 		var pct_o = ((100-val)/100)*c_o,
+	// 			pct_c = ((100-val)/100)*c_c,
+	// 			pct_i = ((100-val)/100)*c_i;
+
+	// 		$circle__o.css({strokeDashoffset: pct_o});
+	// 		$circle__c.css({strokeDashoffset: pct_c});
+	// 		$circle__i.css({strokeDashoffset: pct_i});
+
+	// 		$("#preloader-svg__percentage").text(val);
+	// 		$("#preloader-svg__img").css({opacity:1});
+
+	// 		if (diff >= duration) {
+	// 			clearInterval(interval);
+
+	// 			if($(".flip-card").length){
+	// 				$("#preloader").delay(1000).fadeOut(700, function(){
+	// 					$("#preloader__progress").remove();
+	// 					$(".flip-card").addClass("loaded");
+	// 				});
+	// 			} else {
+	// 				$("#preloader").delay(1000).fadeOut(700, function(){
+	// 					$("#preloader__progress").remove();
+	// 				});
+	// 			}
+	// 		}
+	// 	}, 200);
+	// }
+	// preloader();
+
 
 })(jQuery);
