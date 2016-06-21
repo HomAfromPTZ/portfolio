@@ -136,7 +136,7 @@
 	if($(window).width() > (768 - scrollBarWidth)){
 		preloader();
 	} else {
-		$("#preloader__progress").remove();
+		$("#preloader").remove();
 		if($(".flip-card").length){
 			$(".flip-card").addClass("loaded");
 		}
@@ -186,15 +186,27 @@
 
 
 	// ==============================
-	// Axis Parallax
+	// Parallax
 	// ==============================
-	$("#scene").parallax({
+	$("#scene.axis").parallax({
 		scalarX: 3,
 		scalarY: 3,
 		frictionX: 0.5,
 		frictionY: 0.5
 	});
 
+	$(window).scroll(function() {
+		var scrollPos = $(this).scrollTop();
+		$("#scene.vertical .layer").each(function(){
+			var layer = $(this);
+			layer.css({
+				"top" : ((scrollPos/30)*layer.index())+"px"
+			});
+		});
+		// $("#scene.vertical").css({
+		// 	'opacity' : 1-(scrollPos/700)
+		// });
+	});
 
 	// ==============================
 	// Login card flip
