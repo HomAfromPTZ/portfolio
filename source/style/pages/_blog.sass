@@ -28,14 +28,15 @@
 .blog-navigation
 	width: 30%
 	text-align: right
+	z-index: 12
 	+media(s)
 		position: fixed
 		float: none
 		top: 0
-		left: -70%
+		left: -50%
 		bottom: 0
 		z-index: 10
-		width: 70%
+		width: 50%
 		height: 100%
 		background-color: $maincolor
 		transition: all $transition-time
@@ -59,12 +60,13 @@
 			z-index: 1
 			position: absolute
 			top: 50%
-			right: -40px
-			height: 120px
+			right: -30px
+			height: 100px
 			width: 100px
 			margin-top: -60px
-			border-top-right-radius: 50%
-			border-bottom-right-radius: 50%
+			// border-top-right-radius: 50%
+			// border-bottom-right-radius: 50%
+			border-radius: 50%
 			background-color: $maincolor
 
 	&__links-list
@@ -82,8 +84,7 @@
 				border-right: 2px solid transparent
 				transition: all $transition-time
 				+media(s)
-					color: $white
-					opacity: .7
+					color: rgba($white, .7)
 					padding: 10px 0
 					border: none
 				&:hover,
@@ -91,8 +92,7 @@
 					color: $maincolor
 					border-color: $maincolor
 					+media(s)
-						color: $white
-						opacity: 1
+						color: rgba($white, 1)
 
 
 .blog-content
