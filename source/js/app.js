@@ -1,15 +1,147 @@
 (function($) {
 	"use strict";
-
-
 	// ==============================
 	// Check scrollbar width
 	// ==============================
 	var widthContentA = $("#scroll_bar_check_A").width(),
 		widthContentB = $("#scroll_bar_check_B").width();
 
-	var scrollBarWidht =  widthContentA - widthContentB;
+	var scrollBarWidth = widthContentA - widthContentB;
+
 	$("#scroll_bar_check_A").css("display","none");
+	// ==========================================
+	// Preloader with percentage by image count
+	// ==========================================
+	function preloader() {
+		var preloader_stat = $("#preloader-svg__percentage"),
+			hasImageProperties = ["backgroundImage", "listStyleImage", "borderImage", "borderCornerImage", "cursor"],
+			hasImageAttributes = ["srcset"],
+			match_url = /url\(\s*(['"]?)(.*?)\1\s*\)/g,
+			all_images = [],
+			total = 0,
+			count = 0;
+
+		var circle_o = $("#preloader-svg__img .bar__outer"),
+			circle_c = $("#preloader-svg__img .bar__center"),
+			circle_i = $("#preloader-svg__img .bar__inner"),
+			length_o = Math.PI*(circle_o.attr("r") * 2),
+			length_c = Math.PI*(circle_c.attr("r") * 2),
+			length_i = Math.PI*(circle_i.attr("r") * 2);
+
+
+		$("body").find("*").addBack().each(function () {
+			var element = $(this);
+
+			if (element.is("img") && element.attr("src")) {
+				all_images.push({
+					src: element.attr("src"),
+					element: element[0]
+				});
+			}
+
+			$.each(hasImageProperties, function (i, property) {
+				var propertyValue = element.css(property);
+				var match;
+
+				if (!propertyValue) {
+					return true;
+				}
+
+				match = match_url.exec(propertyValue);
+
+				if (match) {
+					all_images.push({
+						src: match[2],
+						element: element[0]
+					});
+				}
+			});
+
+			$.each(hasImageAttributes, function (i, attribute) {
+				var attributeValue = element.attr(attribute);
+
+				if (!attributeValue) {
+					return true;
+				}
+
+				all_images.push({
+					src: element.attr("src"),
+					srcset: element.attr("srcset"),
+					element: element[0]
+				});
+			});
+		});
+
+		function img_loaded(){
+			count += 1;
+			var percentage = Math.round(count / total * 100);
+
+			percentage = percentage > 100 ? 100 : percentage;
+
+			circle_o.css({strokeDashoffset: ((100-percentage)/100)*length_o });
+
+			if(percentage > 33) {
+				circle_c.css({strokeDashoffset: ((100-percentage)/100)*length_c });
+			}
+
+			if(percentage > 66) {
+				circle_i.css({strokeDashoffset: ((100-percentage)/100)*length_i });
+			}
+
+			preloader_stat.text(percentage);
+
+			if(count === total) return done_loading();
+		}
+
+		function done_loading(){
+			$("#preloader").delay(700).fadeOut(500, function(){
+				$("#preloader__progress").remove();
+
+				if($(".flip-card").length){
+					$(".flip-card").addClass("loaded");
+				}
+			});
+		}
+
+		total = all_images.length;
+
+		if (total === 0) {
+			done_loading();
+		}
+
+		var i = total;
+		function images_loop () {
+			setTimeout(function () {
+				var test_image = new Image();
+
+
+				test_image.onload = img_loaded;
+				test_image.onerror = img_loaded;
+
+				i--;
+				if (all_images[i].srcset) {
+					test_image.srcset = all_images[i].srcset;
+				}
+				test_image.src = all_images[i].src;
+
+				if (i > 0) {
+					images_loop();
+				}
+			}, 20);
+		}
+
+		images_loop();
+	}
+
+	if($(window).width() > (768 - scrollBarWidth)){
+		preloader();
+	} else {
+		$("#preloader__progress").remove();
+		if($(".flip-card").length){
+			$(".flip-card").addClass("loaded");
+		}
+	}
+
 
 
 	// ==============================
@@ -161,9 +293,9 @@
 				.addClass("active");
 			}
 
-			if(fromTop >= blogNavLimit && $(window).width() > (768 - scrollBarWidht)) {
+			if(fromTop >= blogNavLimit && $(window).width() > (768 - scrollBarWidth)) {
 				$(".blog-navigation__wrapper").css({"position":"absolute", "top":blogNavLimit + "px"});
-			} else if (fromTop >= blogNavOffset && $(window).width() > (768 - scrollBarWidht)) {
+			} else if (fromTop >= blogNavOffset && $(window).width() > (768 - scrollBarWidth)) {
 				$(".blog-navigation__wrapper").css({"position":"fixed", "top":0});
 				$(".blog-navigation__wrapper").addClass("nav-fixed");
 			} else {
@@ -181,7 +313,7 @@
 	// ==============================
 	if($(".blog-navigation").offset()){
 		$(window).resize(function() {
-			if($(window).width() <= (768 - scrollBarWidht)){
+			if($(window).width() <= (768 - scrollBarWidth)){
 				$(".blog-navigation__wrapper").removeClass("nav-fixed");
 				$(".blog-navigation__wrapper").css({"position":"relative"});
 			} else {
@@ -196,7 +328,7 @@
 
 	$(window).resize(function() {
 		// Testimonials section bg size
-		if( $(window).width()>2000){
+		if( $(window).width()>2000 - scrollBarWidth){
 			$(".talks, .contact-form__bg").css("background-size", $(window).width() + "px");
 		}
 	});
@@ -216,119 +348,7 @@
 			});
 	});
 
-	// ==========================================
-	// Preloader with percentage by image count
-	// ==========================================
-	function preloader() {
-		var preloader = $("#preloader-svg__img"),
-			preloader_stat = $("#preloader-svg__percentage"),
-			hasImageProperties = ["backgroundImage", "listStyleImage", "borderImage", "borderCornerImage", "cursor"],
-			hasImageAttributes = ["srcset"],
-			match_url = /url\(\s*(['"]?)(.*?)\1\s*\)/g,
-			all_images = [],
-			total = 0,
-			count = 0;
 
-		var circle_o = $("#preloader-svg__img .bar__outer"),
-			circle_c = $("#preloader-svg__img .bar__center"),
-			circle_i = $("#preloader-svg__img .bar__inner"),
-			length_o = Math.PI*(circle_o.attr("r") * 2),
-			length_c = Math.PI*(circle_c.attr("r") * 2),
-			length_i = Math.PI*(circle_i.attr("r") * 2);
-
-
-		$("body").find("*").addBack().each(function () {
-			var element = $(this);
-
-			if (element.is("img") && element.attr("src")) {
-				all_images.push({
-					src: element.attr("src"),
-					element: element[0]
-				});
-			}
-
-			$.each(hasImageProperties, function (i, property) {
-				var propertyValue = element.css(property);
-				var match;
-
-				if (!propertyValue) {
-					return true;
-				}
-
-				match = match_url.exec(propertyValue);
-
-				if (match) {
-					all_images.push({
-						src: match[2],
-						element: element[0]
-					});
-				}
-			});
-
-			$.each(hasImageAttributes, function (i, attribute) {
-				var attributeValue = element.attr(attribute);
-
-				if (!attributeValue) {
-					return true;
-				}
-
-				all_images.push({
-					src: element.attr("src"),
-					srcset: element.attr("srcset"),
-					element: element[0]
-				});
-			});
-		});
-
-		function img_loaded(){
-			count += 1;
-			var percentage = Math.round(count / total * 100);
-
-			percentage = percentage > 100 ? 100 : percentage;
-
-			circle_o.css({strokeDashoffset: ((100-percentage)/100 )*length_o });
-			circle_c.css({strokeDashoffset: ((100-percentage)/100)*length_c });
-			circle_i.css({strokeDashoffset: ((100-percentage)/100)*length_i });
-			preloader_stat.text(percentage);
-
-			if(count === total) return done_loading();
-		}
-
-		function done_loading(){
-			if($(".flip-card").length){
-				$("#preloader").delay(1000).fadeOut(700, function(){
-					$("#preloader__progress").remove();
-					$(".flip-card").addClass("loaded");
-				});
-			} else {
-				$("#preloader").delay(1000).fadeOut(700, function(){
-					$("#preloader__progress").remove();
-				});
-			}
-		}
-
-
-		total = all_images.length;
-		if (total === 0) {
-			done_loading();
-		}
-
-		preloader.css({opacity:1});
-
-		$.each(all_images, function (i, img) {
-			var test_image = new Image();
-
-			test_image.onload = img_loaded;
-			test_image.onerror = img_loaded;
-
-			if (img.srcset) {
-				test_image.srcset = img.srcset;
-			}
-			test_image.src = img.src;
-		});
-	}
-
-	preloader();
 
 	// =======================================
 	// Preloader with percentage by interval

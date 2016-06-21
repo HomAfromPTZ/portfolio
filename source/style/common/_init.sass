@@ -76,6 +76,8 @@ html
 	z-index: 99999
 	background-color: $maincolor
 	text-align: center
+	+media(s)
+		display: none
 	&__progress
 		position: absolute
 		top: 0
@@ -90,15 +92,17 @@ html
 		&__percentage
 			position: absolute
 			top: 50%
-			left: 51%
+			left: 50%
 			transform: translate(-50%,-50%)
 			color: $white
 			font-size: em(24)
 		&__img
-			opacity: 0
-			transition: all .5s
 			.bar
-				transition: all 1s
+				transition: all .5s
+				&__center
+					transition-delay: .1s
+				&__inner
+					transition-delay: .2s
 
 
 .no-js
