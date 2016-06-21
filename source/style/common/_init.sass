@@ -21,6 +21,7 @@ body
 	position: relative
 	font-size: 100%
 	font-family: "Roboto_medium", sans-serif
+	transition: all $transition-time
 
 html
 	overflow-y: scroll
@@ -76,6 +77,9 @@ html
 	z-index: 99999
 	background-color: $maincolor
 	text-align: center
+	// background-image: url("/assets/img/theme_mountains/preloader_bg.jpg")
+	background-position: center center
+	background-size: cover
 	&__progress
 		position: absolute
 		top: 0
@@ -94,13 +98,15 @@ html
 			transform: translate(-50%,-50%)
 			color: $white
 			font-size: em(24)
+			opacity: 0
+			transition: opacity $transition-time_medium
 		&__img
 			.bar
 				transition: all .5s
 				&__center
-					transition-delay: .1s
+					// transition-delay: .1s
 				&__inner
-					transition-delay: .2s
+					// transition-delay: .1s
 
 
 .no-js

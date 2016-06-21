@@ -1,5 +1,6 @@
 (function($) {
 	"use strict";
+
 	// ==============================
 	// Check scrollbar width
 	// ==============================
@@ -9,10 +10,24 @@
 	var scrollBarWidth = widthContentA - widthContentB;
 
 	$("#scroll_bar_check_A").css("display","none");
+
+
+
+
+
 	// ==========================================
 	// Preloader with percentage by image count
 	// ==========================================
 	function preloader() {
+		// if($(window).width() <= (768 - scrollBarWidth)){
+		// 	$("#preloader").remove();
+		// 		if($(".flip-card").length){
+		// 			$(".flip-card").addClass("loaded");
+		// 		}
+		// 		return;
+		// }
+
+
 		var preloader_stat = $("#preloader-svg__percentage"),
 			hasImageProperties = ["backgroundImage", "listStyleImage", "borderImage", "borderCornerImage", "cursor"],
 			hasImageAttributes = ["srcset"],
@@ -29,7 +44,39 @@
 			length_i = Math.PI*(circle_i.attr("r") * 2);
 
 
-		$("body").find("*").addBack().each(function () {
+		function img_loaded(){
+			var percentage = Math.ceil( ++count / total * 100 );
+
+			percentage = percentage > 100 ? 100 : percentage;
+
+			// Draw offsets
+			circle_o.css({strokeDashoffset: ((100-percentage)/100)*length_o });
+
+			if(percentage > 50) {
+				circle_c.css({strokeDashoffset: ((100-percentage)/100)*length_c });
+			}
+
+			if(percentage == 100) {
+				circle_i.css({strokeDashoffset: ((100-percentage)/100)*length_i });
+			}
+
+			preloader_stat.html(percentage);
+
+			if(count === total) return done_loading();
+		}
+
+		function done_loading(){
+			$("#preloader").delay(700).fadeOut(700, function(){
+				$("#preloader__progress").remove();
+
+				if($(".flip-card").length){
+					$(".flip-card").addClass("loaded");
+				}
+			});
+		}
+
+
+		$("*").each(function () {
 			var element = $(this);
 
 			if (element.is("img") && element.attr("src")) {
@@ -72,36 +119,6 @@
 			});
 		});
 
-		function img_loaded(){
-			count += 1;
-			var percentage = Math.round(count / total * 100);
-
-			percentage = percentage > 100 ? 100 : percentage;
-
-			circle_o.css({strokeDashoffset: ((100-percentage)/100)*length_o });
-
-			if(percentage > 33) {
-				circle_c.css({strokeDashoffset: ((100-percentage)/100)*length_c });
-			}
-
-			if(percentage > 66) {
-				circle_i.css({strokeDashoffset: ((100-percentage)/100)*length_i });
-			}
-
-			preloader_stat.text(percentage);
-
-			if(count === total) return done_loading();
-		}
-
-		function done_loading(){
-			$("#preloader").delay(700).fadeOut(500, function(){
-				$("#preloader__progress").remove();
-
-				if($(".flip-card").length){
-					$(".flip-card").addClass("loaded");
-				}
-			});
-		}
 
 		total = all_images.length;
 
@@ -109,16 +126,18 @@
 			done_loading();
 		}
 
+
+		preloader_stat.css({opacity: 1});
+
 		var i = total;
 		function images_loop () {
 			setTimeout(function () {
 				var test_image = new Image();
 
-
 				test_image.onload = img_loaded;
 				test_image.onerror = img_loaded;
-
 				i--;
+
 				if (all_images[i].srcset) {
 					test_image.srcset = all_images[i].srcset;
 				}
@@ -127,20 +146,44 @@
 				if (i > 0) {
 					images_loop();
 				}
-			}, 20);
+			}, 50);
 		}
 
 		images_loop();
+
+		// for(var i=0; i<total; i++){
+		// 	var test_image = new Image();
+
+
+		// 	test_image.onload = img_loaded;
+		// 	test_image.onerror = img_loaded;
+
+		// 	if (all_images[i].srcset) {
+		// 		test_image.srcset = all_images[i].srcset;
+		// 	}
+		// 	test_image.src = all_images[i].src;
+		// }
 	}
 
-	if($(window).width() > (768 - scrollBarWidth)){
-		preloader();
-	} else {
-		$("#preloader").remove();
-		if($(".flip-card").length){
-			$(".flip-card").addClass("loaded");
-		}
-	}
+	preloader();
+
+
+
+
+
+	// ==============================
+	// Page changer
+	// ==============================
+	$(document).on("click", "a.preload-link", function(e) {
+		var href = $(this).attr("href");
+		e.preventDefault();
+
+		return $("#preloader")
+			.fadeIn(300, function(){
+				return document.location = href != null ? href : "/";
+			});
+	});
+
 
 
 
@@ -200,7 +243,7 @@
 		$("#scene.vertical .layer").each(function(){
 			var layer = $(this);
 			layer.css({
-				"top" : ((scrollPos/30)*layer.index())+"px"
+				"top" : ( (Math.round(scrollPos)/(2 + 0.1*layer.index())) )+"px"
 			});
 		});
 		// $("#scene.vertical").css({
@@ -344,22 +387,6 @@
 			$(".talks, .contact-form__bg").css("background-size", $(window).width() + "px");
 		}
 	});
-
-
-
-	// ==============================
-	// Page changer
-	// ==============================
-	$(document).on("click", "a.preload-link", function(e) {
-		var href = $(this).attr("href");
-		e.preventDefault();
-
-		return $("#preloader")
-			.fadeIn(300, function(){
-				return document.location = href != null ? href : "/";
-			});
-	});
-
 
 
 	// =======================================
