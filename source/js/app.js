@@ -231,6 +231,22 @@
 	// ==============================
 	// Parallax
 	// ==============================
+
+	// IE scroll jump fix
+	if(navigator.userAgent.match(/Trident\/7\./)) {
+		$(".layer").css({transition:"top .15s linear"});
+		$("#scene.vertical").css({transition:"opacity .15s linear"});
+
+		$("body").on("mousewheel", function () {
+			event.preventDefault(); 
+
+			var wheelDelta = event.wheelDelta,
+				currentScrollPosition = window.pageYOffset;
+
+			window.scrollTo(0, currentScrollPosition - wheelDelta);
+		});
+	}
+
 	$("#scene.axis").parallax({
 		scalarX: 3,
 		scalarY: 3,
