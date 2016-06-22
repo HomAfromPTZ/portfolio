@@ -11,6 +11,27 @@ html
 	max-height: 100px
 	overflow: scroll
 
+
+
+
+
+// =================================
+// Clearfix
+// =================================
+
+.clearfix
+	&::before,
+	&::after
+		content: ""
+		display: table
+	&::after
+		clear: both
+
+
+
+
+
+
 // =================================
 // Page init
 // =================================
@@ -23,37 +44,43 @@ body
 	font-family: "Roboto_medium", sans-serif
 	transition: all $transition-time
 
+
+// Show scrollbar on every page
 html
 	overflow-y: scroll
 
-.header
-	text-align: center
-	&_welcome
-		text-align: right
-		+media(s)
-			text-align: center
 
-.content
-	&_welcome
-		text-align: center
-
-.footer
-	&_welcome
-		text-align: center
-
+// TODO: maybe try to use only as silent class: e.g. %vertical-aligned
 .vertical-aligned
 	display: table-cell
 	vertical-align: middle
 	position: relative
 
+
+// Last section on the page
+.last-section
+	padding-bottom: $footer-height
+	margin-bottom: -$footer-height
+	+media(s)
+		padding-bottom: $footer-height_small
+		margin-bottom: -$footer-height_small
+	+media(xs)
+		padding-bottom: $footer-height_xsmall
+		margin-bottom: -$footer-height_xsmall
+
+
+// TODO: same as .vertical-aligned - maybe use only as @extend
 .fullheight
 	height: 100%
+
+	// calculating pusher height for footer
 	&.last-section
 		height: calc(100% + #{$footer_height - 190})
 		+media(s)
 			height: calc(100% + #{$footer-height_small - 190})
 		+media(xs)
 			height: calc(100% + #{$footer-height_xsmall - 190})
+
 	&_mih
 		min-height: 650px
 		overflow: hidden
@@ -65,8 +92,10 @@ html
 				min-height: calc(650px + #{$footer-height_xsmall - 190})
 
 
+// TODO: used once on main page
 .perspective-box
 	perspective: 1000px
+
 
 #preloader
 	position: fixed
@@ -109,9 +138,11 @@ html
 					// transition-delay: .1s
 
 
+// TODO: need add modernizr.js
 .no-js
 	.preloader
 		display: none
+
 
 .container
 	max-width: 1800px
@@ -121,16 +152,13 @@ html
 	&_fullwidth
 		max-width: none
 
-.clearfix
-	&::before,
-	&::after
-		content: ""
-		display: table
-	&::after
-		clear: both
 
 .sprites-container
 	display: none
+
+
+
+
 
 // =================================
 // Table Layout Modifiers
@@ -144,6 +172,8 @@ html
 		display: table-row
 	&__middle
 		height: 100%
+
+
 
 
 
@@ -174,7 +204,6 @@ h3
 	+media(xs)
 		font-size: em(21,16)
 
-
 h4, h5, h6
 	font-size: em(26,16)
 	+media(m)
@@ -183,12 +212,6 @@ h4, h5, h6
 		font-size: em(21,16)
 
 
-
-
-
-// =================================
-// Text header style
-// =================================
 .sidestripes
 	padding: 0 42px
 	display: inline-block
@@ -209,6 +232,7 @@ h4, h5, h6
 		left: 0
 	&::after
 		right: 0
+
 
 .svg-heading
 	position: relative
@@ -235,6 +259,8 @@ h4, h5, h6
 
 
 
+
+
 // =================================
 // Elements
 // =================================
@@ -247,6 +273,36 @@ button
 	background: none
 	cursor: pointer
 
+// Chevron buttons
+.go-down,
+.go-up
+	color: $white
+	font-size: em(36)
+	opacity: .7
+	transition: all $transition-time
+	&:hover
+		opacity: 1
+
+.go-down
+	position: absolute
+	z-index: 1
+	bottom: 40px
+	left: 50%
+	transform: translateX(-50%)
+	&:hover
+		padding-top: 10px
+		bottom: 30px
+
+.go-up
+	display: block
+	position: relative
+	margin: 70px auto
+	width: 50px
+	height: 50px
+	font-size: em(40)
+	text-shadow: 0 0 10px rgba(invert($white), .5)
+
+
 .avatar
 	margin: 0 auto
 	width: 137px
@@ -256,6 +312,7 @@ button
 	img
 		width: 100%
 		display: block
+
 
 .social-links
 	position: relative
@@ -310,11 +367,9 @@ button
 			overflow: hidden
 		.mask__path
 			transition: all $transition-time
-		.mask__rect_inner
-			fill: white
-			transition: all $transition-time
+		.mask__rect_inner,
 		.mask__rect_outer
-			fill: white
+			fill: $white
 			transition: all $transition-time
 		&:hover
 			.mask__path
@@ -323,104 +378,47 @@ button
 				fill: transparent
 
 
-// =================================
-// Last section
-// =================================
-.last-section
-	padding-bottom: $footer-height
-	margin-bottom: -$footer-height
-	+media(s)
-		padding-bottom: $footer-height_small
-		margin-bottom: -$footer-height_small
-	+media(xs)
-		padding-bottom: $footer-height_xsmall
-		margin-bottom: -$footer-height_xsmall
 
 
 
 // =================================
-// Footer
+// Mountains positioning
 // =================================
-.go-up
+.parallax-wrapper
+	position: fixed
+	overflow: hidden
 	display: block
+	width: 100%
+	height: 100%
+	top: 0
+	left: 0
+	min-height: 650px
+	z-index: -1
+#scene, .layer
+	display: block
+	height: 100%
+	width: 100%
+	padding: 0
+	margin: 0
+	list-style: none
+#scene
 	position: relative
-	margin: 70px auto
-	width: 50px
-	height: 50px
-	font-size: em(40)
-	text-shadow: 0 0 10px rgba(invert($white), .5)
+	overflow: hidden
+.layer
+	position: absolute
+	.layer-bg
+		transform: translate3d(0,0,0)
+		transform-style: preserve-3d
+		backface-visibility: hidden
+		position: absolute
+		width: 140%
+		height: 120%
+		left: -20%
+		top: -10%
+		background-repeat: no-repeat
+		background-size: cover
+		background-position: center 40%
 
-
-.footer
-	position: relative
-	&__wrapper
-		background-color: rgba($stripes-color, .85)
-		height: ($footer-height - 190px)	// 190px = go-up button margin+height
-		color: $white
-		text-align: center
-		+media(s)
-			height: ($footer-height_small - 190px)
-		+media(xs)
-			height: ($footer-height_xsmall - 190px)
-	&__row
-		border-bottom: 1px solid rgba($white, .1)
-		padding: 30px
-		@extend .clearfix
-		&:last-child
-			border: none
-	&__column
-		float: left
-		width: 50%
-		+media(s)
-			margin-bottom: 20px
-			float: none
-			width: 100%
-			text-align: center !important
-			&:last-child
-				margin-bottom: 0
-		&_left
-			text-align: left
-			padding-right: 10px
-		&_right
-			text-align: right
-			padding-left: 10px
-
-	&__link
-		position: relative
-		color: $white
-		text-decoration: none
-		margin: 0 20px
-		padding: 10px 0
-		vertical-align: middle
-		display: inline-block
-		+media(m)
-			margin: 0 10px
-			font-size: em(14)
-		&:first-child
-			margin-left: 0
-		&:last-child
-			margin-right: 0
-		&::after
-			content: ""
-			position: absolute
-			bottom: 0
-			left: 50%
-			transform: translateX(-50%)
-			display: block
-			height: 2px
-			background-color: $white
-			opacity: 0
-			width: 0
-			transition: all $transition-time
-		&:hover
-			&::after
-				opacity: 1
-				width: 100%
-
-	&__quote
-		opacity: .5
-		font-family: "roboto_light"
-
-	&_common
-		.copyright
-			opacity: .5
+	@for $i from 0 to 10
+		.layer-bg_#{$i}
+			background-image: url("/assets/img/theme_mountains/parallax/layer_#{$i}.png")

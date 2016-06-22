@@ -1,25 +1,17 @@
-.site-author_blog
-	.site-author__description
-		font-family: "roboto_regular"
-		opacity: 1
-
-	.svg-heading
-		padding: 30px 15px 15px
-		&__text
-			color: $white
-			width: auto
-		&__img
-			fill: $white
-			opacity: .2
-			height: 300px
-			width: 300px
-			transform: translate(-50%,-45%)
-
+// =================================
+// Blog section
+// =================================
 .blog
 	@extend .clearfix
 	background-color: $white
-	// position: relative
 
+
+
+
+
+// =================================
+// Blog sidebar
+// =================================
 .blog-navigation,
 .blog-content
 	float: left
@@ -95,6 +87,12 @@
 						color: rgba($white, 1)
 
 
+
+
+
+// =================================
+// Blog articles
+// =================================
 .blog-content
 	width: 70%
 	+media(s)

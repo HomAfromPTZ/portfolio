@@ -240,15 +240,19 @@
 
 	$(window).scroll(function() {
 		var scrollPos = $(this).scrollTop();
+
 		$("#scene.vertical .layer").each(function(){
 			var layer = $(this);
-			layer.css({
-				"top" : ( (Math.round(scrollPos)/(2 + 0.1*layer.index())) )+"px"
-			});
+
+			if(layer.index() !=0 ) {
+				layer.css({
+					"top" : ( (scrollPos/(5 + 2*layer.index())) )+"px"
+				});
+			}
 		});
-		// $("#scene.vertical").css({
-		// 	'opacity' : 1-(scrollPos/700)
-		// });
+		$("#scene.vertical").css({
+			'opacity' : 1-(scrollPos/700)
+		});
 	});
 
 	// ==============================

@@ -1,3 +1,6 @@
+// =================================
+// "About me" section
+// =================================
 .about-me
 	@extend .clearfix
 	&__stretcher
@@ -29,7 +32,7 @@
 			left: 0
 
 	.bio
-		padding: 0 5%
+		padding: 0 4%
 		&__main-image
 		&__heading
 			margin: 40px auto 10px
@@ -40,11 +43,14 @@
 			text-align: left
 
 	.skills
-		padding: 0 5%
+		padding: 0 4%
 		background-color: $pastel_dark
 		@extend .clearfix
 		&__heading
-			margin: 40px auto
+			margin: 65px auto 40px
+			width: 360px
+			+media(s)
+				width: auto
 		&__descr
 			font-family: "roboto_regular"
 			color: $text-color
@@ -66,7 +72,7 @@
 				text-align: center
 				position: relative
 				border-radius: 50%
-				margin: 10px 
+				margin: 10px
 				.item-title
 					position: absolute
 					width: 120px
@@ -87,6 +93,10 @@
 
 
 
+
+// =================================
+// "Contacts" and Google map section
+// =================================
 .contacts
 	position: relative
 	padding-bottom: 0

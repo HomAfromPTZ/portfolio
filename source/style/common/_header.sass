@@ -129,11 +129,19 @@
 
 
 
+
+
 // =================================
 // Header styles
 // =================================
 .header
+	text-align: center
 	position: relative
+	&_welcome
+		text-align: right
+		+media(s)
+			text-align: center
+
 	.site-author
 		position: relative
 		z-index: 1
@@ -156,6 +164,23 @@
 			opacity: .8
 			+media(xs)
 				font-size: em(14)
+
+	.site-author_blog
+		.site-author__description
+			font-family: "roboto_regular"
+			opacity: 1
+
+		.svg-heading
+			padding: 30px 15px 15px
+			&__text
+				color: $white
+				width: auto
+			&__img
+				fill: $white
+				opacity: .2
+				height: 300px
+				width: 300px
+				transform: translate(-50%,-45%)
 
 
 	&__top-row
@@ -208,22 +233,3 @@
 
 	&__title
 		background-color: $pastel_light
-
-.go-down,
-.go-up
-	color: $white
-	font-size: em(36)
-	opacity: .7
-	transition: all $transition-time
-	&:hover
-		opacity: 1
-
-.go-down
-	position: absolute
-	z-index: 1
-	bottom: 40px
-	left: 50%
-	transform: translateX(-50%)
-	&:hover
-		padding-top: 10px
-		bottom: 30px
