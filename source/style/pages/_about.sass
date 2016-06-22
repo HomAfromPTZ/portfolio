@@ -41,6 +41,11 @@
 			font-family: "roboto_regular"
 			color: $text-color
 			text-align: left
+			a
+				color: $maincolor
+				transition: all $transition-time
+				&:hover
+					color: darken($maincolor, 20%)
 
 	.skills
 		padding: 0 4%

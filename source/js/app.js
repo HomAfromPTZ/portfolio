@@ -251,7 +251,7 @@
 			}
 		});
 		$("#scene.vertical").css({
-			'opacity' : 1-(scrollPos/700)
+			"opacity" : 1-(scrollPos/700)
 		});
 	});
 
