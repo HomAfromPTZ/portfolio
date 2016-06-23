@@ -37,12 +37,7 @@ html
 
 		section.portfolio-slider
 			.portfolio-slider__module.portfolio-slider__preview-container
-				.portfolio-previews
-					.portfolio-previews__preview
-						img(src="/assets/img/works/unspoken.png", alt="Bringcar")
-					.portfolio-previews__preview
-						img(src="/assets/img/works/bringcar.png", alt="Bringcar")
-
+				img.portfolio-preview(src="/assets/img/works/unspoken.png", alt="Bringcar")
 			.portfolio-slider__module.portfolio-slider__projects-container
 				.portfolio-projects
 					.project
@@ -55,14 +50,26 @@ html
 					button.portfolio-button.portfolio-button_prev
 						.fa.fa-chevron-down
 					.portfolio-thumbnails
-						.portfolio-thumbnails__thumbnail
+						.portfolio-thumbnails__thumbnail.active
 							img(src="/assets/img/works/alpha.png", alt="Alpha Capital Education")
+						.portfolio-thumbnails__thumbnail
+							img(src="/assets/img/works/karakalpakiya.png", alt="Karakalpakiya")
+						.portfolio-thumbnails__thumbnail
+							img(src="/assets/img/works/bringcar.png", alt="Bringcar")
+						.portfolio-thumbnails__thumbnail
+							img(src="/assets/img/works/unspoken.png", alt="Unspoken World Magazine")
 				.navigation-box.navigation-box_next
 					button.portfolio-button.portfolio-button_next
 						.fa.fa-chevron-up
 					.portfolio-thumbnails
 						.portfolio-thumbnails__thumbnail
+							img(src="/assets/img/works/alpha.png", alt="Alpha Capital Education")
+						.portfolio-thumbnails__thumbnail
 							img(src="/assets/img/works/karakalpakiya.png", alt="Karakalpakiya")
+						.portfolio-thumbnails__thumbnail.active
+							img(src="/assets/img/works/bringcar.png", alt="Bringcar")
+						.portfolio-thumbnails__thumbnail
+							img(src="/assets/img/works/unspoken.png", alt="Unspoken World Magazine")
 
 
 

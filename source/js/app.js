@@ -14,20 +14,56 @@
 
 
 
+	// console.log(window.location.pathname);
+	// if(window.location.pathname=="/xhrtest.html"){
+	// 	$.ajax({
+	// 		xhr: function() {
+	// 			var xhr = new window.XMLHttpRequest();
+
+	// 			// //Upload progress
+	// 			// xhr.upload.addEventListener("progress", function(evt){
+	// 			// 	if (evt.lengthComputable) {
+	// 			// 		var percentComplete = evt.loaded / evt.total;
+
+	// 			// 		//Do something with upload progress
+	// 			// 		console.log(percentComplete);
+	// 			// 	}
+	// 			// }, false);
+
+	// 			//Download progress
+	// 			xhr.addEventListener("progress", function(evt){
+	// 				if (evt.lengthComputable) {
+	// 					var percentComplete = evt.loaded / evt.total;
+
+	// 					//Do something with download progress
+	// 					console.time("Execution time took");
+	// 					console.log(percentComplete);
+	// 					console.timeEnd("Execution time took");
+	// 				}
+	// 			}, false);
+	// 			return xhr;
+	// 		},
+	// 		type: "POST",
+	// 		url: window.location.pathname,
+	// 		data: {},
+	// 		success: function(data){
+	// 			// $("#preloader").delay(700).fadeOut(700, function(){
+	// 			// 	$("#preloader__progress").remove();
+
+	// 			// 	if($(".flip-card").length){
+	// 			// 		$(".flip-card").addClass("loaded");
+	// 			// 	}
+	// 			// });
+	// 			console.log("Complete");
+	// 		}
+	// 	});
+	// }
+
 
 	// ==========================================
 	// Preloader with percentage by image count
 	// ==========================================
 	function preloader() {
-		// if($(window).width() <= (768 - scrollBarWidth)){
-		// 	$("#preloader").remove();
-		// 		if($(".flip-card").length){
-		// 			$(".flip-card").addClass("loaded");
-		// 		}
-		// 		return;
-		// }
-
-
 		var preloader_stat = $("#preloader-svg__percentage"),
 			hasImageProperties = ["backgroundImage", "listStyleImage", "borderImage", "borderCornerImage", "cursor"],
 			hasImageAttributes = ["srcset"],
@@ -75,6 +111,25 @@
 			});
 		}
 
+		function images_loop () {
+			setTimeout(function () {
+				var test_image = new Image();
+
+				test_image.onload = img_loaded;
+				test_image.onerror = img_loaded;
+
+				// console.log("C: " + count, " T: " + total);
+
+				if (count != total) {
+					if (all_images[count].srcset) {
+						test_image.srcset = all_images[count].srcset;
+					}
+					test_image.src = all_images[count].src;
+
+					images_loop();
+				}
+			}, 50);
+		}
 
 		$("*").each(function () {
 			var element = $(this);
@@ -119,37 +174,14 @@
 			});
 		});
 
-
 		total = all_images.length;
 
 		if (total === 0) {
 			done_loading();
+		} else {
+			preloader_stat.css({opacity: 1});
+			images_loop();
 		}
-
-
-		preloader_stat.css({opacity: 1});
-
-		var i = total;
-		function images_loop () {
-			setTimeout(function () {
-				var test_image = new Image();
-
-				test_image.onload = img_loaded;
-				test_image.onerror = img_loaded;
-				i--;
-
-				if (all_images[i].srcset) {
-					test_image.srcset = all_images[i].srcset;
-				}
-				test_image.src = all_images[i].src;
-
-				if (i > 0) {
-					images_loop();
-				}
-			}, 50);
-		}
-
-		images_loop();
 
 		// for(var i=0; i<total; i++){
 		// 	var test_image = new Image();
@@ -296,6 +328,8 @@
 	});
 
 
+
+
 	// ==============================
 	// Buttons
 	// ==============================
@@ -314,6 +348,64 @@
 
 	$(".blog-navigation__toggle").click(function(){
 		$(".blog-navigation").toggleClass("active");
+	});
+
+
+
+	// ==============================
+	// Slider
+	// ==============================
+	$(".portfolio-button").click(function(){
+		var this_button = $(this),
+			this_thumbnails = this_button.next().find(".portfolio-thumbnails__thumbnail"),
+			this_active_thumb = this_thumbnails.filter(".active"),
+			this_next_index = this_thumbnails.index(this_active_thumb) + 1,
+			other_button = this_button.parent().siblings().find(".portfolio-button"),
+			other_thumbnails = other_button.next().find(".portfolio-thumbnails__thumbnail"),
+			other_active_thumb = other_thumbnails.filter(".active"),
+			other_next_index = other_thumbnails.index(other_active_thumb) + 1,
+			active_preview = this_button.closest(".portfolio-slider").find(".portfolio-preview"),
+			next_preview = this_active_thumb.find("img").attr("src");
+
+
+		if(this_next_index >= this_thumbnails.length){
+			this_next_index = 0;
+		}
+
+		if(other_next_index >= other_thumbnails.length){
+			other_next_index = 0;
+		}
+
+		var this_next_thumb = this_thumbnails.eq(this_next_index),
+			other_next_thumb = other_thumbnails.eq(other_next_index);
+
+		this_active_thumb.animate({
+			top: "-100%"
+		}, 700);
+
+		this_next_thumb.css({top:"100%"});
+		this_next_thumb.animate({
+			top: 0
+		}, 700, function() {
+			this_active_thumb.removeClass("active").css({top:"100%"});
+			$(this).addClass("active");
+		});
+
+		other_active_thumb.animate({
+			top: "100%"
+		}, 700);
+
+		other_next_thumb.css({top:"-100%"});
+		other_next_thumb.animate({
+			top: 0
+		}, 700, function() {
+			other_active_thumb.removeClass("active").css({top:"-100%"});
+			$(this).addClass("active");
+		});
+
+		active_preview.fadeOut(350, function(){
+			$(this).attr("src", next_preview).fadeIn(350);
+		});
 	});
 
 
