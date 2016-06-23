@@ -38,11 +38,17 @@
 			display: table
 			width: 100%
 			height: 100%
+			overflow: hidden
 			.project
-				@extend .vertical-aligned
+				position: relative
 				padding: 10% 16%
+				display: none
 				+media(m)
 					padding: 5% 10%
+				&.active
+					display: table-cell
+					vertical-align: middle
+					opacity: 1
 				&__tech,
 				&__link
 					font-family: "roboto_medium"
@@ -50,6 +56,11 @@
 					line-height: 1
 				&__title
 					margin: 0 20px
+					span
+						font-size: inherit
+						line-height: inherit
+						vertical-align: middle
+						
 				&__tech
 					text-transform: uppercase
 					color: $maincolor

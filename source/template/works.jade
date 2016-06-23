@@ -37,9 +37,26 @@ html
 
 		section.portfolio-slider
 			.portfolio-slider__module.portfolio-slider__preview-container
-				img.portfolio-preview(src="/assets/img/works/unspoken.png", alt="Bringcar")
+				img.portfolio-preview(src="/assets/img/works/myspace.jpeg")
+
 			.portfolio-slider__module.portfolio-slider__projects-container
 				.portfolio-projects
+					.project.active
+						h3.sidestripes.project__title Myspace 1.0 профили
+						p.project__tech Pure oldschool CSS and HTML
+						button.project__link Давно и неправда
+					.project
+						h3.sidestripes.project__title Alpha Capital Education. Перенос готового дизайна с Wix на WP.
+						p.project__tech wix to html, bootstrap, sass, jquery, wordpress
+						a(href="http://alpha.unspoken-world.com/", target="_blank").project__link Посмотреть сайт
+					.project
+						h3.sidestripes.project__title Информационный портал Karakalpakiya.ru
+						p.project__tech html, bootstrap, sass, jquery, animate.css, wordpress
+						a(href="http://karakalpakiya.ru/", target="_blank").project__link Посмотреть сайт
+					.project
+						h3.sidestripes.project__title Лэндинг транспортной компании Bringcar
+						p.project__tech html, bootstrap, sass, jquery, animate.css, schema.org
+						a(href="http://bringcar.ru/", target="_blank").project__link Посмотреть сайт
 					.project
 						h3.sidestripes.project__title Unspoken World Magazine
 						p.project__tech html, bootstrap, sass, jquery, fullpage.js, animate.css, wordpress
@@ -50,23 +67,27 @@ html
 					button.portfolio-button.portfolio-button_prev
 						.fa.fa-chevron-down
 					.portfolio-thumbnails
-						.portfolio-thumbnails__thumbnail.active
+						.portfolio-thumbnails__thumbnail
+							img(src="/assets/img/works/myspace.jpeg", alt="MySpace")
+						.portfolio-thumbnails__thumbnail
 							img(src="/assets/img/works/alpha.png", alt="Alpha Capital Education")
 						.portfolio-thumbnails__thumbnail
 							img(src="/assets/img/works/karakalpakiya.png", alt="Karakalpakiya")
 						.portfolio-thumbnails__thumbnail
 							img(src="/assets/img/works/bringcar.png", alt="Bringcar")
-						.portfolio-thumbnails__thumbnail
+						.portfolio-thumbnails__thumbnail.active
 							img(src="/assets/img/works/unspoken.png", alt="Unspoken World Magazine")
 				.navigation-box.navigation-box_next
 					button.portfolio-button.portfolio-button_next
 						.fa.fa-chevron-up
 					.portfolio-thumbnails
 						.portfolio-thumbnails__thumbnail
+							img(src="/assets/img/works/myspace.jpeg", alt="MySpace")
+						.portfolio-thumbnails__thumbnail.active
 							img(src="/assets/img/works/alpha.png", alt="Alpha Capital Education")
 						.portfolio-thumbnails__thumbnail
 							img(src="/assets/img/works/karakalpakiya.png", alt="Karakalpakiya")
-						.portfolio-thumbnails__thumbnail.active
+						.portfolio-thumbnails__thumbnail
 							img(src="/assets/img/works/bringcar.png", alt="Bringcar")
 						.portfolio-thumbnails__thumbnail
 							img(src="/assets/img/works/unspoken.png", alt="Unspoken World Magazine")

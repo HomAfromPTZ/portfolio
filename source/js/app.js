@@ -348,14 +348,28 @@
 		var this_button = $(this),
 			this_thumbnails = this_button.next().find(".portfolio-thumbnails__thumbnail"),
 			this_active_thumb = this_thumbnails.filter(".active"),
-			this_next_index = this_thumbnails.index(this_active_thumb) + 1,
-			other_button = this_button.parent().siblings().find(".portfolio-button"),
+			this_next_index = this_thumbnails.index(this_active_thumb);
+
+		var other_button = this_button.parent().siblings().find(".portfolio-button"),
 			other_thumbnails = other_button.next().find(".portfolio-thumbnails__thumbnail"),
 			other_active_thumb = other_thumbnails.filter(".active"),
-			other_next_index = other_thumbnails.index(other_active_thumb) + 1,
-			active_preview = this_button.closest(".portfolio-slider").find(".portfolio-preview"),
-			next_preview = this_active_thumb.find("img").attr("src");
+			other_next_index = other_thumbnails.index(other_active_thumb);
 
+		var active_preview = this_button.closest(".portfolio-slider").find(".portfolio-preview"),
+			next_preview = this_active_thumb.find("img").attr("src"),
+			projects = this_button.closest(".portfolio-slider").find(".portfolio-projects .project"),
+			active_project = projects.filter(".active"),
+			next_project_index = projects.index(active_project);
+
+		if(this_button.hasClass("portfolio-button_next")) {
+			next_project_index++;
+			this_next_index++;
+			other_next_index++;
+		} else {
+			next_project_index--;
+			this_next_index--;
+			other_next_index--;
+		}
 
 		if(this_next_index >= this_thumbnails.length){
 			this_next_index = 0;
@@ -365,15 +379,22 @@
 			other_next_index = 0;
 		}
 
+		if(next_project_index >= projects.length){
+			next_project_index = 0;
+		}
+
 		var this_next_thumb = this_thumbnails.eq(this_next_index),
-			other_next_thumb = other_thumbnails.eq(other_next_index);
+			other_next_thumb = other_thumbnails.eq(other_next_index),
+			next_project = projects.eq(next_project_index),
+			next_project_title = next_project.find(".project__title");
+
+
+		this_button.prop("disabled", true);
+		other_button.prop("disabled", true);
 
 		this_active_thumb.animate({
 			top: "-100%"
 		}, 700);
-
-		this_button.prop("disabled", true);
-		other_button.prop("disabled", true);
 
 		this_next_thumb.css({top:"100%"});
 		this_next_thumb.animate({
@@ -397,8 +418,38 @@
 			other_button.prop("disabled", false);
 		});
 
+
+
 		active_preview.fadeOut(350, function(){
 			$(this).attr("src", next_preview).fadeIn(350);
+		});
+
+
+
+		active_project.fadeOut(350, function(){
+			$(this).removeClass("active");
+			next_project.addClass("active").fadeIn(350);
+
+			var letters = next_project_title.text();
+
+			next_project_title.html("");
+
+			for(var i = 0; i < letters.length; i++){
+				next_project_title.append("<span>" + letters[i] + "</span>");
+
+				if(i == letters.length-1){
+					next_project_title.find("span")
+						.css({opacity:0})
+						.each(function(index){
+							var letter = $(this);
+							letter.delay( (350/letters.length)*(index+1))
+								.animate({
+									"opacity": 1
+								},350);
+						});
+				}
+			}
+
 		});
 	});
 
