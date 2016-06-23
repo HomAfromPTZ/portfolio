@@ -13,51 +13,35 @@
 
 
 
+	// ==============================
+	// Check IE version
+	// ==============================
+	function detect_IE() {
+		var ua = window.navigator.userAgent;
 
-	// console.log(window.location.pathname);
-	// if(window.location.pathname=="/xhrtest.html"){
-	// 	$.ajax({
-	// 		xhr: function() {
-	// 			var xhr = new window.XMLHttpRequest();
+		var msie = ua.indexOf("MSIE ");
+		if (msie > 0) {
+			// IE 10 or older => return version number
+			return parseInt(ua.substring(msie + 5, ua.indexOf(".", msie)), 10);
+		}
 
-	// 			// //Upload progress
-	// 			// xhr.upload.addEventListener("progress", function(evt){
-	// 			// 	if (evt.lengthComputable) {
-	// 			// 		var percentComplete = evt.loaded / evt.total;
+		var trident = ua.indexOf("Trident/");
+		if (trident > 0) {
+			// IE 11 => return version number
+			var rv = ua.indexOf("rv:");
+			return parseInt(ua.substring(rv + 3, ua.indexOf(".", rv)), 10);
+		}
 
-	// 			// 		//Do something with upload progress
-	// 			// 		console.log(percentComplete);
-	// 			// 	}
-	// 			// }, false);
+		var edge = ua.indexOf("Edge/");
+		if (edge > 0) {
+			// Edge (IE 12+) => return version number
+			return parseInt(ua.substring(edge + 5, ua.indexOf(".", edge)), 10);
+		}
 
-	// 			//Download progress
-	// 			xhr.addEventListener("progress", function(evt){
-	// 				if (evt.lengthComputable) {
-	// 					var percentComplete = evt.loaded / evt.total;
+		// other browser
+		return false;
+	}
 
-	// 					//Do something with download progress
-	// 					console.time("Execution time took");
-	// 					console.log(percentComplete);
-	// 					console.timeEnd("Execution time took");
-	// 				}
-	// 			}, false);
-	// 			return xhr;
-	// 		},
-	// 		type: "POST",
-	// 		url: window.location.pathname,
-	// 		data: {},
-	// 		success: function(data){
-	// 			// $("#preloader").delay(700).fadeOut(700, function(){
-	// 			// 	$("#preloader__progress").remove();
-
-	// 			// 	if($(".flip-card").length){
-	// 			// 		$(".flip-card").addClass("loaded");
-	// 			// 	}
-	// 			// });
-	// 			console.log("Complete");
-	// 		}
-	// 	});
-	// }
 
 
 	// ==========================================
@@ -240,7 +224,7 @@
 
 	$("header .svg-heading, .talks .svg-heading, .talks .testimonial").animated("fadeInUp");
 	$(".portfolio-slider__module>div, .about-me__skills>div").animated("fadeInUp");
-	$(".article").animated("fadeIn");
+	$(".article, .portfolio-slider__preview-container").animated("fadeIn");
 
 
 
@@ -263,9 +247,10 @@
 	// ==============================
 	// Parallax
 	// ==============================
+	var is_this_ie = detect_IE();
 
 	// IE scroll jump fix
-	if(navigator.userAgent.match(/Trident\/7\./)) {
+	if(is_this_ie) {
 		$(".layer").css({transition:"top .15s linear"});
 		$("#scene.vertical").css({transition:"opacity .15s linear"});
 
@@ -279,29 +264,33 @@
 		});
 	}
 
-	$("#scene.axis").parallax({
-		scalarX: 3,
-		scalarY: 3,
-		frictionX: 0.5,
-		frictionY: 0.5
-	});
-
-	$(window).scroll(function() {
-		var scrollPos = $(this).scrollTop();
-
-		$("#scene.vertical .layer").each(function(){
-			var layer = $(this);
-
-			if(layer.index() !=0 ) {
-				layer.css({
-					"top" : ( (scrollPos/(5 + 2*layer.index())) )+"px"
-				});
-			}
+	if($("#scene.axis").length){
+		$("#scene.axis").parallax({
+			scalarX: 3,
+			scalarY: 3,
+			frictionX: 0.5,
+			frictionY: 0.5
 		});
-		$("#scene.vertical").css({
-			"opacity" : 1-(scrollPos/700)
+	}
+
+	if($("#scene.vertical")){
+		$(window).scroll(function() {
+			var scrollPos = $(this).scrollTop();
+
+			$("#scene.vertical .layer").each(function(){
+				var layer = $(this);
+
+				if(layer.index() !=0 ) {
+					layer.css({
+						"top" : ( (scrollPos/(5 + 2*layer.index())) )+"px"
+					});
+				}
+			});
+			$("#scene.vertical").css({
+				"opacity" : 1-(scrollPos/700)
+			});
 		});
-	});
+	}
 
 	// ==============================
 	// Login card flip
