@@ -372,12 +372,16 @@
 			top: "-100%"
 		}, 700);
 
+		this_button.prop("disabled", true);
+		other_button.prop("disabled", true);
+
 		this_next_thumb.css({top:"100%"});
 		this_next_thumb.animate({
 			top: 0
 		}, 700, function() {
 			this_active_thumb.removeClass("active").css({top:"100%"});
 			$(this).addClass("active");
+			this_button.prop("disabled", false);
 		});
 
 		other_active_thumb.animate({
@@ -390,6 +394,7 @@
 		}, 700, function() {
 			other_active_thumb.removeClass("active").css({top:"-100%"});
 			$(this).addClass("active");
+			other_button.prop("disabled", false);
 		});
 
 		active_preview.fadeOut(350, function(){
