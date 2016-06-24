@@ -54,7 +54,7 @@
 		&__heading
 			margin: 65px auto 40px
 			width: 360px
-			+media(s)
+			+media(m)
 				width: auto
 		&__descr
 			font-family: "roboto_regular"
@@ -62,10 +62,16 @@
 			text-align: left
 			margin: 0 auto 50px
 		&__group
-			margin: 0 auto 40px
+			margin: 0 auto 20px
 			text-align: left
+			text-align: justify
 			+media(s)
 				text-align: center
+			&::after
+				content: ""
+				display: inline-block
+				width: 100%
+				height: 0
 
 		.group
 			&__title
@@ -77,7 +83,9 @@
 				text-align: center
 				position: relative
 				border-radius: 50%
-				margin: 10px
+				margin: 10px 0
+				+media(s)
+					margin: 10px
 				.item-title
 					position: absolute
 					width: 120px
@@ -85,9 +93,23 @@
 					color: $maincolor
 					top: 50%
 					transform: translateY(-55%)
+					+media(m)
+						width: 100px
+						font-size: em(14)
+						padding: 15px
+					+media(s)
+						width: 120px
+						font-size: em(16)
+						padding: 20px
 		.piechart
 			width: 120px
 			height: 120px
+			+media(m)
+				width: 100px
+				height: 100px
+			+media(s)
+				width: 120px
+				height: 120px
 			&__bg
 				stroke: $gray_light
 				stroke-dashoffset: 0

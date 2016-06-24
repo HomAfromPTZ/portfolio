@@ -287,7 +287,7 @@
 				}
 			});
 			$("#scene.vertical").css({
-				"opacity" : 1-(scrollPos/700)
+				"opacity" : 1-(scrollPos/720)
 			});
 		});
 	}
@@ -377,9 +377,7 @@
 			prepare_title($(this));
 		});
 
-		$(".portfolio-projects .project").fadeOut(0);
-		$(".portfolio-projects .project.active").fadeIn(700);
-
+		$(".portfolio-projects .project").not(".active").css({display:"none"});
 		$(".portfolio-projects .active .project__title .letter").addClass("show");
 	}
 
