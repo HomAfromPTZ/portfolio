@@ -223,9 +223,9 @@
 	};
 
 	$("header .svg-heading, .talks .svg-heading, .talks .testimonial").animated("fadeInUp");
-	$(".portfolio-slider__module>div, .about-me__skills>div").animated("fadeInUp");
-	$(".article, .portfolio-slider__preview-container").animated("fadeIn");
-
+	$(".about-me__skills>div").animated("fadeInUp");
+	$(".article, .portfolio-slider__navigation-container, .portfolio-slider__preview-container").animated("fadeIn");
+	$(".portfolio-slider__projects-container").animated("fadeIn");
 
 
 	// ==============================
@@ -344,6 +344,46 @@
 	// ==============================
 	// Slider
 	// ==============================
+	function prepare_title(title_container){
+		var letters = $.trim(title_container.text()),
+			new_title = "";
+
+		title_container.html("");
+
+		for(var i = 0; i < letters.length; i++){
+			var text = "<span class='letter'>" + letters[i] + "</span>";
+
+			if(i==0){
+				text = "<span class='word'>" + text;
+			}
+
+
+			if(letters[i] == " " || letters[i] == "&nbsp;"){
+				text = "</span><span class='letter'>&nbsp;</span><span class='word'>";
+			}
+
+			if(i == letters.length-1) {
+				text = text + "</span>";
+			}
+
+			new_title += text;
+		}
+
+		title_container.append(new_title);
+	}
+
+	if($(".portfolio-slider").length){
+		$(".portfolio-projects .project__title").each(function() {
+			prepare_title($(this));
+		});
+
+		$(".portfolio-projects .project").fadeOut(0);
+		$(".portfolio-projects .project.active").fadeIn(700);
+
+		$(".portfolio-projects .active .project__title .letter").addClass("show");
+	}
+
+
 	$(".portfolio-button").click(function(){
 		var this_button = $(this),
 			this_thumbnails = this_button.next().find(".portfolio-thumbnails__thumbnail"),
@@ -392,65 +432,64 @@
 		this_button.prop("disabled", true);
 		other_button.prop("disabled", true);
 
-		this_active_thumb.animate({
-			top: "-100%"
-		}, 700);
+		function change_this_thumb(){
+			this_active_thumb.animate({
+				top: "-100%"
+			}, 700);
 
-		this_next_thumb.css({top:"100%"});
-		this_next_thumb.animate({
-			top: 0
-		}, 700, function() {
-			this_active_thumb.removeClass("active").css({top:"100%"});
-			$(this).addClass("active");
-			this_button.prop("disabled", false);
-		});
+			this_next_thumb.css({top:"100%"});
+			this_next_thumb.animate({
+				top: 0
+			}, 700, function() {
+				this_active_thumb.removeClass("active").css({top:"100%"});
+				$(this).addClass("active");
+				this_button.prop("disabled", false);
+			});
+		}
 
-		other_active_thumb.animate({
-			top: "100%"
-		}, 700);
+		function change_other_thumb(){
+			other_active_thumb.animate({
+				top: "100%"
+			}, 700);
 
-		other_next_thumb.css({top:"-100%"});
-		other_next_thumb.animate({
-			top: 0
-		}, 700, function() {
-			other_active_thumb.removeClass("active").css({top:"-100%"});
-			$(this).addClass("active");
-			other_button.prop("disabled", false);
-		});
+			other_next_thumb.css({top:"-100%"});
+			other_next_thumb.animate({
+				top: 0
+			}, 700, function() {
+				other_active_thumb.removeClass("active").css({top:"-100%"});
+				$(this).addClass("active");
+				other_button.prop("disabled", false);
+			});
+		}
+
+		function change_preview(){
+			active_preview.fadeOut(350, function(){
+				$(this).attr("src", next_preview).fadeIn(350);
+			});
+		}
 
 
+		function change_project(){
+			var prj_letters = next_project_title.find("span.letter").removeClass("show");
 
-		active_preview.fadeOut(350, function(){
-			$(this).attr("src", next_preview).fadeIn(350);
-		});
+			active_project.fadeOut(350, function(){
+				$(this).removeClass("active");
+				next_project.addClass("active").fadeIn(350);
+
+				prj_letters.each(function(index){
+					$(this).css({"transition-delay": (0.35/prj_letters.length)*(index+1) + "s"})
+							.addClass("show");
+				});
 
 
+			});
+		}
 
-		active_project.fadeOut(350, function(){
-			$(this).removeClass("active");
-			next_project.addClass("active").fadeIn(350);
 
-			var letters = next_project_title.text();
-
-			next_project_title.html("");
-
-			for(var i = 0; i < letters.length; i++){
-				next_project_title.append("<span>" + letters[i] + "</span>");
-
-				if(i == letters.length-1){
-					next_project_title.find("span")
-						.css({opacity:0})
-						.each(function(index){
-							var letter = $(this);
-							letter.delay( (350/letters.length)*(index+1))
-								.animate({
-									"opacity": 1
-								},350);
-						});
-				}
-			}
-
-		});
+		change_this_thumb();
+		change_other_thumb();
+		change_preview();
+		change_project();
 	});
 
 
