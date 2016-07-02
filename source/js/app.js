@@ -2,14 +2,32 @@
 	"use strict";
 
 	// ==============================
+	// App global parameters object
+	// ==============================
+	window.hm = {}
+
+
+
+	// ==============================
 	// Check scrollbar width
 	// ==============================
-	var widthContentA = $("#scroll_bar_check_A").width(),
-		widthContentB = $("#scroll_bar_check_B").width();
+	function getScrollbarWidth(){
+		var style = {"max-height":"100px", "overflow":"scroll", "position":"absolute"},
+			wrapper = $("<div id='scroll_bar_check_A'></div>").css(style),
+			inner = $("<div id='scroll_bar_check_B'></div>"),
+			stretcher = $("<img src='/assets/img/force-scroll.png'/>"),
+			scrollBarWidth = 0;
 
-	var scrollBarWidth = widthContentA - widthContentB;
+		wrapper.append(stretcher).append(inner);
+		$("body").append(wrapper);
 
-	$("#scroll_bar_check_A").css("display","none");
+		scrollBarWidth = wrapper.width()-inner.width();
+		wrapper.remove();
+
+		return scrollBarWidth;
+	};
+
+	window.hm.scrollBarWidth = getScrollbarWidth();
 
 
 
@@ -49,7 +67,7 @@
 	// ==========================================
 	function preloader() {
 		var preloader_stat = $("#preloader-svg__percentage"),
-			hasImageProperties = ["backgroundImage", "listStyleImage", "borderImage", "borderCornerImage", "cursor"],
+			hasImageProperties = ["background", "backgroundImage", "listStyleImage", "borderImage", "borderCornerImage", "cursor"],
 			hasImageAttributes = ["srcset"],
 			match_url = /url\(\s*(['"]?)(.*?)\1\s*\)/g,
 			all_images = [],
@@ -115,6 +133,7 @@
 			}, 50);
 		}
 
+		// Get all images
 		$("*").each(function () {
 			var element = $(this);
 
@@ -134,7 +153,7 @@
 				}
 
 				match = match_url.exec(propertyValue);
-
+				
 				if (match) {
 					all_images.push({
 						src: match[2],
@@ -160,6 +179,7 @@
 
 		total = all_images.length;
 
+		// Start preloader or exit
 		if (total === 0) {
 			done_loading();
 		} else {
@@ -167,18 +187,19 @@
 			images_loop();
 		}
 
-		// for(var i=0; i<total; i++){
-		// 	var test_image = new Image();
+		// FOR version
+		/*for(var i=0; i<total; i++){
+			var test_image = new Image();
 
 
-		// 	test_image.onload = img_loaded;
-		// 	test_image.onerror = img_loaded;
+			test_image.onload = img_loaded;
+			test_image.onerror = img_loaded;
 
-		// 	if (all_images[i].srcset) {
-		// 		test_image.srcset = all_images[i].srcset;
-		// 	}
-		// 	test_image.src = all_images[i].src;
-		// }
+			if (all_images[i].srcset) {
+				test_image.srcset = all_images[i].srcset;
+			}
+			test_image.src = all_images[i].src;
+		}*/
 	}
 
 	preloader();
@@ -231,17 +252,19 @@
 	// ==============================
 	// Piecharts animation
 	// ==============================
-	$(".piechart .piechart__fill").each(function(){
-		var pie = $(this);
-		pie.waypoint(function(dir) {
-			if (dir === "down") {
-				pie.css({strokeDashoffset:pie.data("percentage")});
-			}
-		},
-			{
-				offset: "90%"
-			});
-	});
+	if($(".piechart").length){
+		$(".piechart .piechart__fill").each(function(){
+			var pie = $(this);
+			pie.waypoint(function(dir) {
+				if (dir === "down") {
+					pie.css({strokeDashoffset:pie.data("percentage")});
+				}
+			},
+				{
+					offset: "90%"
+				});
+		});
+	}
 
 
 	// ==============================
@@ -273,16 +296,20 @@
 		});
 	}
 
-	if($("#scene.vertical")){
+	if($("#scene.vertical").length){
 		$(window).scroll(function() {
-			var scrollPos = $(this).scrollTop();
+			var scrollPos = $(this).scrollTop(),
+				layers = $("#scene.vertical .layer");
 
-			$("#scene.vertical .layer").each(function(){
+			layers.css({"will-change":"transform"});
+
+			layers.each(function(){
 				var layer = $(this);
 
 				if(layer.index() !=0 ) {
 					layer.css({
-						"top" : ( (scrollPos/(5 + 2*layer.index())) )+"px"
+						"transform" : "translate3d(0," + ( (scrollPos/(5 + 2*layer.index())) ) + "px,0)"
+						// "top" : ( (scrollPos/(5 + 2*layer.index())) ) + "px"
 					});
 				}
 			});
@@ -299,11 +326,29 @@
 		$("body").addClass("card_flipped");
 	});
 
-	$("#unflip-card").click(function() {
+	$("#unflip-card").click(function(e) {
+		e.preventDefault();
 		$("body").removeClass("card_flipped");
 	});
 
+	// ==============================
+	// Contact form
+	// ==============================
+	if($("#contact").length){
+		var c_form = $("#contact"),
+			send_button = c_form.find("#form-submit"),
+			clear_button = c_form.find("#form-clear");
 
+		clear_button.on("click", function(e){
+			e.preventDefault();
+			c_form[0].reset();
+		});
+
+		send_button.on("click", function(e){
+			e.preventDefault();
+			// c_form[0].reset();
+		});
+	}
 
 	// ==============================
 	// Main menu
@@ -335,10 +380,6 @@
 		}, 700, "swing");
 	});
 
-	$(".blog-navigation__toggle").click(function(){
-		$(".blog-navigation").toggleClass("active");
-	});
-
 
 
 	// ==============================
@@ -351,17 +392,15 @@
 		title_container.html("");
 
 		for(var i = 0; i < letters.length; i++){
-			var text = "<span class='letter'>" + letters[i] + "</span>";
+			var css_delay = "style='animation-delay: " + (0.7/letters.length)*(i+1) + "s'",
+				text = "<span class='letter' " + css_delay + ">" + letters[i] + "</span>";
 
 			if(i==0){
 				text = "<span class='word'>" + text;
 			}
-
-
 			if(letters[i] == " " || letters[i] == "&nbsp;"){
-				text = "</span><span class='letter'>&nbsp;</span><span class='word'>";
+				text = "</span>\n<span class='word'>";
 			}
-
 			if(i == letters.length-1) {
 				text = text + "</span>";
 			}
@@ -373,178 +412,162 @@
 	}
 
 	if($(".portfolio-slider").length){
-		$(".portfolio-projects .project__title").each(function() {
-			prepare_title($(this));
-		});
 
-		$(".portfolio-projects .project").not(".active").css({display:"none"});
-		$(".portfolio-projects .active .project__title .letter").addClass("show");
+		// console.time("Slider prepare");
+
+		$(".portfolio-projects .project__title")
+			.add(".portfolio-projects .project__tech")
+			.each(function() {
+				prepare_title($(this));
+			});
+
+
+		$(".portfolio-projects .active .project__title .letter")
+			.add(".portfolio-projects .active .project__tech .letter")
+			.addClass("show");
+
+
+		var slider = $(".portfolio-slider"),
+			previews = slider.find(".portfolio-preview"),
+			projects = slider.find(".portfolio-projects .project");
+
+		// console.timeEnd("Slider prepare");
+
+		$(".portfolio-button").on("click", function(e){
+			e.preventDefault();
+			// console.time("Slider click");
+
+			var this_button = $(this),
+				this_thumbnails = this_button.next().find(".portfolio-thumbnails__thumbnail"),
+				this_active_thumb = this_thumbnails.filter(".active"),
+				this_next_index = this_thumbnails.index(this_active_thumb);
+
+			var other_button = this_button.parent().siblings().find(".portfolio-button"),
+				other_thumbnails = other_button.next().find(".portfolio-thumbnails__thumbnail"),
+				other_active_thumb = other_thumbnails.filter(".active"),
+				other_next_index = other_thumbnails.index(other_active_thumb);
+
+			var active_preview = previews.filter(".active"),
+				next_preview_index = previews.index(active_preview),
+				active_project = projects.filter(".active"),
+				next_project_index = projects.index(active_project);
+
+
+
+			if(this_button.hasClass("portfolio-button_next")) {
+				next_project_index = (next_project_index >= projects.length-1) ? 0 : next_project_index+1;
+				this_next_index = this_next_index >= this_thumbnails.length-1 ? 0 : this_next_index+1;
+				other_next_index = (other_next_index >= other_thumbnails.length-1) ? 0 : other_next_index+1;
+
+				next_preview_index = (next_preview_index >= previews.length-1) ? 0 : next_preview_index+1;
+			} else {
+				next_project_index--;
+				this_next_index--;
+				other_next_index--;
+
+				next_preview_index--;
+			}
+
+			function lock_buttons(){
+				this_button.prop("disabled", true);
+				other_button.prop("disabled", true);
+
+				setTimeout(function(){
+					this_button.prop("disabled", false);
+					other_button.prop("disabled", false);
+				}, 700);
+			}
+
+			function change_thumbs(){
+				var this_next_thumb = this_thumbnails.eq(this_next_index),
+					other_next_thumb = other_thumbnails.eq(other_next_index);
+
+				this_next_thumb.removeClass("move-down").addClass("active move-up");
+				this_active_thumb.removeClass("active move-down").addClass("move-up");
+
+				other_next_thumb.removeClass("move-up").addClass("active move-down");
+				other_active_thumb.removeClass("active move-up").addClass("move-down");
+			}
+
+			function change_preview(){
+				var next_preview = previews.eq(next_preview_index);
+
+				active_preview.removeClass("active");
+				next_preview.addClass("active");
+			}
+
+			function change_project(){
+				var next_project = projects.eq(next_project_index),
+					title_letters = next_project.find(".project__title span.letter"),
+					tech_letters = next_project.find(".project__tech span.letter");
+
+				active_project
+					.removeClass("active")
+					.find("span.letter, span.letter")
+					.removeClass("show");
+				next_project.addClass("active");
+
+				title_letters.addClass("show");
+				tech_letters.addClass("show");
+			}
+
+			// console.timeEnd("Slider click");
+
+			change_thumbs();
+			change_project();
+			change_preview();
+			lock_buttons();
+		});
 	}
 
 
-	$(".portfolio-button").click(function(){
-		var this_button = $(this),
-			this_thumbnails = this_button.next().find(".portfolio-thumbnails__thumbnail"),
-			this_active_thumb = this_thumbnails.filter(".active"),
-			this_next_index = this_thumbnails.index(this_active_thumb);
-
-		var other_button = this_button.parent().siblings().find(".portfolio-button"),
-			other_thumbnails = other_button.next().find(".portfolio-thumbnails__thumbnail"),
-			other_active_thumb = other_thumbnails.filter(".active"),
-			other_next_index = other_thumbnails.index(other_active_thumb);
-
-		var active_preview = this_button.closest(".portfolio-slider").find(".portfolio-preview"),
-			next_preview = this_active_thumb.find("img").attr("src"),
-			projects = this_button.closest(".portfolio-slider").find(".portfolio-projects .project"),
-			active_project = projects.filter(".active"),
-			next_project_index = projects.index(active_project);
-
-		if(this_button.hasClass("portfolio-button_next")) {
-			next_project_index++;
-			this_next_index++;
-			other_next_index++;
-		} else {
-			next_project_index--;
-			this_next_index--;
-			other_next_index--;
-		}
-
-		if(this_next_index >= this_thumbnails.length){
-			this_next_index = 0;
-		}
-
-		if(other_next_index >= other_thumbnails.length){
-			other_next_index = 0;
-		}
-
-		if(next_project_index >= projects.length){
-			next_project_index = 0;
-		}
-
-		var this_next_thumb = this_thumbnails.eq(this_next_index),
-			other_next_thumb = other_thumbnails.eq(other_next_index),
-			next_project = projects.eq(next_project_index),
-			next_project_title = next_project.find(".project__title");
-
-
-		this_button.prop("disabled", true);
-		other_button.prop("disabled", true);
-
-		function change_this_thumb(){
-			this_active_thumb.animate({
-				top: "-100%"
-			}, 700);
-
-			this_next_thumb.css({top:"100%"});
-			this_next_thumb.animate({
-				top: 0
-			}, 700, function() {
-				this_active_thumb.removeClass("active").css({top:"100%"});
-				$(this).addClass("active");
-				this_button.prop("disabled", false);
-			});
-		}
-
-		function change_other_thumb(){
-			other_active_thumb.animate({
-				top: "100%"
-			}, 700);
-
-			other_next_thumb.css({top:"-100%"});
-			other_next_thumb.animate({
-				top: 0
-			}, 700, function() {
-				other_active_thumb.removeClass("active").css({top:"-100%"});
-				$(this).addClass("active");
-				other_button.prop("disabled", false);
-			});
-		}
-
-		function change_preview(){
-			active_preview.fadeOut(350, function(){
-				$(this).attr("src", next_preview).fadeIn(350);
-			});
-		}
-
-
-		function change_project(){
-			var prj_letters = next_project_title.find("span.letter").removeClass("show");
-
-			active_project.fadeOut(350, function(){
-				$(this).removeClass("active");
-				next_project.addClass("active").fadeIn(350);
-
-				prj_letters.each(function(index){
-					$(this).css({"transition-delay": (0.35/prj_letters.length)*(index+1) + "s"})
-							.addClass("show");
-				});
-
-
-			});
-		}
-
-
-		change_this_thumb();
-		change_other_thumb();
-		change_preview();
-		change_project();
-	});
-
 
 	// ==============================
-	// SCROLL EVENTS
+	// Blog scroll events
 	// ==============================
-
-	// SCROLL NAVIGATION BEGIN
-	var lastId,
-		menu = $(".blog-navigation"),
-		menuItems = menu.find("li a"),
-		scrollItems = menuItems.map(function(){
-			var item = $($(this).attr("href"));
-			if (item.length) return item;
+	if($(".blog-navigation").length){
+		$(".blog-navigation__toggle").click(function(){
+			$(".blog-navigation").toggleClass("active");
 		});
 
-	// Bind click handler to menu items
-	// so we can get a fancy scroll animation
-	menuItems.click(function(e){
-		var href = $(this).attr("href"),
-			offsetTop = (href === "#") ? 0 : $(href).offset().top-60;
-		
-		$("html, body").stop().animate({ 
-			scrollTop: offsetTop
-		}, 700, "swing");
-		e.preventDefault();
-	});
+		var lastId,
+			menu = $(".blog-navigation"),
+			menuItems = menu.find("li a"),
+			scrollItems = menuItems.map(function(){
+				var item = $($(this).attr("href"));
+				if (item.length) return item;
+			});
 
-	// Bind to scroll
-	if($(".blog-navigation").offset()){
+		menuItems.click(function(e){
+			var href = $(this).attr("href"),
+				offsetTop = (href === "#") ? 0 : $(href).offset().top-60;
+			
+			$("html, body").stop().animate({ 
+				scrollTop: offsetTop
+			}, 700, "swing");
+			e.preventDefault();
+		});
+
 		$(window).scroll(function() {
-			// Get container scroll position
 			var fromTop = $(this).scrollTop(),
 				blogNavOffset = $(".blog-navigation").offset().top,
-				blogNavLimit = $(".footer__wrapper").offset().top - $(".blog-navigation__wrapper").outerHeight();
+				blogNavLimit = $(".footer__wrapper").offset().top - $(".blog-navigation__wrapper").outerHeight(),
+				current = scrollItems.map(function(){
+					if ($(this).offset().top < fromTop+144)
+						return this;
+				});
 
-			// Get id of current scroll item
-			var cur = scrollItems.map(function(){
-				if ($(this).offset().top < fromTop+144)
-					return this;
-			});
-			// Get the id of the current element
-			cur = cur[cur.length-1];
-			var id = cur && cur.length ? cur[0].id : "";
+			current = current[current.length-1];
+			var id = current && current.length ? current[0].id : "";
 
 			if (lastId !== id) {
 				lastId = id;
-				// Set/remove active class
-				menuItems
-				.removeClass("active")
-				.filter("[href=#"+id+"]")
-				.addClass("active");
+				menuItems.removeClass("active").filter("[href=#"+id+"]").addClass("active");
 			}
 
-			if(fromTop >= blogNavLimit && $(window).width() > (768 - scrollBarWidth)) {
+			if(fromTop >= blogNavLimit && $(window).width() > (768 - window.hm.scrollBarWidth)) {
 				$(".blog-navigation__wrapper").css({"position":"absolute", "top":blogNavLimit + "px"});
-			} else if (fromTop >= blogNavOffset && $(window).width() > (768 - scrollBarWidth)) {
+			} else if (fromTop >= blogNavOffset && $(window).width() > (768 - window.hm.scrollBarWidth)) {
 				$(".blog-navigation__wrapper").css({"position":"fixed", "top":0});
 				$(".blog-navigation__wrapper").addClass("nav-fixed");
 			} else {
@@ -553,16 +576,9 @@
 			}
 
 		});
-	}
-	// SCROLL NAVIGATION END
 
-
-	// ==============================
-	// RESIZE EVENTS
-	// ==============================
-	if($(".blog-navigation").offset()){
 		$(window).resize(function() {
-			if($(window).width() <= (768 - scrollBarWidth)){
+			if($(window).width() <= (768 - window.hm.scrollBarWidth)){
 				$(".blog-navigation__wrapper").removeClass("nav-fixed");
 				$(".blog-navigation__wrapper").css({"position":"relative"});
 			} else {
@@ -575,64 +591,33 @@
 	}
 
 
-	$(window).resize(function() {
-		// Testimonials section bg size
-		if( $(window).width()>2000 - scrollBarWidth){
-			$(".talks, .contact-form__bg").css("background-size", $(window).width() + "px");
-		}
-	});
 
+	// ==============================
+	// Talks blur based on js
+	// ==============================
+	function set_bg(){
+		var section = $(".talks"),
+			form = section.find(".contact-form"),
+			form_bg = form.find(".contact-form__bg"),
+			bg_offset = section.offset().top - form_bg.offset().top;
 
-	// =======================================
-	// Preloader with percentage by interval
-	// =======================================
-	// function preloader() {
-	// 	var duration = 1000;
-	// 	var st = new Date().getTime();
+		form_bg.css({
+			"background-position" : "center " + bg_offset + "px"
+		});
+	}
 
-	// 	var $circle__o = $("#preloader-svg__img .bar__outer"),
-	// 		$circle__c = $("#preloader-svg__img .bar__center"),
-	// 		$circle__i = $("#preloader-svg__img .bar__inner");
+	if($(".talks").length){
+		$(window).load(function() {
+			set_bg();
+		});
 
-	// 	var c_o = Math.PI*($circle__o.attr("r") * 2),
-	// 		c_c = Math.PI*($circle__c.attr("r") * 2),
-	// 		c_i = Math.PI*($circle__i.attr("r") * 2);
+		$(window).resize(function() {
+			set_bg();
 
-
-	// 	var interval = setInterval(function() {
-	// 		var diff = Math.round(new Date().getTime() - st),
-	// 			val = Math.round(diff / duration * 100);
-
-	// 		val = val > 100 ? 100 : val;
-
-	// 		var pct_o = ((100-val)/100)*c_o,
-	// 			pct_c = ((100-val)/100)*c_c,
-	// 			pct_i = ((100-val)/100)*c_i;
-
-	// 		$circle__o.css({strokeDashoffset: pct_o});
-	// 		$circle__c.css({strokeDashoffset: pct_c});
-	// 		$circle__i.css({strokeDashoffset: pct_i});
-
-	// 		$("#preloader-svg__percentage").text(val);
-	// 		$("#preloader-svg__img").css({opacity:1});
-
-	// 		if (diff >= duration) {
-	// 			clearInterval(interval);
-
-	// 			if($(".flip-card").length){
-	// 				$("#preloader").delay(1000).fadeOut(700, function(){
-	// 					$("#preloader__progress").remove();
-	// 					$(".flip-card").addClass("loaded");
-	// 				});
-	// 			} else {
-	// 				$("#preloader").delay(1000).fadeOut(700, function(){
-	// 					$("#preloader__progress").remove();
-	// 				});
-	// 			}
-	// 		}
-	// 	}, 200);
-	// }
-	// preloader();
-
+			if( $(window).width()>2000 - window.hm.scrollBarWidth){
+				$(".talks, .contact-form__bg").css("background-size", $(window).width() + "px");
+			}
+		});
+	}
 
 })(jQuery);

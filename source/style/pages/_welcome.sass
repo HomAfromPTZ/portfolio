@@ -66,8 +66,6 @@
 		top: 0
 		width: 100%
 		transform: rotateY(-180deg)
-		.page-links__item
-			width: 50%
 
 .card_flipped
 	.login-button
@@ -212,25 +210,29 @@
 // =================================
 // Page Links / Form buttons
 // =================================
-.page-links
+.form-buttons
 	padding: 0
 	margin: 0
 	list-style: none
 	display: table
 	width: 100%
-	&__item
+	position: relative
+	&__button
 		display: table-cell
 		border-right: 2px solid rgba(lighten($maincolor, 15%), .851)
 		&:last-child
 			border: none
-	&__link
-		display: block
-		width: 100%
-		padding-top: 10px
-		padding-bottom: 12px
-		color: $white
-		background-color: rgba($maincolor, .7)
-		text-decoration: none
-		transition: all $transition-time
-		&:hover
-			background-color: rgba($maincolor, .4)
+		&_even
+			width: 50%
+
+	&__button-content
+			display: block
+			width: 100%
+			padding-top: 10px
+			padding-bottom: 12px
+			color: $white
+			background-color: rgba($maincolor, .7)
+			text-decoration: none
+			transition: all $transition-time
+			&:hover
+				background-color: rgba($maincolor, .4)

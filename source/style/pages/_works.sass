@@ -14,7 +14,6 @@
 		max-width: 90%
 		max-height: 90%
 		margin: auto
-		vertical-align: middle
 	+media(s)
 		height: auto
 		min-height: auto
@@ -34,23 +33,31 @@
 	&__projects-container
 		height: 100%
 		background-color: $pastel
+		+media(s)
+			height: 370px
+		+media(xs)
+			height: 270px
 		.portfolio-projects
 			display: block
 			width: 100%
 			height: 100%
 			overflow: hidden
 			position: relative
-			+media(s)
-				height: 340px
 			.project
 				background-color: $pastel
 				position: absolute
 				padding: 10% 16%
-				display: table
 				width: 100%
 				height: 100%
+				display: table
+				opacity: 0
+				visibility: hidden
+				transition: opacity $transition-time_medium
 				+media(m)
 					padding: 5% 10%
+				&.active
+					visibility: visible
+					opacity: 1
 				&__inner
 					display: table-cell
 					vertical-align: middle
@@ -59,21 +66,10 @@
 					font-family: "roboto_medium"
 					font-size: em(16)
 					line-height: 1
+					+media(xs)
+						font-size: em(14)
 				&__title
 					margin: 0 20px
-					.word,
-					.letter
-						font-size: inherit
-						line-height: inherit
-						vertical-align: middle
-						display: inline-block
-					.letter
-						transform: rotateX(-90deg) translateY(-100%) scale(0.5)
-						opacity: 0
-						transition: all $transition-time_medium cubic-bezier(0.77, 0.6, 0.31, 1.2)
-						&.show
-							opacity: 1
-							transform: rotateX(0) translateY(0) scale(1)
 				&__tech
 					text-transform: uppercase
 					color: $maincolor
@@ -81,6 +77,9 @@
 					border-bottom: 1px solid $maincolor
 					padding: 20px 15px
 					margin: 40px auto
+					+media(xs)
+						padding: 10px 10px 12px
+						margin: 20px auto
 				&__link
 					text-decoration: none
 					display: inline-block
@@ -88,7 +87,7 @@
 					padding: 15px
 					background-color: $maincolor
 					border-radius: 5px
-					transition: all $transition-time
+					transition: background-color $transition-time
 					&::before
 						content: "\f0c1"
 						vertical-align: middle
@@ -98,6 +97,19 @@
 						margin-right: 8px
 					&:hover
 						background-color: darken($maincolor, 10%)
+				.word,
+				.letter
+					font-size: inherit
+					line-height: inherit
+					vertical-align: middle
+					display: inline-block
+				.letter
+					opacity: 0
+					will-change: transform
+					&.show
+						animation: showLetter $transition-time_medium
+						animation-fill-mode: forwards
+
 
 	&__preview-container
 		height: 70%
@@ -106,7 +118,15 @@
 		+media(s)
 			height: 400px
 		+media(xs)
-			height: 200px
+			height: 170px
+		.portfolio-preview
+			opacity: 0
+			will-change: opacity
+			transition: opacity $transition-time_medium
+			&.active
+				opacity: 1
+				transition: opacity $transition-time_medium
+				// transition-delay: $transition-time
 
 	&__navigation-container
 		height: 30%
@@ -130,7 +150,7 @@
 				transition: all $transition-time
 			&:hover
 				.fa
-					transform: scale(1.4)
+					transform: scale3d(1.2,1.2,1)
 			&_prev
 				background-color: rgba($thumb-overlay-color_prev, .5)
 				&:hover
@@ -153,10 +173,20 @@
 					height: 100%
 					width: 100%
 					position: absolute
-					top: 100%
+					visibility: hidden
+					will-change: transform
+					transform: translate3d(0,0,0)
+					&.move-up
+						animation: hideThumbUp $transition-time_medium
+					&.move-down
+						animation: hideThumbDown $transition-time_medium
 					&.active
-						top: 0
-
+						visibility: visible
+						transform: translate3d(0,0,0)
+						&.move-up
+							animation: showThumbUp $transition-time_medium
+						&.move-down
+							animation: showThumbDown $transition-time_medium
 
 
 
@@ -270,8 +300,6 @@
 			font-size: em(16)
 			line-height: 1
 			opacity: .5
-	.page-links
-		position: relative
 
 
 
@@ -282,9 +310,8 @@
 	background: url("/assets/img/theme_mountains/about-bg_big.png") $white
 	background-repeat: no-repeat
 	background-size: 2000px
+	background-position: center top
 
-.talks
-	background-position: center calc(100% + 200px)
 .contact-form__bg
 	position: absolute
 	top: 0
@@ -292,9 +319,4 @@
 	bottom: 0
 	left: 0
 	z-index: 0
-	background-position: center calc(100% + 200px + #{$footer-height})
-	filter: blur(3px)
-	+media(s)
-		background-position: center calc(100% + 200px + #{$footer-height_small})
-	+media(xs)
-		background-position: center calc(100% + 200px + #{$footer-height_xsmall})
+	filter: blur(5px)

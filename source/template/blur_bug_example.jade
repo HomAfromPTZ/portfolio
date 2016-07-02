@@ -2,7 +2,7 @@ include common/_mixins
 doctype html
 html
 	include common/_head
-	body
+	body.blur_example_page
 		include common/_preloader
 
 		<!--[if lt IE 7]>
@@ -20,7 +20,7 @@ html
 			.table-box__middle
 				.vertical-aligned
 					.site-author
-						+avatar("avatar_sq.jpg", "Frontend. Wordpress. Разработка сайтов под ключ.", "Лембинен Николай")
+						+avatar("me.jpg", "Frontend. Wordpress. Разработка сайтов под ключ.", "Лембинен Николай")
 						p.site-author__name Лембинен Николай
 						p.site-author__description Еще одна страничка
 
@@ -37,18 +37,14 @@ html
 
 		section.portfolio-slider
 			.portfolio-slider__module.portfolio-slider__preview-container
-				img.portfolio-preview.active(src="/assets/img/works/unspoken.png")
-				img.portfolio-preview(src="/assets/img/works/myspace.png")
-				img.portfolio-preview(src="/assets/img/works/alpha.png")
-				img.portfolio-preview(src="/assets/img/works/karakalpakiya.png")
-				img.portfolio-preview(src="/assets/img/works/bringcar.png")
+				img.portfolio-preview(src="/assets/img/works/unspoken.png")
 
 			.portfolio-slider__module.portfolio-slider__projects-container
 				.portfolio-projects
 					.project.active
 						.project__inner
 							h3.sidestripes.project__title Unspoken World Magazine
-							p.project__tech WordPress, Fullpage, PHP, Sass, Jquery
+							p.project__tech html, bootstrap, sass, jquery, fullpage.js, animate.css, wordpress
 							a(href="http://unspoken-world.com/", target="_blank").project__link Посмотреть сайт
 					.project
 						.project__inner
@@ -57,18 +53,18 @@ html
 							button.project__link Давно и неправда
 					.project
 						.project__inner
-							h3.sidestripes.project__title Перенос дизайна с Wix на WP
-							p.project__tech Wix to html, WordPress
+							h3.sidestripes.project__title Alpha Capital Education. Перенос готового дизайна с Wix на WP.
+							p.project__tech wix to html, bootstrap, sass, jquery, wordpress
 							a(href="http://alpha.unspoken-world.com/", target="_blank").project__link Посмотреть сайт
 					.project
 						.project__inner
-							h3.sidestripes.project__title Портал Karakalpakiya.ru
-							p.project__tech Wordpress, Bootstrap, PHP, Sass, Jquery
+							h3.sidestripes.project__title Информационный портал Karakalpakiya.ru
+							p.project__tech html, bootstrap, sass, jquery, animate.css, wordpress
 							a(href="http://karakalpakiya.ru/", target="_blank").project__link Посмотреть сайт
 					.project
 						.project__inner
-							h3.sidestripes.project__title Лэндинг компании Bringcar
-							p.project__tech Bootstrap, Sass, Jquery, Animate.css, Schema.org
+							h3.sidestripes.project__title Лэндинг транспортной компании Bringcar
+							p.project__tech html, bootstrap, sass, jquery, animate.css, schema.org
 							a(href="http://bringcar.ru/", target="_blank").project__link Посмотреть сайт
 
 			.portfolio-slider__module.portfolio-slider__navigation-container
@@ -122,19 +118,18 @@ html
 							p.author__name Зар Захаров
 							p.author__description сооснователь LoftSchool
 
-			.contact-form
-				form#contact
-					.contact-form__bg
-					.contact-form__content
-						h3.contact-form__heading.sidestripes Связаться со мной
-						input.contact-form__field(type="text" name="name" placeholder="Имя")
-						input.contact-form__field(type="text" name="email" placeholder="Email")
-						textarea.contact-form__field.contact-form__field_textarea(name="message" placeholder="Ваше сообщение")
+			form.contact-form(type="POST" action="/")
+				.contact-form__bg
+				.contact-form__content
+					h3.contact-form__heading.sidestripes Связаться со мной
+					input.contact-form__field(type="text" name="name" placeholder="Имя")
+					input.contact-form__field(type="text" name="email" placeholder="Email")
+					textarea.contact-form__field.contact-form__field_textarea(name="message" placeholder="Ваше сообщение")
 
-					ul.form-buttons
-						- var buttons = {"Отправить" : "form-submit", "Очистить" : "form-clear"}
-						each b_action, b_name in buttons
-							li.form-buttons__button.form-buttons__button_even
-								button(class="form-buttons__button-content", id=b_action)= b_name
+				ul.page-links
+					- var buttons = {"Отправить" : "form-submit", "Очистить" : "form-clear"}
+					each b_action, b_name in buttons
+						li.page-links__item
+							button(class="page-links__link", id=b_action)= b_name
 
 		include common/_footer
