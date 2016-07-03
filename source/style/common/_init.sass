@@ -348,6 +348,7 @@ button
 		font-size: em(28,16)
 		line-height: 1
 		opacity: .5
+		will-change: opacity
 		transition: opacity $transition-time
 		&:hover
 			opacity: 1
@@ -405,7 +406,7 @@ button
 	position: absolute
 	.layer-bg
 		transform: translate3d(0,0,0)
-		transform-style: preserve-3d
+		// transform-style: preserve-3d
 		backface-visibility: hidden
 		position: absolute
 		width: 140%

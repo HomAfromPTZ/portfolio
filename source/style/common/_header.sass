@@ -42,8 +42,11 @@
 		bottom: 50%
 		transform: translateY(50%) rotate(45deg)
 
+.header__top-row.active
+	position: fixed
+
 .main-menu
-	position: absolute
+	position: fixed
 	top: 0
 	left: 0
 	right: 0
@@ -77,7 +80,7 @@
 		list-style: none
 		text-align: center
 		opacity: 0
-		transform: scale(0)
+		transform: scale3d(0,0,0)
 		transition: none
 	&__link
 		font-family: "bernier_regular"
@@ -124,8 +127,8 @@
 		&__item
 			opacity: 1
 			// visibility: visible
-			transform: scale(1)
-			transition: all $transition-time cubic-bezier(.77,.6,.31,1.2) $transition-time_medium
+			transform: scale3d(1,1,1)
+			transition: all $transition-time cubic-bezier(.77,.6,.31,1.4) $transition-time_medium
 
 
 
