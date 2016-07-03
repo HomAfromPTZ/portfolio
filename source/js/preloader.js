@@ -70,7 +70,7 @@ module.exports = function preloader() {
 
 				images_loop();
 			}
-		}, 10);
+		}, 20);
 	}
 
 	// Get all images

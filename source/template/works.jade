@@ -123,13 +123,13 @@ html
 							p.author__description сооснователь LoftSchool
 
 			.contact-form
-				form#contact
+				form#contact(novalidate)
 					.contact-form__bg
 					.contact-form__content
 						h3.contact-form__heading.sidestripes Связаться со мной
-						input.contact-form__field(type="text" name="name" placeholder="Имя")
-						input.contact-form__field(type="text" name="email" placeholder="Email")
-						textarea.contact-form__field.contact-form__field_textarea(name="message" placeholder="Ваше сообщение")
+						input.contact-form__field(type="text" name="name" placeholder="Имя" required data-check="username")
+						input.contact-form__field(type="email" name="email" placeholder="Email" required data-check="email")
+						textarea.contact-form__field.contact-form__field_textarea(name="message" placeholder="Ваше сообщение" required data-check="text")
 
 					ul.form-buttons
 						- var buttons = {"Отправить" : "form-submit", "Очистить" : "form-clear"}

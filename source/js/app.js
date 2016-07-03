@@ -3,7 +3,9 @@
 	var preloader = require("./preloader.js"),
 		helpers = require("./helpers.js"),
 		verticalParallax = require("./verticalParallax.js"),
+		forms = require("./forms.js"),
 		slider = require("./slider.js");
+
 
 	// ==============================
 	// App global parameters object
@@ -15,6 +17,11 @@
 	window.hm.tabletSize = 768 - window.hm.scrollBarWidth;
 	window.hm.resizeLimit = 2000 - window.hm.scrollBarWidth;
 
+
+
+	// ==============================
+	// Animation
+	// ==============================
 	helpers.fadePageOn("a.preload-link");
 
 	$("header .svg-heading, .talks .svg-heading, .talks .testimonial").animated("fadeInUp");
@@ -23,6 +30,8 @@
 	$(".portfolio-slider__projects-container").animated("fadeIn");
 
 	$(".piechart .piechart__fill").animatePies();
+
+
 
 	// ==============================
 	// Parallax
@@ -38,6 +47,7 @@
 
 	if($("#scene.vertical").length){
 		verticalParallax.createParallax("#scene.vertical", ".layer");
+
 		// IE scroll jump fix
 		if(helpers.ieVersion()) {
 			$(".layer").css({transition:"transform .15s linear"});
@@ -66,12 +76,17 @@
 		$("body").removeClass("card_flipped");
 	});
 
+
+
 	// ==============================
-	// Contact form
+	// TODO: Forms
 	// ==============================
 	if($("#contact").length){
+		forms.watchForm("#contact");
+		forms.onAirCheck("#contact");
+
 		var c_form = $("#contact"),
-			send_button = c_form.find("#form-submit"),
+			// send_button = c_form.find("#form-submit"),
 			clear_button = c_form.find("#form-clear");
 
 		clear_button.on("click", function(e){
@@ -79,9 +94,18 @@
 			c_form[0].reset();
 		});
 
-		send_button.on("click", function(e){
+		// send_button.on("click", function(e){
+		// 	e.preventDefault();
+		// 	// c_form[0].reset();
+		// });
+	}
+
+	if($("#login").length){
+		var l_form = $("#login"),
+			log_button = l_form.find("#log-me");
+
+		log_button.on("click", function(e){
 			e.preventDefault();
-			// c_form[0].reset();
 		});
 	}
 
