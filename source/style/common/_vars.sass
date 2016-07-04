@@ -20,7 +20,9 @@ $thumb-overlay-color_next: #888372
 
 $white: #fff
 $white_matte: #fcfcfc
-$row-color: #f1f1f2
+$black: #000
+
+$row-color: #f1f1f2 // blog article row
 
 $pastel: #f0efe9
 $pastel_dark: #efebe0
@@ -55,6 +57,8 @@ $footer-height_xsmall: 700px
 // =================================
 // Animations
 // =================================
+
+// Slider
 @keyframes hideThumbUp
 	0%
 		visibility: visible
@@ -89,3 +93,37 @@ $footer-height_xsmall: 700px
 	100%
 		opacity: 1
 		transform: perspective(750px) translate3d(0,0,0) scale3d(1,1,1)
+
+
+
+// Popup
+@keyframes popup-show
+	0%
+		visibility: visible
+	100%
+		visibility: visible
+		opacity: 1
+
+@keyframes popup-content-show
+	0%
+		visibility: visible
+		transform: perspective(600px) translate3d(0,-50px,200px) rotateX(-90deg)
+	100%
+		visibility: visible
+		transform: perspective(600px) translate3d(0,0,0) rotateX(0)
+
+@keyframes popup-hide
+	0%
+		visibility: visible
+		opacity: 1
+	100%
+		visibility: visible
+		opacity: 0
+
+@keyframes popup-content-hide
+	0%
+		visibility: visible
+		transform: perspective(600px) translate3d(0,0,0) rotateX(0)
+	100%
+		visibility: visible
+		transform: perspective(600px) translate3d(0,50px,200px) rotateX(90deg)

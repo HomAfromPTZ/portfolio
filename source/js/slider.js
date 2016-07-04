@@ -2,8 +2,8 @@ var letter_class = "letter",
 	word_class = "word",
 	animation_time_default = 700;
 
-var prepareTitles = function (title_container, animation_time){
 
+var prepareTitles = function (title_container, animation_time){
 	var letters = $.trim(title_container.text()),
 		letters_amount = letters.length,
 		animation_time = animation_time/1000 || animation_time_default/1000,

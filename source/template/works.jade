@@ -34,7 +34,7 @@ html
 				.header__title
 					+svg-heading("Мои работы", "icon-works_header")
 
-
+		//- SLIDER START
 		section.portfolio-slider
 			.portfolio-slider__module.portfolio-slider__preview-container
 				img.portfolio-preview.active(src="/assets/img/works/unspoken.png")
@@ -72,9 +72,11 @@ html
 							a(href="http://bringcar.ru/", target="_blank").project__link Посмотреть сайт
 
 			.portfolio-slider__module.portfolio-slider__navigation-container
+
 				.navigation-box.navigation-box_prev
 					button.portfolio-button.portfolio-button_prev
 						.fa.fa-chevron-down
+
 					.portfolio-thumbnails
 						.portfolio-thumbnails__thumbnail
 							img(src="/assets/img/works/unspoken.png", alt="Unspoken World Magazine")
@@ -86,9 +88,11 @@ html
 							img(src="/assets/img/works/karakalpakiya.png", alt="Karakalpakiya")
 						.portfolio-thumbnails__thumbnail.active
 							img(src="/assets/img/works/bringcar.png", alt="Bringcar")
+
 				.navigation-box.navigation-box_next
 					button.portfolio-button.portfolio-button_next
 						.fa.fa-chevron-up
+
 					.portfolio-thumbnails
 						.portfolio-thumbnails__thumbnail
 							img(src="/assets/img/works/unspoken.png", alt="Unspoken World Magazine")
@@ -100,7 +104,7 @@ html
 							img(src="/assets/img/works/karakalpakiya.png", alt="Karakalpakiya")
 						.portfolio-thumbnails__thumbnail
 							img(src="/assets/img/works/bringcar.png", alt="Bringcar")
-
+		//- SLIDER END
 
 
 		section.talks.clearfix.last-section
@@ -129,12 +133,17 @@ html
 						h3.contact-form__heading.sidestripes Связаться со мной
 						input.contact-form__field(type="text" name="name" placeholder="Имя" required data-check="username")
 						input.contact-form__field(type="email" name="email" placeholder="Email" required data-check="email")
-						textarea.contact-form__field.contact-form__field_textarea(name="message" placeholder="Ваше сообщение" required data-check="text")
+						textarea.contact-form__field.contact-form__field_textarea(name="message" placeholder="Ваше сообщение (10 и более символов)" required data-check="text")
 
 					ul.form-buttons
 						- var buttons = {"Отправить" : "form-submit", "Очистить" : "form-clear"}
 						each b_action, b_name in buttons
 							li.form-buttons__button.form-buttons__button_even
 								button(class="form-buttons__button-content", id=b_action)= b_name
-
+			#hm-popup.hm-popup
+				.hm-popup__container
+					.hm-popup__content
+						button.hm-popup__close
+							.fa.fa-close
+						p.hm-popup__text Popup Text
 		include common/_footer

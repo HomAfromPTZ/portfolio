@@ -82,22 +82,10 @@
 	// TODO: Forms
 	// ==============================
 	if($("#contact").length){
-		forms.watchForm("#contact");
+		forms.watchForm("#contact", "#form-clear");
 		forms.onAirCheck("#contact");
 
-		var c_form = $("#contact"),
-			// send_button = c_form.find("#form-submit"),
-			clear_button = c_form.find("#form-clear");
 
-		clear_button.on("click", function(e){
-			e.preventDefault();
-			c_form[0].reset();
-		});
-
-		// send_button.on("click", function(e){
-		// 	e.preventDefault();
-		// 	// c_form[0].reset();
-		// });
 	}
 
 	if($("#login").length){
@@ -108,6 +96,9 @@
 			e.preventDefault();
 		});
 	}
+
+
+
 
 	// ==============================
 	// Main menu
@@ -141,6 +132,8 @@
 
 
 
+
+
 	// ==============================
 	// Slider
 	// ==============================
@@ -153,6 +146,9 @@
 
 		slider.createSlider(".portfolio-slider");
 	}
+
+
+
 
 
 	// ==============================
