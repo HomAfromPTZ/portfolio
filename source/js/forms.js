@@ -1,7 +1,14 @@
+// =======================================
+// Variables and modules
+// =======================================
+var popup = require("./popup.js");
+
 var match_arr = {
-		"username" : /[a-zа-я0-9_-]{2,}/g,
-		"email" : /([a-z0-9_\.-]+)@([a-z0-9_\.-]+)\.([a-z\.]{2,6})/g,
-		"text" : /.{10,}/g
+		"username" : /^[A-Za-zА-Яа-я0-9_-\s]{2,}$/g,
+		"email" : /^([a-z0-9_\.-]+)@([a-z0-9_\.-]+)\.([a-z\.]{2,6})$/g,
+		"text" : /.{10,}/g,
+		"password" : /^([a-zA-Z0-9@*#]{6,18})$/g
+
 	},
 	errors_arr = {
 		"username" : "Имя должно быть длиннее 2х символов и не содержать посторонних знаков",
@@ -9,31 +16,28 @@ var match_arr = {
 		"text" : "Ваше сообщение должно быть не короче 10 символов"
 	};
 
+popup.init("#hm-popup", ".hm-popup__text", ".hm-popup__close");
 
 
-var showPopup = function(text, time){
-	var popup = $("#hm-popup"),
-		content = popup.find(".hm-popup__text"),
-		close = popup.find(".hm-popup__close");
 
-	content.html(text);
-	popup.removeClass("hide").addClass("show");
+// =======================================
+// Hide tooltips
+// =======================================
+function hideTooplitp(){
+	var field = $(this);
 
-	if(time){
-		setTimeout(function(){
-			popup.removeClass("show").addClass("hide");
-		}, time);
+	if(field.next().hasClass("tooltip")){
+		field.next().removeClass("show").addClass("hide");
 	}
-
-	close.on("click", function(){
-		popup.removeClass("show").addClass("hide");
-	});
 };
 
 
 
-var onAirCheck = function(form_selector){
-	var fields = $(form_selector).find("input[type=text], input[type=email], textarea");
+// =======================================
+// Check text fields on air with regexp
+// =======================================
+function onAirCheck (form_selector){
+	var fields = $(form_selector).find("input[type=text], input[type=email], input[type=password], textarea");
 
 	fields.on("keyup", function(){
 		var field = $(this),
@@ -41,10 +45,8 @@ var onAirCheck = function(form_selector){
 			value = field.val();
 
 		if(value.match(match_arr[check_type])){
-			// alert("OK\nType: " + check_type + "\nVal: " + value + " \nField: " + field);
 			field.removeClass("error").addClass("valid");
 		}else{
-			// alert("notOK\nType: " + check_type + "\nVal: " + value + " \nField: " + field);
 			field.removeClass("valid").addClass("error");
 		};
 
@@ -53,12 +55,14 @@ var onAirCheck = function(form_selector){
 
 
 
-var fieldsCheck = function (form_obj) {
-	var fields = $(form_obj).find("input[type=text], input[type=email], textarea"),
+// =======================================
+// Check text fields on form submit
+// =======================================
+function textFieldsCheck (form) {
+	var fields = form.find("input[type=text], input[type=email], textarea"),
 		valid = true,
-		errorText = "Пожалуйста исправьте ошибки заполнения.",
 		tooltip_template = $("<div class='tooltip'></div>"),
-		form_offset = form_obj.offset().top;
+		form_offset = form.offset().top;
 
 
 	fields.each(function() {
@@ -71,89 +75,152 @@ var fieldsCheck = function (form_obj) {
 			var field_tooltip;
 
 			if(field.next().hasClass("tooltip")){
-				field_tooltip = field.next("tooltip");
+				field_tooltip = field.next();
 			} else {
 				field_tooltip = tooltip_template.clone();
 				field.after(field_tooltip);
 			}
 
-			field_tooltip.css({
-				"top" : tooltip_offset
-			});
-
-			field_tooltip.html(errors_arr[check_type]).fadeIn();
+			field_tooltip
+				.css({"top" : tooltip_offset})
+				.html(errors_arr[check_type])
+				.removeClass("hide")
+				.addClass("show");
 
 			field.addClass("error");
-
 			valid = false;
 		}
+
 	});
 
-	if(valid){
-		return true;
-	}else{
-		showPopup(errorText, 2000);
-		return false;
-	}
-
+	return valid;
 };
 
 
 
-var resetForm = function(form){
-	var text_fields = form.find("input[type=text], input[type=email], textarea"),
+// =======================================
+// Reset textfields
+// =======================================
+function resetForm (form){
+	var maybe_airchecked_fields = form.find("input[type=text], input[type=email], input[type=password], textarea"),
 		tooltips = form.find(".tooltip");
 
-	tooltips.remove();
-	text_fields.removeClass("error valid");
+	maybe_airchecked_fields.removeClass("error valid");
+	tooltips.removeClass("show").addClass("hide");
 	form[0].reset();
 }
 
 
 
-var watchForm = function(selector, reset){
+// =======================================
+// Send Feedback
+// =======================================
+function sendFeedback (form) {
+	if(textFieldsCheck(form)){
+		$.ajax({
+			type: "POST",
+			url: "process.php",
+			data: form.serialize()
+		}).done(function() {
+
+		});
+
+		popup.showPopup("Сообщение отправлено", 2500);
+		resetForm(form);
+		return false;
+	} else {
+		popup.showPopup("Пожалуйста исправьте ошибки заполнения.",2500);
+	}
+}
+
+
+
+// =======================================
+// Check robot
+// =======================================
+function checkRobot(form, checkbox_stat, radio_stat){
+	var valid = false,
+		human = $("input:checkbox").prop("checked"),
+		radio = $("input:radio:checked").val();
+
+	if(human===checkbox_stat && radio===radio_stat){
+		valid = true;
+	}else{
+		popup.showPopup("Айзеку Азимову было бы стыдно за такого врушу",2500);
+	}
+
+	return valid;
+}
+
+
+
+// =======================================
+// Process login
+// =======================================
+function authorization(form){
+	$.ajax({
+		type: "POST",
+		url: "process.php",
+		data: form.serialize()
+	}).done(function() {
+
+	});
+
+	popup.showPopup("Тут еще будет проверка пароля, но не сегодня.<br/>Добро пожаловать", 3000);
+	return false;
+}
+
+
+
+// =======================================
+// Auth form watcher
+// =======================================
+function authForm (selector, login, checkbox_stat, radio_stat){
+	var form = $(selector),
+		button = form.find(login);
+
+	form.on("submit", function(e){
+		e.preventDefault();
+		if(checkRobot(form, checkbox_stat, radio_stat)){
+			authorization(form);
+		}
+		resetForm(form);
+	});
+
+	// button.on("click", function(e){
+	// 	e.preventDefault();
+	// 	form.trigger("submit");
+	// 	resetForm(form);
+	// });
+}
+
+
+
+// =======================================
+// Contact form watcher
+// =======================================
+function contactForm (selector, reset){
 	var form = $(selector),
 		reset = form.find(reset),
 		fields = form.find("input[type=text], input[type=email], textarea");
 
-
-	fields.on("focus", function(){
-		var field = $(this);
-
-		if(field.next().hasClass("tooltip")){
-			field.next().remove();
-		}
-	});
+	fields.on("focus", hideTooplitp);
 
 	reset.on("click", function(e){
 		e.preventDefault();
 		resetForm(form);
 	});
 
-	form.submit(function(e) {
+	form.on("submit", function(e) {
 		e.preventDefault();
-
-		if(fieldsCheck(form)){
-			$.ajax({
-				type: "POST",
-				url: "process.php",
-				data: form.serialize(),
-				beforeSend: function(){}
-			}).done(function() {
-
-			});
-
-			showPopup("Всё Ок", 2000);
-			resetForm(form);
-			return false;
-		}
-		
+		sendFeedback(form);
 	});
 };
 
 
 
 module.exports = {
-	watchForm : watchForm,
+	contactForm : contactForm,
+	authForm : authForm,
 	onAirCheck : onAirCheck
 };

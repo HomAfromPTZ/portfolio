@@ -4,7 +4,9 @@
 		helpers = require("./helpers.js"),
 		verticalParallax = require("./verticalParallax.js"),
 		forms = require("./forms.js"),
-		slider = require("./slider.js");
+		slider = require("./slider.js"),
+		blogNavigation = require("./blogNavigation.js"),
+		map = require("./gmap.js");
 
 
 	// ==============================
@@ -18,6 +20,14 @@
 	window.hm.resizeLimit = 2000 - window.hm.scrollBarWidth;
 
 
+
+	// ==============================
+	// Load map
+	// ==============================
+	if($("#map_wrapper").length){
+		alert("map");
+		google.maps.event.addDomListener(window, "load", map.init("map_wrapper"));
+	}
 
 	// ==============================
 	// Animation
@@ -79,22 +89,18 @@
 
 
 	// ==============================
-	// TODO: Forms
+	// Forms
 	// ==============================
 	if($("#contact").length){
-		forms.watchForm("#contact", "#form-clear");
+		forms.contactForm("#contact", "#form-clear");
 		forms.onAirCheck("#contact");
 
 
 	}
 
 	if($("#login").length){
-		var l_form = $("#login"),
-			log_button = l_form.find("#log-me");
-
-		log_button.on("click", function(e){
-			e.preventDefault();
-		});
+		forms.authForm("#login", "#log-me", true, "shure");
+		forms.onAirCheck("#login");
 	}
 
 
@@ -115,7 +121,7 @@
 
 
 	// ==============================
-	// Buttons
+	// Scroll buttons
 	// ==============================
 	$("button.go-down").click(function(){
 		var go = $(this).data("link");
@@ -138,7 +144,6 @@
 	// Slider
 	// ==============================
 	if($(".portfolio-slider").length){
-
 		$(".portfolio-projects .project__title, .portfolio-projects .project__tech")
 			.each(function() {
 				slider.prepareTitles($(this), 700);
@@ -155,70 +160,7 @@
 	// Blog scroll events
 	// ==============================
 	if($(".blog-navigation").length){
-		$(".blog-navigation__toggle").click(function(){
-			$(".blog-navigation").toggleClass("active");
-		});
-
-		var activeId,
-			additionalOffset = 60,
-			menu = $(".blog-navigation"),
-			menuItems = menu.find("li a"),
-			scrollItems = menuItems.map(function(){
-				var item = $($(this).attr("href"));
-				if (item.length) return item;
-			});
-
-		menuItems.click(function(e){
-			var href = $(this).attr("href"),
-				offsetTop = (href === "#") ? 0 : $(href).offset().top - additionalOffset;
-
-			e.preventDefault();
-
-			$("html, body").stop().animate({ 
-				scrollTop: offsetTop
-			}, 700, "swing");
-		});
-
-		$(window).scroll(function() {
-			var fromTop = $(this).scrollTop(),
-				blogNavOffset = $(".blog-navigation").offset().top,
-				blogNavLimit = $(".footer__wrapper").offset().top - $(".blog-navigation__wrapper").outerHeight(),
-				current = scrollItems.map(function(){
-					if ($(this).offset().top < fromTop+144)
-						return this;
-				});
-
-			current = current[current.length-1];
-			var id = current && current.length ? current[0].id : "";
-
-			if (activeId !== id) {
-				activeId = id;
-				menuItems.removeClass("active").filter("[href=#"+id+"]").addClass("active");
-			}
-
-			if(fromTop >= blogNavLimit && $(window).width() > window.hm.tabletSize) {
-				$(".blog-navigation__wrapper").css({"position":"absolute", "top":blogNavLimit + "px"});
-			} else if (fromTop >= blogNavOffset && $(window).width() > (768 - window.hm.scrollBarWidth)) {
-				$(".blog-navigation__wrapper").css({"position":"fixed", "top":0});
-				$(".blog-navigation__wrapper").addClass("nav-fixed");
-			} else {
-				$(".blog-navigation__wrapper").css({"position":"relative"});
-				$(".blog-navigation__wrapper").removeClass("nav-fixed");
-			}
-
-		});
-
-		$(window).resize(function() {
-			if($(window).width() <= window.hm.tabletSize){
-				$(".blog-navigation__wrapper").removeClass("nav-fixed");
-				$(".blog-navigation__wrapper").css({"position":"relative"});
-			} else {
-				if($("body").scrollTop() >= $(".blog").offset().top){
-					$(".blog-navigation__wrapper").css({"position":"fixed", "top":0});
-					$(".blog-navigation__wrapper").addClass("nav-fixed");
-				}
-			}
-		});
+		blogNavigation();
 	}
 
 
@@ -253,4 +195,5 @@
 	}
 
 	preloader();
+
 })(jQuery);

@@ -1,0 +1,100 @@
+.hm-popup
+	@extend .table-box
+	position: fixed
+	display: table
+	visibility: hidden
+	opacity: 0
+	top: 0
+	left: 0
+	height: 100%
+	z-index: 10
+	background-color: rgba($black, .7)
+	&__container
+		@extend .vertical-aligned
+	&__content
+		position: relative
+		width: 320px
+		max-width: 80%
+		margin: 0 auto
+		padding: 20px 20px 100px
+		border-radius: 5px
+		text-align: left
+		background-color: $white
+		background-image: url("/assets/img/theme_mountains/popup-bg.png")
+		background-repeat: no-repeat
+		background-position: center bottom
+	&__close
+		position: absolute
+		width: 40px
+		height: 40px
+		border-radius: 50%
+		right: -15px
+		top: -15px
+		background-color: $black
+		border: 2px solid $white
+		.fa
+			font-size: em(20)
+			color: $white
+	&__text
+		font-family: "roboto_light"
+		margin: 0
+	&.show
+		animation: popup-show $transition-time_medium
+		animation-fill-mode: forwards
+		+media(xs)
+			animation: none
+			visibility: visible
+			opacity: 1
+		.hm-popup__content
+			animation: popup-content-show $transition-time_medium
+			animation-fill-mode: forwards
+			+media(xs)
+				animation: none
+				visibility: visible
+	&.hide
+		animation: popup-hide $transition-time_medium
+		+media(xs)
+			animation: none
+			visibility: hidden
+			opacity: 0
+		.hm-popup__content
+			animation: popup-content-hide $transition-time_medium
+			animation-fill-mode: forwards
+			+media(xs)
+				animation: none
+
+
+
+// =================================
+// Animations
+// =================================
+@keyframes popup-show
+	0%
+		visibility: visible
+	100%
+		visibility: visible
+		opacity: 1
+
+@keyframes popup-hide
+	0%
+		visibility: visible
+		opacity: 1
+	100%
+		visibility: visible
+		opacity: 0
+
+
+@keyframes popup-content-show
+	0%
+		transform: perspective(600px) translate3d(0,0,300px) rotateX(-90deg)
+	100%
+		transform: perspective(600px) translate3d(0,0,0) rotateX(0)
+
+
+@keyframes popup-content-hide
+	0%
+		transform: perspective(600px) translate3d(0,0,0) rotateX(0)
+		transform-origin: center bottom
+	100%
+		transform: perspective(600px) translate3d(0,300px,0) rotateX(40deg)
+		transform-origin: center bottom

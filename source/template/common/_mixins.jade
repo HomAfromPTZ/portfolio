@@ -38,11 +38,11 @@ mixin social_links(style)
 
 
 //- Text/Password inputs with Font Awesome icons
-//- elements = [[FontAwesome-class, input-placeholder, input-type], [...]]
+//- elements = [[FontAwesome-class, input-placeholder, input-type, check-type], [...]]
 mixin input_iconed(elements)
 	each params in elements
 		label(class="login-form__label login-form__label_text")
-			input(class="input input_text", placeholder=params[1], type=params[2])
+			input(class="input input_text", placeholder=params[1], type=params[2], data-check=params[3])
 			span(class="fa fa-" + params[0])
 
 

@@ -4,6 +4,7 @@ html
 	include common/_head
 	body.table-box
 		include common/_preloader
+		include common/_popup
 
 		<!--[if lt IE 7]>
 		<p class="browsehappy">Вы используете <strong>устаревший</strong> браузер. Пожалуйста <a href="http://browsehappy.com/">обновите его</a></p>
@@ -37,7 +38,7 @@ html
 						form#login
 							.login-form
 								h3.sidestripes Авторизуйтесь
-								+input_iconed([["user", "Логин", "text"], ["key", "Пароль", "password"]])
+								+input_iconed([["user", "Логин", "text", "username"], ["key", "Пароль", "password", "password"]])
 								+input_checkers([["checkbox", "robot_check", "not a robot", "Я человек"]])
 								p.login-form__plain-text Вы точно не робот?
 								+input_checkers([["radio", "robot_radio", "shure", "Да"], ["radio", "robot_radio", "who knows", "Не уверен"]])

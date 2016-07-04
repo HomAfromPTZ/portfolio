@@ -1,197 +1,4 @@
 // =================================
-// Portfolio with works preview
-// =================================
-.portfolio-slider
-	@extend .fullheight, .fullheight_mih
-	background-color: $pastel_dark
-	text-align: center
-	img
-		position: absolute
-		top: 0
-		bottom: 0
-		left: 0
-		right: 0
-		max-width: 90%
-		max-height: 90%
-		margin: auto
-	+media(s)
-		height: auto
-		min-height: auto
-
-	&__module
-		width: 50%
-		+media(s)
-			width: 100%
-			float: none
-	&__projects-container
-		float: left
-	&__preview-container
-		float: right
-	&__navigation-container
-		float: right
-
-	&__projects-container
-		height: 100%
-		background-color: $pastel
-		+media(s)
-			height: 370px
-		+media(xs)
-			height: 270px
-		.portfolio-projects
-			display: block
-			width: 100%
-			height: 100%
-			overflow: hidden
-			position: relative
-			.project
-				background-color: $pastel
-				position: absolute
-				padding: 10% 16%
-				width: 100%
-				height: 100%
-				display: table
-				opacity: 0
-				visibility: hidden
-				transition: opacity $transition-time_medium
-				+media(m)
-					padding: 5% 10%
-				&.active
-					visibility: visible
-					opacity: 1
-				&__inner
-					display: table-cell
-					vertical-align: middle
-				&__tech,
-				&__link
-					font-family: "roboto_medium"
-					font-size: em(16)
-					line-height: 1
-					+media(xs)
-						font-size: em(14)
-				&__title
-					margin: 0 20px
-				&__tech
-					text-transform: uppercase
-					color: $maincolor
-					border-top: 1px solid $maincolor
-					border-bottom: 1px solid $maincolor
-					padding: 20px 15px
-					margin: 40px auto
-					+media(xs)
-						padding: 10px 10px 12px
-						margin: 20px auto
-				&__link
-					text-decoration: none
-					display: inline-block
-					color: $white
-					padding: 15px
-					background-color: $maincolor
-					border-radius: 5px
-					transition: background-color $transition-time
-					&::before
-						content: "\f0c1"
-						vertical-align: middle
-						position: relative
-						font-family: "FontAwesome"
-						font-size: em(20)
-						margin-right: 8px
-					&:hover
-						background-color: darken($maincolor, 10%)
-				.word,
-				.letter
-					font-size: inherit
-					line-height: inherit
-					vertical-align: middle
-					display: inline-block
-				.letter
-					opacity: 0
-					will-change: transform
-					&.show
-						animation: showLetter $transition-time_medium
-						animation-fill-mode: forwards
-
-
-	&__preview-container
-		height: 70%
-		overflow: hidden
-		position: relative
-		+media(s)
-			height: 400px
-		+media(xs)
-			height: 170px
-		.portfolio-preview
-			opacity: 0
-			will-change: opacity
-			transition: opacity $transition-time_medium
-			&.active
-				opacity: 1
-				transition: opacity $transition-time_medium
-				// transition-delay: $transition-time
-
-	&__navigation-container
-		height: 30%
-		+media(s)
-			height: 150px
-		+media(xs)
-			height: 100px
-		.portfolio-button
-			position: absolute
-			top: 0
-			left: 0
-			width: 100%
-			height: 100%
-			z-index: 1
-			transition: all $transition-time
-			.fa
-				position: relative
-				top: 0
-				font-size: em(36)
-				color: $white
-				transition: all $transition-time
-			&:hover
-				.fa
-					transform: scale3d(1.2,1.2,1)
-			&_prev
-				background-color: rgba($thumb-overlay-color_prev, .5)
-				&:hover
-					background-color: rgba($thumb-overlay-color_prev, .7)
-			&_next
-				background-color: rgba($thumb-overlay-color_next, .5)
-				&:hover
-					background-color: rgba($thumb-overlay-color_next, .7)
-
-		.navigation-box
-			width: 50%
-			height: 100%
-			position: relative
-			float: left
-			.portfolio-thumbnails
-				position: relative
-				height: 100%
-				overflow: hidden
-				&__thumbnail
-					height: 100%
-					width: 100%
-					position: absolute
-					visibility: hidden
-					will-change: transform
-					transform: translate3d(0,0,0)
-					&.move-up
-						animation: hideThumbUp $transition-time_medium
-					&.move-down
-						animation: hideThumbDown $transition-time_medium
-					&.active
-						visibility: visible
-						transform: translate3d(0,0,0)
-						&.move-up
-							animation: showThumbUp $transition-time_medium
-						&.move-down
-							animation: showThumbDown $transition-time_medium
-
-
-
-
-// =================================
 // Testimonials section
 // =================================
 .talks
@@ -264,8 +71,6 @@
 
 
 
-
-
 // =================================
 // Contact form
 // =================================
@@ -294,6 +99,8 @@
 		outline: 0
 		background-color: $white
 		transition: box-shadow $transition-time
+		+media(xs)
+			transition: none
 		&_textarea
 			height: 140px
 			resize: none
@@ -302,79 +109,17 @@
 			font-size: em(16)
 			line-height: 1
 			opacity: .5
-		&:focus
-			box-shadow: inset 0 0 2px 2px $focus-color
-		&.error
-			box-shadow: inset 0 0 2px 2px $error-color
-		&.valid
-			box-shadow: inset 0 0 2px 2px $valid-color
-	.tooltip
-		position: absolute
-		right: 0
-		font-size: em(14)
-		background-color: rgba($error-color, 1)
-		color: $white
-		border-radius: 5px
-		padding: 5px
-		width: 250px
-		display: none
-		transform: translate3d(0,-80%,0)
-		&::after
-			content: ""
-			position: absolute
-			display: block
-			top: 100%
-			border: 8px solid transparent
-			border-top: 6px solid $error-color
 
-
-.hm-popup
-	@extend .table-box
-	position: fixed
-	display: table
-	visibility: hidden
-	opacity: 0
-	top: 0
-	left: 0
-	height: 100%
-	z-index: 10
-	background-color: rgba($black, .4)
-	&__container
-		@extend .vertical-aligned
-	&__content
-		position: relative
-		width: 320px
-		max-width: 80%
-		margin: 0 auto
-		padding: 20px
-		border-radius: 5px
-		text-align: left
-		background-color: rgba($white, .9)
-	&__close
-		position: absolute
-		width: 40px
-		height: 40px
-		border-radius: 50%
-		right: -15px
-		top: -15px
-		background-color: $black
-		border: 2px solid $white
-		.fa
-			font-size: em(20)
-			color: $white
-	&__text
-		margin: 0
-	&.show
-		animation: popup-show $transition-time_medium
-		animation-fill-mode: forwards
-		.hm-popup__content
-			animation: popup-content-show $transition-time_medium
-			animation-fill-mode: forwards
-	&.hide
-		animation: popup-hide $transition-time_medium
-		.hm-popup__content
-			animation: popup-content-hide $transition-time_medium
-
+input[type=text],
+input[type=email],
+input[type=password],
+textarea
+	&:focus
+		box-shadow: inset 0 0 1px 2px $focus-color
+	&.error
+		box-shadow: inset 0 0 1px 2px $error-color
+	&.valid
+		box-shadow: inset 0 0 1px 2px $valid-color
 
 
 

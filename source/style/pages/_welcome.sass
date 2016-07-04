@@ -151,11 +151,15 @@
 				border-bottom-left-radius: 5px
 				border-top-left-radius: 5px
 				background-color: $pastel
-				transition: all $transition-time
+				transition: background-color $transition-time
 			&:focus + span
 				background-color: $maincolor
 			&::placeholder
 				color: $gray
+			&.error + span
+				background-color: $error-color
+			&.valid + span
+				background-color: $valid-color
 
 		&_checkbox,
 		&_radio

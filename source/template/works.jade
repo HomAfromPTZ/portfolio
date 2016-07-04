@@ -4,6 +4,7 @@ html
 	include common/_head
 	body
 		include common/_preloader
+		include common/_popup
 
 		<!--[if lt IE 7]>
 		<p class="browsehappy">Вы используете <strong>устаревший</strong> браузер. Пожалуйста <a href="http://browsehappy.com/">обновите его</a></p>
@@ -140,10 +141,5 @@ html
 						each b_action, b_name in buttons
 							li.form-buttons__button.form-buttons__button_even
 								button(class="form-buttons__button-content", id=b_action)= b_name
-			#hm-popup.hm-popup
-				.hm-popup__container
-					.hm-popup__content
-						button.hm-popup__close
-							.fa.fa-close
-						p.hm-popup__text Popup Text
+
 		include common/_footer

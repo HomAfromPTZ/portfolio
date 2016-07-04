@@ -1,0 +1,55 @@
+.tooltip
+	position: absolute
+	right: 0
+	font-family: "roboto_light"
+	font-size: em(14)
+	background-color: rgba($error-color, 1)
+	color: $white
+	border-radius: 5px
+	padding: 5px
+	width: 250px
+	visibility: hidden
+	opacity: 0
+	transition: opacity $transition-time
+	transform: translate3d(0,-80%,0)
+	&::after
+		content: ""
+		position: absolute
+		display: block
+		top: 100%
+		border: 8px solid transparent
+		border-top: 6px solid $error-color
+	&.show
+		animation: tooltip-show $transition-time_medium
+		animation-fill-mode: forwards
+		+media(xs)
+			animation: none
+			visibility: visible
+			opacity: 1
+	&.hide
+		animation: tooltip-hide $transition-time
+		+media(xs)
+			animation: none
+			visibility: hidden
+			opacity: 0
+
+
+
+// =================================
+// Animations
+// =================================
+@keyframes tooltip-show
+	0%
+		visibility: visible
+		opacity: 0
+	100%
+		visibility: visible
+		opacity: 1
+
+@keyframes tooltip-hide
+	0%
+		visibility: visible
+		opacity: 1
+	100%
+		visibility: visible
+		opacity: 0

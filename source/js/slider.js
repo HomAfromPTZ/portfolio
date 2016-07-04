@@ -38,7 +38,7 @@ var prepareTitles = function (title_container, animation_time){
 
 
 var createSlider = function(slider_container){
-	console.time("Slider prepare");
+	// console.time("Slider prepare");
 	var slider_container = slider_container || ".portfolio-slider",
 		slider = $(slider_container),
 		previews = slider.find(".portfolio-preview"),
@@ -48,10 +48,10 @@ var createSlider = function(slider_container){
 
 	projects_wrapper.find(".active ." + letter_class).addClass("show");
 
-	console.timeEnd("Slider prepare");
+	// console.timeEnd("Slider prepare");
 
 	$(control_buttons).on("click", function(e){
-		console.time("Slider click");
+		// console.time("Slider click");
 		e.preventDefault();
 
 		var this_button = $(this),
@@ -131,7 +131,8 @@ var createSlider = function(slider_container){
 		change_project();
 		change_preview();
 		lock_buttons();
-		console.timeEnd("Slider click");
+
+		// console.timeEnd("Slider click");
 	});
 
 };

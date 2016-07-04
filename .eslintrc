@@ -1,6 +1,7 @@
 {
 	"globals": {
-		"require": true
+		"require" : true,
+		"google" : true
 	},
 	"env": {
 		"browser": true,
