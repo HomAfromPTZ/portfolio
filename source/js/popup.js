@@ -12,7 +12,7 @@ function init(container, text, close){
 };
 
 function closePopup(){
-	popup.removeClass("show").addClass("hide");
+	popup.addClass("hide").removeClass("show");
 	if(close_timeout){
 		clearTimeout(close_timeout);
 	};
@@ -25,7 +25,7 @@ function showPopup (text, time){
 
 	if(time){
 		close_timeout = setTimeout(function(){
-			popup.removeClass("show").addClass("hide");
+			popup.addClass("hide").removeClass("show");
 		}, time);
 	}
 };

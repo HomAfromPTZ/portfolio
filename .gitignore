@@ -37,3 +37,7 @@ build
 # Node.JS
 node_modules
 npm-debug.log
+
+# Php private config
+vendor
+source/php/mail_config.php

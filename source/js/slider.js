@@ -1,11 +1,17 @@
-var letter_class = "letter",
-	word_class = "word",
+var letter_class_default = "letter",
+	word_class_default = "word",
 	animation_time_default = 700;
 
 
-var prepareTitles = function (title_container, animation_time){
+
+// =======================================
+// Wrap project title letters with <span>
+// =======================================
+var prepareTitles = function (title_container, animation_time, letter_class, word_class){
 	var letters = $.trim(title_container.text()),
 		letters_amount = letters.length,
+		letter_class = letter_class || letter_class_default,
+		word_class = word_class || word_class_default,
 		animation_time = animation_time/1000 || animation_time_default/1000,
 		delay_base = animation_time/letters_amount,
 		new_title = "";
@@ -37,40 +43,50 @@ var prepareTitles = function (title_container, animation_time){
 
 
 
-var createSlider = function(slider_container){
-	// console.time("Slider prepare");
+// =======================================
+// Slider processing
+// =======================================
+var createSlider = function(slider_container, animation_time, animation_class, letter_class, word_class){
+	// Set static parameters
 	var slider_container = slider_container || ".portfolio-slider",
 		slider = $(slider_container),
 		previews = slider.find(".portfolio-preview"),
 		projects_wrapper = slider.find(".portfolio-projects"),
 		projects = projects_wrapper.find(".project"),
-		control_buttons = slider.find(".portfolio-button");
+		control_buttons = slider.find(".portfolio-button"),
+		letter_class = letter_class || letter_class_default,
+		word_class = word_class || word_class_default,
+		animation_time = animation_time || animation_time_default,
+		animation_class = animation_class || "show";
 
+	// Show active project title and technologies letters
 	projects_wrapper.find(".active ." + letter_class).addClass("show");
 
-	// console.timeEnd("Slider prepare");
 
+	// Control buttons handler
 	$(control_buttons).on("click", function(e){
-		// console.time("Slider click");
 		e.preventDefault();
 
+		// Dynamically set CLICKED button parameters
 		var this_button = $(this),
 			this_thumbnails = this_button.next().find(".portfolio-thumbnails__thumbnail"),
 			this_active_thumb = this_thumbnails.filter(".active"),
 			this_next_index = this_thumbnails.index(this_active_thumb);
 
+		// Set SIBLING (other) button parameters
 		var other_button = this_button.parent().siblings().find(".portfolio-button"),
 			other_thumbnails = other_button.next().find(".portfolio-thumbnails__thumbnail"),
 			other_active_thumb = other_thumbnails.filter(".active"),
 			other_next_index = other_thumbnails.index(other_active_thumb);
 
+		// Set main preview and project indexes
 		var active_preview = previews.filter(".active"),
 			next_preview_index = previews.index(active_preview),
 			active_project = projects.filter(".active"),
 			next_project_index = projects.index(active_project);
 
 
-
+		// If next button was clicked, then we need to increment indexes, else - decrement
 		if(this_button.hasClass("portfolio-button_next")) {
 			next_project_index = (next_project_index >= projects.length-1) ? 0 : next_project_index+1;
 			this_next_index = this_next_index >= this_thumbnails.length-1 ? 0 : this_next_index+1;
@@ -85,6 +101,7 @@ var createSlider = function(slider_container){
 			next_preview_index--;
 		}
 
+		// MAIN FUNCTIONS
 		function lock_buttons(){
 			this_button.prop("disabled", true);
 			other_button.prop("disabled", true);
@@ -92,7 +109,7 @@ var createSlider = function(slider_container){
 			setTimeout(function(){
 				this_button.prop("disabled", false);
 				other_button.prop("disabled", false);
-			}, 700);
+			}, animation_time);
 		}
 
 		function change_thumbs(){
@@ -131,8 +148,6 @@ var createSlider = function(slider_container){
 		change_project();
 		change_preview();
 		lock_buttons();
-
-		// console.timeEnd("Slider click");
 	});
 
 };

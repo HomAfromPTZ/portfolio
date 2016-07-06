@@ -118,15 +118,17 @@ function resetForm (form){
 function sendFeedback (form) {
 	if(textFieldsCheck(form)){
 		$.ajax({
+			url: "php/mail.php",
 			type: "POST",
-			url: "process.php",
-			data: form.serialize()
-		}).done(function() {
-
+			data: form.serialize(),
+			dataType: "json"
+		}).done(function(resp) {
+			popup.showPopup(resp.message);
+			resetForm(form);
+		}).fail(function(){
+			popup.showPopup("Упс. На сервере произошла ошибка.<br/>Попробуйте позже.");
+			resetForm(form);
 		});
-
-		popup.showPopup("Сообщение отправлено", 2500);
-		resetForm(form);
 		return false;
 	} else {
 		popup.showPopup("Пожалуйста исправьте ошибки заполнения.",2500);

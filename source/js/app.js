@@ -25,7 +25,6 @@
 	// Load map
 	// ==============================
 	if($("#map_wrapper").length){
-		alert("map");
 		google.maps.event.addDomListener(window, "load", map.init("map_wrapper"));
 	}
 
@@ -149,7 +148,7 @@
 				slider.prepareTitles($(this), 700);
 			});
 
-		slider.createSlider(".portfolio-slider");
+		slider.createSlider(".portfolio-slider", 700);
 	}
 
 
@@ -166,7 +165,7 @@
 
 
 	// ==============================
-	// Talks blur based on js
+	// Contact form blur based on js
 	// ==============================
 	function set_bg(){
 		var section = $(".talks"),
@@ -177,6 +176,11 @@
 		form_bg.css({
 			"background-position" : "center " + bg_offset + "px"
 		});
+
+		// Upscale "testimonials" section background to fit its container
+		if( $(window).width() > window.hm.resizeLimit){
+			$(".talks, .contact-form__bg").css("background-size", $(window).width() + "px");
+		}
 	}
 
 	if($(".talks").length){
@@ -186,11 +190,6 @@
 
 		$(window).resize(function() {
 			set_bg();
-
-			// Upscale "testimonials" section background to fit its container
-			if( $(window).width() > window.hm.resizeLimit){
-				$(".talks, .contact-form__bg").css("background-size", $(window).width() + "px");
-			}
 		});
 	}
 
