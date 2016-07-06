@@ -1,6 +1,6 @@
 include common/_mixins
 doctype html
-html
+html(lang="ru")
 	include common/_head
 	body
 		include common/_preloader
@@ -38,11 +38,11 @@ html
 		//- SLIDER START
 		section.portfolio-slider
 			.portfolio-slider__module.portfolio-slider__preview-container
-				img.portfolio-preview.active(src="/assets/img/works/unspoken.png")
-				img.portfolio-preview(src="/assets/img/works/myspace.png")
-				img.portfolio-preview(src="/assets/img/works/alpha.png")
-				img.portfolio-preview(src="/assets/img/works/karakalpakiya.png")
-				img.portfolio-preview(src="/assets/img/works/bringcar.png")
+				img.portfolio-preview.active(src="/assets/img/works/unspoken.png" alt="Unspoken World Magazine")
+				img.portfolio-preview(src="/assets/img/works/myspace.png" alt="MySpace 1.0")
+				img.portfolio-preview(src="/assets/img/works/alpha.png" alt="Alpha Capital Education")
+				img.portfolio-preview(src="/assets/img/works/karakalpakiya.png" alt="Karakalpakiya.ru")
+				img.portfolio-preview(src="/assets/img/works/bringcar.png" alt="Bringcar.ru")
 
 			.portfolio-slider__module.portfolio-slider__projects-container
 				.portfolio-projects
@@ -76,7 +76,7 @@ html
 
 				.navigation-box.navigation-box_prev
 					button.portfolio-button.portfolio-button_prev
-						.fa.fa-chevron-down
+						span.fa.fa-chevron-down
 
 					.portfolio-thumbnails
 						.portfolio-thumbnails__thumbnail
@@ -92,7 +92,7 @@ html
 
 				.navigation-box.navigation-box_next
 					button.portfolio-button.portfolio-button_next
-						.fa.fa-chevron-up
+						span.fa.fa-chevron-up
 
 					.portfolio-thumbnails
 						.portfolio-thumbnails__thumbnail
