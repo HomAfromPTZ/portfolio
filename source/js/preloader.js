@@ -54,23 +54,37 @@ module.exports = function preloader() {
 	}
 
 	function images_loop () {
-		setTimeout(function () {
+		// setTimeout(function () {
+		// 	var test_image = new Image();
+
+		// 	test_image.onload = img_loaded;
+		// 	test_image.onerror = img_loaded;
+
+		// 	// console.log("C: " + count, " T: " + total);
+
+		// 	if (count != total) {
+		// 		if (all_images[count].srcset) {
+		// 			test_image.srcset = all_images[count].srcset;
+		// 		}
+		// 		test_image.src = all_images[count].src;
+
+		// 		images_loop();
+		// 	}
+		// }, 20);
+
+		// FOR version
+		for(var i=0; i<total; i++){
 			var test_image = new Image();
+
 
 			test_image.onload = img_loaded;
 			test_image.onerror = img_loaded;
 
-			// console.log("C: " + count, " T: " + total);
-
-			if (count != total) {
-				if (all_images[count].srcset) {
-					test_image.srcset = all_images[count].srcset;
-				}
-				test_image.src = all_images[count].src;
-
-				images_loop();
+			if (all_images[i].srcset) {
+				test_image.srcset = all_images[i].srcset;
 			}
-		}, 20);
+			test_image.src = all_images[i].src;
+		}
 	}
 
 	// Get all images
@@ -123,21 +137,7 @@ module.exports = function preloader() {
 	if (total === 0) {
 		done_loading();
 	} else {
-		preloader_stat.css({opacity: 1});
+		// preloader_stat.css({opacity: 1});
 		images_loop();
 	}
-
-	// FOR version
-	/*for(var i=0; i<total; i++){
-		var test_image = new Image();
-
-
-		test_image.onload = img_loaded;
-		test_image.onerror = img_loaded;
-
-		if (all_images[i].srcset) {
-			test_image.srcset = all_images[i].srcset;
-		}
-		test_image.src = all_images[i].src;
-	}*/
 };

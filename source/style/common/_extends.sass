@@ -1,0 +1,59 @@
+// =================================
+// Clearfix
+// =================================
+.clearfix
+	&::before,
+	&::after
+		content: ""
+		display: table
+	&::after
+		clear: both
+
+
+
+// ===================================
+// Can be used as it is or as extends
+// ===================================
+// TODO: maybe try to use only as silent class: e.g. %vertical-aligned
+.vertical-aligned
+	display: table-cell
+	vertical-align: middle
+	position: relative
+
+
+// TODO: same as .vertical-aligned - maybe use only as @extend
+.fullheight
+	height: 100%
+
+	// calculating pusher height for footer
+	&.last-section
+		height: calc(100% + #{$footer_height - 190})
+		+media(s)
+			height: calc(100% + #{$footer-height_small - 190})
+		+media(xs)
+			height: calc(100% + #{$footer-height_xsmall - 190})
+
+	&_mih
+		min-height: 650px
+		overflow: hidden
+		&.last-section
+			min-height: calc(650px + #{$footer_height - 190})
+			+media(s)
+				min-height: calc(650px + #{$footer-height_small - 190})
+			+media(xs)
+				min-height: calc(650px + #{$footer-height_xsmall - 190})
+
+
+
+// =================================
+// Table Layout Modifiers
+// =================================
+.table-box
+	display: table
+	width: 100%
+	&__top,
+	&__middle,
+	&__bottom
+		display: table-row
+	&__middle
+		height: 100%

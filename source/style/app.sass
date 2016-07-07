@@ -1,44 +1,30 @@
 /* ============================ */
 /* :: Vendor Styles :: */
 /* ============================ */
-
-@import "vendor/vendor"
-@import "../../bower_components/font-awesome/scss/font-awesome"
+// @import "vendor/vendor"
+// @import "../../bower_components/font-awesome/scss/font-awesome"
 @import "bourbon"
 
 
 
 /* ============================ */
-/* :: Fonts :: */
+/* :: Required :: */
 /* ============================ */
-
-@import "common/fonts"
-
+@import "common/mixins"
+@import "common/vars"
+@import "common/extends"
 
 
 
 /* ============================ */
 /* :: App Styles :: */
 /* ============================ */
-
-@import "common/vars"
-@import "common/init"
-@import "common/header"
-@import "common/footer"
-
 @import "common/popup"
 @import "common/tooltips"
 @import "common/slider"
 
-@import "pages/welcome"
 @import "pages/works"
 @import "pages/about"
 @import "pages/blog"
 
-
-
-
-/* ============================ */
-/* :: Media Queries :: */
-/* ============================ */
-// @import "common/media"
+@import "common/footer"
