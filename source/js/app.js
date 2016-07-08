@@ -20,7 +20,6 @@
 	window.hm.resizeLimit = 2000 - window.hm.scrollBarWidth;
 
 
-
 	// ==============================
 	// Load map
 	// ==============================
@@ -45,6 +44,8 @@
 	// ==============================
 	// Parallax
 	// ==============================
+
+	// Main page mouse parallax
 	if($("#scene.axis").length){
 		$("#scene.axis").parallax({
 			scalarX: 3,
@@ -54,8 +55,10 @@
 		});
 	}
 
+	// Common vertical parallax for other pages
 	if($("#scene.vertical").length){
-		verticalParallax.createParallax("#scene.vertical", ".layer");
+		// 5 - mobile fallback layer number
+		verticalParallax.createParallax("#scene.vertical", ".layer", 5);
 
 		// IE scroll jump fix
 		if(helpers.ieVersion()) {

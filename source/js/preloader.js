@@ -19,6 +19,7 @@ var circle_o = $("#preloader-svg__img .bar__outer"),
 
 
 module.exports = function preloader() {
+
 	function img_loaded(){
 		var percentage = Math.ceil( ++count / total * 100 );
 
@@ -44,6 +45,7 @@ module.exports = function preloader() {
 	}
 
 	function done_loading(){
+		preloader_stat.css({"animation":"none"});
 		$("#preloader").delay(700).fadeOut(700, function(){
 			$("#preloader__progress").remove();
 
@@ -53,7 +55,9 @@ module.exports = function preloader() {
 		});
 	}
 
-	function images_loop () {
+	function images_loop (total) {
+
+		// Timeout version
 		// setTimeout(function () {
 		// 	var test_image = new Image();
 
@@ -62,7 +66,7 @@ module.exports = function preloader() {
 
 		// 	// console.log("C: " + count, " T: " + total);
 
-		// 	if (count != total) {
+		// 	if (count < total) {
 		// 		if (all_images[count].srcset) {
 		// 			test_image.srcset = all_images[count].srcset;
 		// 		}
@@ -70,7 +74,7 @@ module.exports = function preloader() {
 
 		// 		images_loop();
 		// 	}
-		// }, 20);
+		// }, 10);
 
 		// FOR version
 		for(var i=0; i<total; i++){
@@ -83,6 +87,7 @@ module.exports = function preloader() {
 			if (all_images[i].srcset) {
 				test_image.srcset = all_images[i].srcset;
 			}
+
 			test_image.src = all_images[i].src;
 		}
 	}
@@ -137,7 +142,6 @@ module.exports = function preloader() {
 	if (total === 0) {
 		done_loading();
 	} else {
-		// preloader_stat.css({opacity: 1});
-		images_loop();
+		images_loop(total);
 	}
 };

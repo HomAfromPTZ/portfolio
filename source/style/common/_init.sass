@@ -26,6 +26,7 @@ body
 
 // Show scrollbar on every page
 html
+	overflow-x: hidden
 	overflow-y: scroll
 
 
@@ -56,7 +57,7 @@ html
 	z-index: 99999
 	background-color: $maincolor
 	text-align: center
-	background-image: url("/assets/img/theme_mountains/preloader_bg.jpg")
+	// background-image: url("/assets/img/theme_mountains/preloader_bg.jpg")
 	background-position: center center
 	background-size: cover
 	&__progress
@@ -78,16 +79,20 @@ html
 			transform: translate(-50%,-50%)
 			color: $white
 			font-size: em(24)
-			// opacity: 0
-			transition: opacity $transition-time_medium
+			animation: blink $transition-time_medium infinite
 		&__img
 			.bar
 				transition: all .5s
-				&__center
-					// transition-delay: .1s
-				&__inner
-					// transition-delay: .1s
+				+media(xs)
+					transition: none
 
+@keyframes blink
+	0%
+		opacity: .5
+	50%
+		opacity: 1
+	100%
+		opacity: .5
 
 .container
 	max-width: 1800px
@@ -350,6 +355,10 @@ button
 		background-size: cover
 		background-position: center 40%
 
-	@for $i from 0 to 10
-		.layer-bg_#{$i}
-			background-image: url("/assets/img/theme_mountains/parallax/layer_#{$i}.png")
+	+media(DO)
+		@for $i from 0 to 10
+			.layer-bg_#{$i}
+				background-image: url("/assets/img/theme_mountains/parallax/layer_#{$i}.png")
+	+media(s)
+		.layer-bg_5
+			background-image: url("/assets/img/theme_mountains/parallax_mobile.png")
