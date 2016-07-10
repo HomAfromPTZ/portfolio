@@ -1,0 +1,76 @@
+include common/_mixins
+doctype html
+html(lang="ru")
+	include common/_adminHead
+	body
+		.admin-page
+			.header
+				.header__title-wrapper
+					h1.header__title Панель администрирования
+				.header__link-wrapper
+					a.header__link(href="/" title="Вернуться на сайт") Вернуться на сайт
+
+			ul.tabs-control
+				li.tabs-control__item.active Работы
+				li.tabs-control__item Навыки
+				li.tabs-control__item Блог
+
+			ul.tabs-content
+				li.tabs-content__item.active
+					form(enctype="multipart/form-data")
+						.form
+							h2.form__heading Мои работы
+							h3.form__subtitle Добавить работу
+							input.form__field(type="text", placeholder="Название проекта", name="project-title")
+							input.form__field(type="text", placeholder="Технологии", name="project-tech")
+							input.form__field(type="text", placeholder="Ссылка", name="project-link")
+							label(class="file-label") Загрузить картинку
+								input.form__field.form__field_file(type="file")
+							button.form__button Добавить
+				li.tabs-content__item
+					form
+						.form
+							h2.form__heading Обо мне
+							.skills
+								.skills__block
+									h3.form__subtitle Frontend
+									ul.skills__list
+										+skill_input("Html", 100)
+										+skill_input("Sass", 100)
+										+skill_input("Js", 60)
+										+skill_input("Less", 55)
+								.skills__block
+									h3.form__subtitle Backend
+									ul.skills__list
+										+skill_input("Html", 100)
+										+skill_input("Sass", 100)
+										+skill_input("Js", 100)
+										+skill_input("Less", 100)
+										+skill_input("Less", 100)
+								.skills__block
+									h3.form__subtitle Workflow
+									ul.skills__list
+										+skill_input("Gulp and browserify", 100)
+										+skill_input("Very long and lonesome sentence", 100)
+										+skill_input("Js", 100)
+										+skill_input("Less", 100)
+								.skills__block
+									h3.form__subtitle CMS
+									ul.skills__list
+										+skill_input("Gulp and browserify", 100)
+										+skill_input("Very long and lonesome sentence", 100)
+										+skill_input("Js", 100)
+										+skill_input("Less", 100)
+							button.form__button Сохранить
+				li.tabs-content__item
+					form
+						.form
+							h2.form__heading Блог
+							h3.form__subtitle Добавить запись
+							input.form__field(type="text", placeholder="Название", name="article-title")
+							input.form__field.form__field_date(type="text", placeholder="Дата", name="article-date")
+							textarea.form__field.form__field_textarea(placeholder="Содержание", name="article-text")
+							button.form__button Добавить
+
+		script(src='/assets/js/libs.js' defer)
+		script(src='/assets/js/app.js' defer)

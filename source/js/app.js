@@ -196,6 +196,36 @@
 		});
 	}
 
+
+	// ==============================
+	// Admin Tabs
+	// ==============================
+	if($(".admin-page").length){
+		$(".tabs-control__item").on("click", function(){
+			var index = $(this).index(),
+				content = $(".tabs-content__item");
+
+			content.eq(index)
+				.add(this)
+				.addClass("active")
+				.siblings()
+				.removeClass("active");
+		});
+
+		$(".form__field_date").pickmeup({
+			format  : "d.m.Y",
+			hide_on_select : true,
+			locale : {
+				days: ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"],
+				daysShort: ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"],
+				daysMin: ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"],
+				months: ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "December"],
+				monthsShort: ["Янв", "Фев", "Мар", "Апр", "Май", "Июн", "Июл", "Авг", "Сен", "Окт", "Ноя", "Дек"]
+			}
+		});
+	}
+
+
 	preloader();
 
 })(jQuery);

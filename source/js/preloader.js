@@ -21,8 +21,9 @@ var circle_o = $("#preloader-svg__img .bar__outer"),
 module.exports = function preloader() {
 
 	function img_loaded(){
-		var percentage = Math.ceil( ++count / total * 100 );
+		var percentage = Math.ceil( (count+1) / total * 100 );
 
+		count += 1;
 		percentage = percentage > 100 ? 100 : percentage;
 
 		// Draw offsets
@@ -41,7 +42,9 @@ module.exports = function preloader() {
 
 		preloader_stat.html(percentage);
 
-		if(count === total) return done_loading();
+		if(count === total){
+			return done_loading();
+		}
 	}
 
 	function done_loading(){
@@ -64,7 +67,7 @@ module.exports = function preloader() {
 		// 	test_image.onload = img_loaded;
 		// 	test_image.onerror = img_loaded;
 
-		// 	// console.log("C: " + count, " T: " + total);
+		// 	console.log("Count: " + count + " Total: " + total);
 
 		// 	if (count < total) {
 		// 		if (all_images[count].srcset) {
@@ -72,7 +75,7 @@ module.exports = function preloader() {
 		// 		}
 		// 		test_image.src = all_images[count].src;
 
-		// 		images_loop();
+		// 		images_loop(total);
 		// 	}
 		// }, 10);
 
