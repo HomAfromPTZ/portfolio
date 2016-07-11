@@ -27,6 +27,8 @@ li
 	margin: 0
 	padding: 0
 
+img
+	max-width: 100%
 
 
 // =================================
@@ -135,6 +137,21 @@ li
 			width: 100%
 		&_file
 			display: none
+		&_image-preview
+			background-color: $white
+			height: 150px
+			position: relative
+			text-align: center
+			img
+				position: relative
+				max-height: 100%
+			.fa
+				position: absolute
+				left: 50%
+				top: 50%
+				transform: translate(-50%,-50%)
+				font-size: em(24)
+				color: $text-color
 	&__button
 		background-color: $maincolor
 		border: none

@@ -218,6 +218,33 @@
 		tinyMceL10n();
 
 
+
+		// Image preview
+		$(".form__field_file").on("change", function(){
+			var input = this,
+				preview;
+
+			if($("#image-src").length > 0){
+				preview = $("#image-src");
+			} else {
+				preview = $("<img id='image-src'/>");
+				$(".form__field_image-preview").append(preview);
+			}
+
+			if (input.files && input.files[0]) {
+				var reader = new FileReader();
+
+				reader.onload = function (e) {
+					preview.attr("src", e.target.result);
+				}
+
+				reader.readAsDataURL(input.files[0]);
+			}
+		});
+
+
+
+		// Skills handlers
 		$(".skills").on("click", function(e){
 			var clicked = $(e.target);
 
