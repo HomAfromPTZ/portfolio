@@ -1,6 +1,5 @@
 'use strict';
 
 module.exports = [
-	'./source/js/app.js',
-	'./source/js/tinymce_l10n.js'
+	'./source/js/app.js'
 ];

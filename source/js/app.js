@@ -8,6 +8,7 @@
 		blogNavigation = require("./hm_modules/blogNavigation.js"),
 		map = require("./hm_modules/gmap.js"),
 		adminTabs = require("./hm_modules/tabs.js"),
+		tinyMceL10n = require("./hm_modules/tinymce_l10n.js"),
 		pickMeUp = require("./hm_modules/pickMeUp.js");
 
 
@@ -213,6 +214,8 @@
 			toolbar1: "undo redo | bold italic | link image",
 			toolbar2: "alignleft aligncenter alignright"
 		});
+
+		tinyMceL10n();
 
 
 		$(".skills").on("click", function(e){
