@@ -157,6 +157,12 @@ li
 	background-size: 40px 40px
 	cursor: pointer
 
+.mce-tinymce
+	margin-top: 10px !important
+	overflow: hidden !important
+	border: none !important
+	border-radius: 5px !important
+	max-width: 600px !important
 
 
 // =================================
@@ -165,43 +171,136 @@ li
 .skills
 	display: flex
 	flex-wrap: wrap
+	&__heading
+		font-size: em(16)
+		font-weight: bold
+		margin-top: 10px
+		padding: 5px 0
+		color: $text-color
+		border: 2px inset transparent
+		background: none
+		border-radius: 5px
+		transition: all $transition-time
+		cursor: pointer
+		&:focus
+			cursor: text
+			outline: none
+			border-color: $gray_light
+			background: $white
 	&__block
 		width: 33.33333%
-		padding-right: 30px
+		padding: 10px 2px
+		border-radius: 5px
+		border: 1px dashed transparent
+		position: relative
+		transition: border-color $transition-time, background-color $transition-time
 		+media(m)
 			width: 50%
 		+media(s)
 			width: 100%
+			padding: 10px 0
+		&:hover
+			background-color: rgba($white, .5)
+			.skills__remove
+				visibility: visible
+		&_new
+			display: flex
+			align-items: center
+			justify-content: center
+			text-align: center
+			font-size: em(40)
+			color: $maincolor
+			&:hover
+				border-color: $maincolor
+				cursor: pointer
 	&__list
-		margin-left: 20px
+		width: 100%
+	&__remove
+		position: absolute
+		right: 10px
+		top: 20px
+		cursor: pointer
+		visibility: hidden
+		font-size: em(26)
+		transition: color $transition-time
+		&:hover
+			color: $error-color
 
 .skill
 	margin-top: 10px
+	width: 100%
+	display: flex
+	align-items: center
+	font-family: "roboto_regular", sans-serif
 	+media(s)
 		margin-top: 20px
-	&__label
-		font-family: "roboto_regular", sans-serif
-		color: $text-color
-		width: 100%
 	&__name
-		width: 60%
-		display: inline-block
+		color: $text-color
+		width: 50%
+		margin-left: 4%
+		padding: 5px
 		vertical-align: middle
 		border: 2px inset transparent
 		background: none
 		border-radius: 5px
 		transition: all $transition-time
 		cursor: pointer
-		padding: 5px
+		+media(xs)
+			width: 55%
+			margin-left: 0
 		&:focus
 			cursor: text
 			outline: none
 			border-color: $gray_light
 			background: $white
-	&__input
+	&__percentage
+		width: 18%
+		margin: 0 1%
+		padding: 10px 5px
 		border: 0
 		text-align: right
 		border-radius: 5px
-		padding: 10px 5px
-		margin: 0 10px
-		width: 60px
+		+media(s)
+			width: 15%
+		+media(xs)
+			width: 25%
+	&__misc
+		position: relative
+		display: block
+		+media(xs)
+			width: 15%
+			text-align: center
+	&__percent-sign
+		padding: 0 5px
+	&__remove
+		text-align: center
+		color: $white
+		width: 30px
+		height: 30px
+		line-height: 28px
+		background-color: $text-color
+		border-radius: 50%
+		cursor: pointer
+		transition: all $transition-time
+		+media(xs)
+			position: absolute
+			left: 50%
+			top: 50%
+			margin-top: -15px
+			margin-left: -15px
+		&:hover
+			background-color: $error-color
+	&__new
+		font-size: em(20)
+		font-family: "FontAwesome"
+		justify-content: center
+		padding: 5px
+		cursor: pointer
+		color: $text-color
+		transition: color $transition-time
+		border: 1px dashed $text-color
+		border-radius: 5px
+		margin: 10px auto
+		width: 90%
+		&:hover
+			color: $maincolor

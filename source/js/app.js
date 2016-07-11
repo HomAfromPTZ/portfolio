@@ -1,12 +1,14 @@
 (function($) {
 	"use strict";
-	var preloader = require("./preloader.js"),
-		helpers = require("./helpers.js"),
-		verticalParallax = require("./verticalParallax.js"),
-		forms = require("./forms.js"),
-		slider = require("./slider.js"),
-		blogNavigation = require("./blogNavigation.js"),
-		map = require("./gmap.js");
+	var preloader = require("./hm_modules/preloader.js"),
+		helpers = require("./hm_modules/helpers.js"),
+		verticalParallax = require("./hm_modules/verticalParallax.js"),
+		forms = require("./hm_modules/forms.js"),
+		slider = require("./hm_modules/slider.js"),
+		blogNavigation = require("./hm_modules/blogNavigation.js"),
+		map = require("./hm_modules/gmap.js"),
+		adminTabs = require("./hm_modules/tabs.js"),
+		pickMeUp = require("./hm_modules/pickMeUp.js");
 
 
 	// ==============================
@@ -198,30 +200,64 @@
 
 
 	// ==============================
-	// Admin Tabs
+	// TODO: ADMIN HANDLERS
 	// ==============================
 	if($(".admin-page").length){
-		$(".tabs-control__item").on("click", function(){
-			var index = $(this).index(),
-				content = $(".tabs-content__item");
-
-			content.eq(index)
-				.add(this)
-				.addClass("active")
-				.siblings()
-				.removeClass("active");
+		adminTabs(".tabs-control__item", ".tabs-content__item");
+		pickMeUp(".form__field_date");
+		tinymce.init({
+			selector: ".tinymce-field",
+			plugins: "link, image",
+			min_height: 200,
+			menubar: false,
+			toolbar1: "undo redo | bold italic | link image",
+			toolbar2: "alignleft aligncenter alignright"
 		});
 
-		$(".form__field_date").pickmeup({
-			format  : "d.m.Y",
-			hide_on_select : true,
-			locale : {
-				days: ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"],
-				daysShort: ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"],
-				daysMin: ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"],
-				months: ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "December"],
-				monthsShort: ["Янв", "Фев", "Мар", "Апр", "Май", "Июн", "Июл", "Авг", "Сен", "Окт", "Ноя", "Дек"]
+
+		$(".skills").on("click", function(e){
+			var clicked = $(e.target);
+
+			if(clicked.is(".skills__remove")){
+				$(clicked)
+					.closest(".skills__block")
+					.fadeOut(500, function(){
+						$(this).remove();
+					});
 			}
+
+			if(clicked.is(".skill__remove")){
+				$(clicked)
+					.closest(".skill")
+					.fadeOut(300, function(){
+						$(this).remove();
+					});
+			}
+
+			if(clicked.is(".skill__new")){
+				var button = clicked,
+					skill_wrap = $("<li class='skill'></li>"),
+					skill_name = $("<input class='skill__name' type='text' placeholder='Технология'/>"),
+					skill_perc = $("<input class='skill__percentage' type='number' min='0' max='100' step='0.5' value='0'/>"),
+					skill_misc = $("<span class='skill__misc'><span class='skill__percent-sign'>%</span><span class='skill__remove fa fa-close'></span></span>");
+
+				skill_wrap.append(skill_name, skill_perc, skill_misc);
+				button.before(skill_wrap);
+			}
+		});
+
+
+
+		$(".skills__block_new").on("click", function(){
+			var empty_block = $(this),
+				skills_wrap = $("<div class='skills__block'></div>"),
+				skills_remove = $("<div class='skills__remove fa fa-close'></div>"),
+				skills_heading = $("<input class='skills__heading' type='text' placeholder='Категория'/>"),
+				skills_list = $("<ul class='skills__list'><li class='skill skill__new fa fa-plus'></li></ul>");
+
+			skills_wrap.append(skills_remove, skills_heading, skills_list);
+			empty_block.before(skills_wrap);
+
 		});
 	}
 

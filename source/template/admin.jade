@@ -1,7 +1,7 @@
 include common/_mixins
 doctype html
 html(lang="ru")
-	include common/_adminHead
+	include common/_admin-head
 	body
 		.admin-page
 			.header
@@ -26,42 +26,50 @@ html(lang="ru")
 							input.form__field(type="text", placeholder="Ссылка", name="project-link")
 							label(class="file-label") Загрузить картинку
 								input.form__field.form__field_file(type="file")
-							button.form__button Добавить
+							button.form__button(disabled) Добавить
 				li.tabs-content__item
 					form
 						.form
 							h2.form__heading Обо мне
 							.skills
 								.skills__block
-									h3.form__subtitle Frontend
+									.skills__remove.fa.fa-close
+									+skills_heading("Frontend")
 									ul.skills__list
-										+skill_input("Html", 100)
-										+skill_input("Sass", 100)
-										+skill_input("Js", 60)
-										+skill_input("Less", 55)
+										+skill_input("Html 5 & CSS 3", 99)
+										+skill_input("Js & Jquery", 70)
+										+skill_input("Less & Sass", 70)
+										+skill_input("Jade", 55)
+										li.fa.fa-plus.skill.skill__new
 								.skills__block
-									h3.form__subtitle Backend
+									.skills__remove.fa.fa-close
+									+skills_heading("Backend")
 									ul.skills__list
-										+skill_input("Html", 100)
-										+skill_input("Sass", 100)
-										+skill_input("Js", 100)
-										+skill_input("Less", 100)
-										+skill_input("Less", 100)
+										+skill_input("Php", 60)
+										+skill_input("MySql", 70)
+										+skill_input("Node.js & npm", 10)
+										+skill_input("Mongo.db", 0)
+										li.skill.skill__new.fa.fa-plus
 								.skills__block
-									h3.form__subtitle Workflow
+									.skills__remove.fa.fa-close
+									+skills_heading("Workflow")
 									ul.skills__list
-										+skill_input("Gulp and browserify", 100)
-										+skill_input("Very long and lonesome sentence", 100)
-										+skill_input("Js", 100)
-										+skill_input("Less", 100)
+										+skill_input("Git", 70)
+										+skill_input("Gulp", 80)
+										+skill_input("Bower", 90)
+										+skill_input("Ssh", 20)
+										li.skill.skill__new.fa.fa-plus
 								.skills__block
-									h3.form__subtitle CMS
+									.skills__remove.fa.fa-close
+									+skills_heading("CMS")
 									ul.skills__list
-										+skill_input("Gulp and browserify", 100)
-										+skill_input("Very long and lonesome sentence", 100)
-										+skill_input("Js", 100)
-										+skill_input("Less", 100)
-							button.form__button Сохранить
+										+skill_input("Wordpress", 90)
+										+skill_input("Joomla", 30)
+										+skill_input("Борода и усы", 5)
+										li.skill.skill__new.fa.fa-plus
+								.skills__block.skills__block_new
+									.fa.fa-plus
+							button.form__button(disabled) Сохранить
 				li.tabs-content__item
 					form
 						.form
@@ -69,8 +77,9 @@ html(lang="ru")
 							h3.form__subtitle Добавить запись
 							input.form__field(type="text", placeholder="Название", name="article-title")
 							input.form__field.form__field_date(type="text", placeholder="Дата", name="article-date")
-							textarea.form__field.form__field_textarea(placeholder="Содержание", name="article-text")
-							button.form__button Добавить
+							textarea.form__field.form__field_textarea.tinymce-field(placeholder="Содержание", name="article-text")
+							button.form__button(disabled) Добавить
 
-		script(src='/assets/js/libs.js' defer)
-		script(src='/assets/js/app.js' defer)
+		script(src="//cdn.tinymce.com/4/tinymce.min.js" defer)
+		script(src="/assets/js/libs.js" defer)
+		script(src="/assets/js/app.js" defer)

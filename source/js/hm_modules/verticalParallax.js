@@ -15,6 +15,7 @@ var verticalParallax = function(container_selector, layer_selector, mobile_layer
 				"transform" : "translate3d(0," + ( (scrollPos/(5 + 2*mobile_fallback)) ) + "px,0)"
 			})
 
+
 		} else {
 
 			layers.each(function(){
@@ -27,10 +28,12 @@ var verticalParallax = function(container_selector, layer_selector, mobile_layer
 				}
 			});
 
-			$(container_selector).css({
-				"opacity" : 1-(scrollPos/720)
-			});
 		}
+
+		// Optional: header scroll-fadeout
+		$(container_selector).css({
+			"opacity" : 1-(scrollPos/720)
+		});
 
 	});
 

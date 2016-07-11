@@ -105,11 +105,15 @@ mixin pie_chart(skill, percentage)
 //- =======================
 //- ADMIN PAGE MIXINS
 //- =======================
+//- Skill heading
+mixin skills_heading(title)
+	input.skills__heading(type="text", value=title, placeholder="Категория")
 
 //- Skill input
 mixin skill_input(title, percentage)
 	li.skill
-		label.skill__label()
-			input.skill__name(type="text", value=title, placeholder="Технология")
-			input.skill__input(type="number", min="0", max="100", step="0.5", value=percentage)
-			| %
+		input.skill__name(type="text", value=title, placeholder="Технология")
+		input.skill__percentage(type="number", min="0", max="100", step="0.5", value=percentage)
+		span.skill__misc
+			span.skill__percent-sign %
+			span.skill__remove.fa.fa-close

@@ -1,6 +1,7 @@
 {
 	"globals": {
 		"require" : true,
+		"tinymce" : true,
 		"google" : true
 	},
 	"env": {
