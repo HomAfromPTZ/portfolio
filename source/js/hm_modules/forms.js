@@ -160,15 +160,18 @@ function checkRobot(form, checkbox_stat, radio_stat){
 // Process login
 // =======================================
 function authorization(form){
-	$.ajax({
-		type: "POST",
-		url: "process.php",
-		data: form.serialize()
-	}).done(function() {
+	// $.ajax({
+	// 	type: "POST",
+	// 	url: "process.php",
+	// 	data: form.serialize()
+	// }).done(function() {
 
-	});
+	// });
 
 	popup.showPopup("Тут еще будет проверка пароля, но не сегодня.<br/>Добро пожаловать", 3000);
+	setTimeout(function(){
+		window.location.href = "/admin.html";
+	}, 3000)
 	return false;
 }
 

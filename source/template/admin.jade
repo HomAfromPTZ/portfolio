@@ -3,12 +3,13 @@ doctype html
 html(lang="ru")
 	include common/_admin-head
 	body
+		include common/_preloader
 		.admin-page
 			.header
 				.header__title-wrapper
 					h1.header__title Панель администрирования
 				.header__link-wrapper
-					a.header__link(href="/" title="Вернуться на сайт") Вернуться на сайт
+					a.header__link.preload-link(href="/" title="Вернуться на сайт") Вернуться на сайт
 
 			ul.tabs-control
 				li.tabs-control__item.active Работы
