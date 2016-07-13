@@ -17,6 +17,7 @@ global.$ = {
 	browserify: require('browserify'),
 	vinyl: require('vinyl-source-stream'),
 	buffer: require('vinyl-buffer'),
+	merge: require('merge-stream'),
 	browserSync: require('browser-sync').create(),
 	gp: require('gulp-load-plugins')()
 };
