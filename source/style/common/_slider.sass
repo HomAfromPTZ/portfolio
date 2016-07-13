@@ -2,7 +2,7 @@
 // Slider module
 // =================================
 .portfolio-slider
-	@extend .fullheight, .fullheight_mih
+	@extend %fullheight
 	background-color: $pastel_dark
 	text-align: center
 	img
@@ -44,12 +44,12 @@
 			overflow: hidden
 			position: relative
 			.project
+				display: table
 				background-color: $pastel
 				position: absolute
 				padding: 10% 16%
 				width: 100%
 				height: 100%
-				display: table
 				opacity: 0
 				visibility: hidden
 				transition: opacity $transition-time_medium

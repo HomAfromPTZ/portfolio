@@ -2,7 +2,7 @@
 // Blog section
 // =================================
 .blog
-	@extend .clearfix
+	@extend %clearfix
 	background-color: $white
 
 
@@ -56,10 +56,22 @@
 			height: 100px
 			width: 100px
 			margin-top: -60px
-			// border-top-right-radius: 50%
-			// border-bottom-right-radius: 50%
 			border-radius: 50%
 			background-color: $maincolor
+		.fa
+			position: absolute
+			color: $white
+			opacity: .7
+			top: 50%
+			right: 10%
+			line-height: 1
+			transform: translateY(-50%)
+			font-size: em(20)
+			transition: transform $transition-time
+			.active &
+				transform: translateY(-50%) rotateY(180deg)
+
+
 
 	&__links-list
 		list-style: none

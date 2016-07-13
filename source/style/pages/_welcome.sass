@@ -1,36 +1,41 @@
 // =================================
 // Header
 // =================================
-.login-button
-	position: relative
-	background-color: transparent
-	border: 1px solid $white
-	border-radius: 5px
-	color: $white
-	padding: 10px 25px
-	cursor: pointer
-	overflow: hidden
-	text-align: center
-	transition: all $transition-time
-	outline: none
-	&::before
-		content: ''
-		position: absolute
-		width: 0
-		height: 100%
-		top: 0
-		left: 50%
-		transform: translateX(-50%)
-		z-index: -1
-		opacity: 0
+.welcome-header
+	text-align: right
+	+media(s)
+		text-align: center
+
+	&__button
+		position: relative
+		background-color: transparent
+		border: 1px solid $white
 		border-radius: 5px
-		background-color: $white
-		transition: all $transition-time_medium
-	&:hover
-		color: darken($white, 50%)
+		color: $white
+		padding: 10px 25px
+		cursor: pointer
+		overflow: hidden
+		text-align: center
+		transition: all $transition-time
+		outline: none
 		&::before
-			width: 110%
-			opacity: .7
+			content: ''
+			position: absolute
+			width: 0
+			height: 100%
+			top: 0
+			left: 50%
+			transform: translateX(-50%)
+			z-index: -1
+			opacity: 0
+			border-radius: 5px
+			background-color: $white
+			transition: all $transition-time_medium
+		&:hover
+			color: darken($white, 50%)
+			&::before
+				width: 110%
+				opacity: .7
 
 
 
@@ -44,13 +49,13 @@
 	width: 90%
 	margin: 0 auto
 	opacity: 0
-	perspective: inherit
+	perspective: 1000px
 	transform-origin: top center
-	transform: rotateX(-40deg) translateY(-20px)
-	transition: all $transition-time_medium
+	transform: perspective(600px) rotateX(-40deg) translateY(-20px)
+	transition: transform $transition-time_medium, opacity $transition-time_medium
 	&.loaded
 		opacity: 1
-		transform: rotateX(0) translateY(0)
+		transform: perspective(600px) rotateX(0) translateY(0)
 	&__front-side,
 	&__back-side
 		border-radius: 5px
@@ -68,7 +73,7 @@
 		transform: rotateY(-180deg)
 
 .card_flipped
-	.login-button
+	.welcome-header__button
 		transform: translateY(-200%)
 		opacity: 0
 	.flip-card
@@ -240,3 +245,13 @@
 			transition: all $transition-time
 			&:hover
 				background-color: rgba($maincolor, .4)
+
+
+
+
+
+// =================================
+// Footer
+// =================================
+.welcome-footer
+	text-align: center

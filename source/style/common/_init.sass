@@ -42,11 +42,6 @@ html
 		margin-bottom: -$footer-height_xsmall
 
 
-// TODO: used once on main page
-.perspective-box
-	perspective: 1000px
-
-
 .container
 	max-width: 1800px
 	margin: 0 auto
@@ -166,6 +161,7 @@ button
 	font-size: em(36)
 	opacity: .7
 	transition: all $transition-time
+	padding: 0
 	&:hover
 		opacity: 1
 
@@ -282,6 +278,7 @@ button
 	min-height: 650px
 	z-index: -1
 	transform: translateZ(0)
+
 #scene, .layer
 	display: block
 	height: 100%
@@ -290,14 +287,15 @@ button
 	margin: 0
 	list-style: none
 	transform: translateZ(0)
+
 #scene
 	position: relative
 	overflow: hidden
+
 .layer
 	position: absolute
 	.layer-bg
 		transform: translate3d(0,0,0)
-		// transform-style: preserve-3d
 		backface-visibility: hidden
 		position: absolute
 		width: 140%

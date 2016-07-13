@@ -12,12 +12,12 @@ html(lang="ru")
 
 		+parallax
 
-		header.header.header_welcome.table-box__top
+		header.welcome-header.table-box__row
 			.container.container_padded
-				button.login-button Авторизоваться
+				button.welcome-header__button#flip-card Авторизоваться
 
-		.table-box__middle
-			.vertical-aligned.perspective-box
+		.table-box__row.table-box__row_fullheight
+			.table-box__vertical-aligned
 				h1 За голову ок
 				.flip-card
 					.flip-card__front-side
@@ -49,10 +49,10 @@ html(lang="ru")
 									li.form-buttons__button.form-buttons__button_even
 										button(class="form-buttons__button-content", id=b_action)= b_name
 
-		footer.footer.footer_welcome.table-box__bottom
+		footer.welcome-footer.table-box__row
 			.container.container_padded
 				span.copyright &copy; Лембинен Николай
-				span.copyright(class="copyright_slogan") To boldly go where no man has gone before
-				span.copyright(class="copyright_year") 2016
+				span.copyright.copyright_slogan To boldly go where no man has gone before
+				span.copyright 2016
 
 		include common/_footer-scripts

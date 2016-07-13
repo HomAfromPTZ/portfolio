@@ -15,11 +15,11 @@ html(lang="ru")
 		+parallax("vertical")
 		+main-menu(3)
 
-		header.header.table-box.fullheight.fullheight_mih
-			.table-box__top
+		header.header.table-box
+			.table-box__row
 				+header-top
-			.table-box__middle
-				.vertical-aligned
+			.table-box__row.table-box__row_fullheight
+				.table-box__vertical-aligned
 					.site-author
 						+avatar("avatar_sq.jpg", "Frontend. Wordpress. Разработка сайтов под ключ.", "Лембинен Николай")
 						p.site-author__name Лембинен Николай
@@ -29,9 +29,9 @@ html(lang="ru")
 						use(xlink:href="#icon-portfolio_header")
 					button.go-down.fa.fa-chevron-down(data-link=".about-me")
 
-					svg(preserveAspectRatio="none" viewBox="0 0 1000 400").header__svg-corner.header__svg-corner_left
+					svg.header__svg-corner.header__svg-corner_left(preserveAspectRatio="none" viewBox="0 0 1000 400")
 						use(xlink:href="#icon-about_bg_left")
-					svg(preserveAspectRatio="none" viewBox="0 0 1000 400").header__svg-corner.header__svg-corner_right
+					svg.header__svg-corner.header__svg-corner_right(preserveAspectRatio="none" viewBox="0 0 1000 400")
 						use(xlink:href="#icon-about_bg_right")
 
 
@@ -88,7 +88,7 @@ html(lang="ru")
 							+pie_chart("Борода и усы",10)
 
 
-		section.contacts.last-section.fullheight.fullheight_mih
+		section.contacts.last-section
 			.contacts__map
 				#map_wrapper
 			.contacts__info

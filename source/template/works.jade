@@ -15,11 +15,11 @@ html(lang="ru")
 		+parallax("vertical")
 		+main-menu(1)
 
-		header.header.table-box.fullheight.fullheight_mih
-			.table-box__top
+		header.header.table-box
+			.table-box__row
 				+header-top
-			.table-box__middle
-				.vertical-aligned
+			.table-box__row.table-box__row_fullheight
+				.table-box__vertical-aligned
 					.site-author
 						+avatar("avatar_sq.jpg", "Frontend. Wordpress. Разработка сайтов под ключ.", "Лембинен Николай")
 						p.site-author__name Лембинен Николай
@@ -29,9 +29,9 @@ html(lang="ru")
 						use(xlink:href="#icon-portfolio_header")
 					button.go-down.fa.fa-chevron-down(data-link=".portfolio-slider")
 
-					svg(preserveAspectRatio="none" viewBox="0 0 2000 400").header__svg-corner
+					svg.header__svg-corner(preserveAspectRatio="none" viewBox="0 0 2000 400")
 						use(xlink:href="#icon-bg")
-			.table-box__bottom
+			.table-box__row
 				.header__title
 					+svg-heading("Мои работы", "icon-works_header")
 
@@ -108,9 +108,9 @@ html(lang="ru")
 		//- SLIDER END
 
 
-		section.talks.clearfix.last-section
+		section.talks.last-section
 			+svg-heading("Что обо мне говорят", "icon-about_header", h2)
-			.talks__wrapper.clearfix
+			.talks__wrapper
 				.testimonial
 					blockquote.testimonial__text Этот парень был одним из тех, кто просто хочет спать
 					.testimonial__author.author

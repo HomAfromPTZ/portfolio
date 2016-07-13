@@ -82,7 +82,7 @@
 	// ==============================
 	// Login card flip
 	// ==============================
-	$(".login-button").click(function() {
+	$("#flip-card").click(function() {
 		$("body").addClass("card_flipped");
 	});
 
@@ -119,7 +119,9 @@
 	});
 
 	$(".main-menu__item").each(function(index) {
-		$(this).css("transition-delay", 0.3+0.1*index + "s");
+		var item_delay = 0.3+0.1*index;
+
+		$(this).css("transition-delay", item_delay + "s");
 	});
 
 
@@ -234,9 +236,9 @@
 			if (input.files && input.files[0]) {
 				var reader = new FileReader();
 
-				reader.onload = function (e) {
+				reader.onload = function(e){
 					preview.attr("src", e.target.result);
-				}
+				};
 
 				reader.readAsDataURL(input.files[0]);
 			}

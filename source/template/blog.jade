@@ -14,39 +14,37 @@ html(lang="ru")
 		+parallax("vertical")
 		+main-menu(2)
 
-		header.header.table-box.fullheight.fullheight_mih
-			.table-box__top
+		header.header.table-box
+			.table-box__row
 				+header-top
-			.table-box__middle
-				.vertical-aligned
+			.table-box__row.table-box__row_fullheight
+				.table-box__vertical-aligned
 					.site-author.site-author_blog
 						+avatar("avatar_sq.jpg", "Frontend. Wordpress. Разработка сайтов под ключ.", "Лембинен Николай")
 						+svg-heading("Блог", "icon-blog_header")
 						p.site-author__description Статьи
 
-
 					button.go-down.fa.fa-chevron-down(data-link=".blog")
 
-					svg(preserveAspectRatio="none" viewBox="0 0 1000 400").header__svg-corner.header__svg-corner_left.header__svg-corner_blog
-						use(xlink:href="#icon-about_bg_left")
-					svg(preserveAspectRatio="none" viewBox="0 0 1000 400").header__svg-corner.header__svg-corner_right.header__svg-corner_blog
-						use(xlink:href="#icon-about_bg_right")
+					svg.header__svg-corner.header__svg-corner_blog(preserveAspectRatio="none" viewBox="0 0 2000 400")
+						use(xlink:href="#icon-bg")
 
 
 		.blog.last-section
 			aside.blog-navigation
 				button.blog-navigation__toggle
+					span.fa.fa-chevron-right
 				nav.blog-navigation__wrapper
 					ul.blog-navigation__links-list
 						li.links-list__item
-							a.links-list__link(href="#google") Никаких распродаж! В Госдуме приняли закон о «налоге на Google»
+							a.links-list__link(href="#article-0") Никаких распродаж! В Госдуме приняли закон о «налоге на Google»
 						li.links-list__item
-							a.links-list__link(href="#alph") «Актер, которого никто не знал» — умер Альф
+							a.links-list__link(href="#article-1") «Актер, которого никто не знал» — умер Альф
 						li.links-list__item
-							a.links-list__link(href="#elon") «Мы уже киборги», — заявил Илон Маск на конференции Code Conference 2016
+							a.links-list__link(href="#article-2") «Мы уже киборги», — заявил Илон Маск на конференции Code Conference 2016
 
 			section.blog-content
-				.article#google
+				.article#article-0
 					h3.article__title Никаких распродаж! В Госдуме приняли закон о «налоге на Google»
 					p.article__date 15 июня 2016
 					.article__content.
@@ -61,7 +59,7 @@ html(lang="ru")
 
 						<p>Документ внесли на рассмотрение в декабре депутаты из «Справедливой России» и ЛДПР. Вначале была идея облагать налогом еще и российских продавцов, но позже решили оставить 18% налог только для западных представителей. Тогда говорилось о том, что «налог на Google» принесет государству дополнительные 10 миллиардов рублей. В планах запустить такую же добавочную стоимость к зарубежным интернет-магазинам.</p>
 
-				.article#alph
+				.article#article-1
 					h3.article__title «Актер, которого никто не знал» — умер Альф
 					p.article__date 14 июня 2016
 					.article__content.
@@ -88,7 +86,7 @@ html(lang="ru")
 						<p>В то же время Михай Месерош продолжал выступать в цирке и даже подружился с Майклом Джексоном,. Михая часто видели в обществе короля поп-музыки и его детей в поместье Майкла Джексона Neverland Ranch. Несмотря на то, что этот артист так и не получил ни одной кинонаграды, его именем названа самая короткая улица города Хоторн, что недалеко от Лос-Анджелеса.</p>
 
 						<p>Менеджер Михая Деннис Варгас запустил сбор средств для оплаты больничных услуг и похорон артиста на портале GoFundMe, так что у вас есть возможность отдать дань уважения этому маленькому актеру, которого вы не знали.</p>
-				.article#elon
+				.article#article-2
 					h3.article__title «Мы уже киборги», — заявил Илон Маск на конференции Code Conference 2016
 					p.article__date 03 июня 2016
 					.article__content.

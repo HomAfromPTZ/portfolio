@@ -3,8 +3,6 @@
 // =================================
 .footer
 	position: relative
-	&_welcome
-		text-align: center
 
 	&__wrapper
 		background-color: rgba($stripes-color, .85)
@@ -18,7 +16,7 @@
 	&__row
 		border-bottom: 1px solid rgba($white, .1)
 		padding: 30px
-		@extend .clearfix
+		@extend %clearfix
 		&:last-child
 			border: none
 	&__column
@@ -74,23 +72,22 @@
 		opacity: .5
 		font-family: "roboto_light"
 
-	.copyright
-		font-family: "Roboto_light"
-		opacity: .8
-		color: $white
+.copyright
+	font-family: "Roboto_light"
+	opacity: .5
+	color: $white
+	&_slogan
+		&::before,
+		&::after
+			content: "|"
+			position: relative
+			margin: 0 5px
+	+media(xs)
+		&:first-child
+			display: block
 		&_slogan
-			&::before,
-			&::after
-				content: "|"
-				position: relative
-				margin: 0 5px
-		+media(xs)
-			&:first-child
-				display: block
-			&_slogan
-				&::before
-					display: none
+			&::before
+				display: none
 
-	&_common
-		.copyright
-			opacity: .5
+	.welcome-footer &
+		opacity: .8
