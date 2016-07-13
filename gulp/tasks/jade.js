@@ -5,7 +5,6 @@ module.exports = function() {
 		return $.gulp.src($.path.template)
 			.pipe($.gp.jade({ pretty: '\t' }))
 			.on('error', $.gp.notify.onError(function(error) {
-				console.log(123);
 				return {
 					title: 'Jade',
 					message:  error.message
