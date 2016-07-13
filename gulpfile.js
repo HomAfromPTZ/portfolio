@@ -32,12 +32,12 @@ $.gulp.task('default', $.gulp.series(
 	$.gulp.parallel(
 		'copy_php',
 		'copy_fonts',
+		'copy_image',
 		'sass',
 		'jade',
 		'concat_libs',
-		'js.lint',
-		'js.process',
-		'copy.image'
+		'js_lint',
+		'js_process'
 		),
 	$.gulp.parallel(
 		'watch',
