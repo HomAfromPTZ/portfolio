@@ -10,7 +10,7 @@
 		position: relative
 		background-color: transparent
 		border: 1px solid $white
-		border-radius: 5px
+		border-radius: $border-radius
 		color: $white
 		padding: 10px 25px
 		cursor: pointer
@@ -28,7 +28,7 @@
 			transform: translateX(-50%)
 			z-index: -1
 			opacity: 0
-			border-radius: 5px
+			border-radius: $border-radius
 			background-color: $white
 			transition: all $transition-time_medium
 		&:hover
@@ -58,7 +58,7 @@
 		transform: perspective(600px) rotateX(0) translateY(0)
 	&__front-side,
 	&__back-side
-		border-radius: 5px
+		border-radius: $border-radius
 		overflow: hidden
 		backface-visibility: hidden
 		transition: transform $transition-time_medium
@@ -142,7 +142,7 @@
 			margin: 20px auto
 			padding: 15px 15px 15px 65px
 			border: none
-			border-radius: 5px
+			border-radius: $border-radius
 			outline: none
 			& + span
 				position: absolute
@@ -211,41 +211,6 @@
 			&:checked + span::before
 				box-shadow: inset 0 0 0 4px $white
 				background-color: $maincolor
-
-
-
-
-
-// =================================
-// Page Links / Form buttons
-// =================================
-.form-buttons
-	padding: 0
-	margin: 0
-	list-style: none
-	display: table
-	width: 100%
-	position: relative
-	&__button
-		display: table-cell
-		border-right: 2px solid rgba(lighten($maincolor, 15%), .851)
-		&:last-child
-			border: none
-		&_even
-			width: 50%
-
-	&__button-content
-			display: block
-			width: 100%
-			padding-top: 10px
-			padding-bottom: 12px
-			color: $white
-			background-color: rgba($maincolor, .7)
-			text-decoration: none
-			transition: all $transition-time
-			&:hover
-				background-color: rgba($maincolor, .4)
-
 
 
 

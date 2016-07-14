@@ -8,7 +8,6 @@ module.exports = [
 	'./gulp/tasks/concat_libs.js',
 	'./gulp/tasks/js_lint.js',
 	'./gulp/tasks/js_process.js',
-	'./gulp/tasks/sprites_png.js',
 	'./gulp/tasks/sprites_svg.js',
 	'./gulp/tasks/copy_php.js',
 	'./gulp/tasks/copy_fonts.js',

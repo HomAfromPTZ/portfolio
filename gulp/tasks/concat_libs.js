@@ -6,5 +6,6 @@ module.exports = function() {
 		.pipe($.gp.concat('libs.js'))
 		.pipe($.gp.uglify())
 		.pipe($.gulp.dest($.config.root + '/assets/js'))
+		.pipe($.gulp.dest($.config.root_php + '/assets/js'))
 	})
 };

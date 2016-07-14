@@ -34,7 +34,14 @@ mixin avatar(img, title, alt)
 //- style - BEM modidifier
 mixin social_links(style)
 	ul.social-links
-		- var socials = {"vk" : "http://vk.com/homafromptz", "github-alt" : "https://github.com/HomAfromPTZ", "stack-overflow" : "http://stackoverflow.com/cv/homawebdev"}
+		-
+			var socials = {
+				"vk" : "http://vk.com/homafromptz",
+				"github-alt" : "https://github.com/HomAfromPTZ",
+				"stack-overflow" : "http://stackoverflow.com/cv/homawebdev",
+				"instagram" : "https://www.instagram.com/homafromptz/",
+				"linkedin" : "https://ru.linkedin.com/in/homafromptz"
+			};
 		each s_url, s_name in socials
 			li(class="social-links__item" + ((style) ? " social-links__item_#{style}" : ""))
 				a(class="social-links__link fa fa-" + s_name, href=s_url, target="_blank")
