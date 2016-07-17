@@ -10,6 +10,7 @@ module.exports = [
 	'./gulp/tasks/js_process.js',
 	'./gulp/tasks/sprites_svg.js',
 	'./gulp/tasks/copy_php.js',
+	'./gulp/tasks/copy_vendor_php.js',
 	'./gulp/tasks/copy_fonts.js',
 	'./gulp/tasks/copy_image.js',
 	'./gulp/tasks/serve.js',

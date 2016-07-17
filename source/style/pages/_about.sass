@@ -32,7 +32,7 @@
 			left: 0
 
 	.bio
-		padding: 0 4%
+		padding: 0 4% 20px
 		&__main-image
 			border-radius: $border-radius
 			overflow: hidden
@@ -41,7 +41,6 @@
 		&__heading
 			margin: 40px auto 10px
 		&__about
-			padding-bottom: 40px
 			font-family: "roboto_regular"
 			color: $text-color
 			text-align: left
@@ -50,6 +49,13 @@
 				transition: all $transition-time
 				&:hover
 					color: darken($maincolor, 20%)
+		&__vids
+			overflow: hidden
+			border-radius: $border-radius
+			padding: 10px 0
+			background-color: $black
+			iframe
+				display: block
 
 	.skills
 		padding: 0 4%

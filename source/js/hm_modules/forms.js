@@ -118,15 +118,16 @@ function resetForm (form){
 function sendFeedback (form) {
 	if(textFieldsCheck(form)){
 		$.ajax({
-			url: "php/mail.php",
+			url: "/mail",
 			type: "POST",
 			data: form.serialize(),
 			dataType: "json"
 		}).done(function(resp) {
-			popup.showPopup(resp.message);
+			popup.showPopup(resp.message, 2000);
 			resetForm(form);
-		}).fail(function(){
-			popup.showPopup("Упс. На сервере произошла ошибка.<br/>Попробуйте позже.");
+		}).fail(function(resp){
+			popup.showPopup(resp.message);
+			popup.showPopup("Упс. На сервере произошла ошибка.<br/>Попробуйте позже.", 2000);
 			resetForm(form);
 		});
 		return false;
@@ -160,18 +161,25 @@ function checkRobot(form, checkbox_stat, radio_stat){
 // Process login
 // =======================================
 function authorization(form){
-	// $.ajax({
-	// 	type: "POST",
-	// 	url: "process.php",
-	// 	data: form.serialize()
-	// }).done(function() {
-
-	// });
-
-	popup.showPopup("Тут еще будет проверка пароля, но не сегодня.<br/>Добро пожаловать", 3000);
-	setTimeout(function(){
-		window.location.href = "/admin.html";
-	}, 3000)
+	$.ajax({
+		type: "POST",
+		url: "auth",
+		data: form.serialize(),
+		dataType: "json"
+	}).done(function(resp) {
+		if(resp.status=="denied"){
+			popup.showPopup(resp.message,2000);
+		} else {
+			popup.showPopup(resp.message,2500);
+			setTimeout(function(){
+				window.location.href = "/admin";
+			}, 3000)
+		}
+		resetForm(form);
+	}).fail(function(){
+		popup.showPopup("Упс. На сервере произошла ошибка.<br/>Попробуйте позже.");
+		resetForm(form);
+	});
 	return false;
 }
 
@@ -188,15 +196,10 @@ function authForm (selector, login, checkbox_stat, radio_stat){
 		e.preventDefault();
 		if(checkRobot(form, checkbox_stat, radio_stat)){
 			authorization(form);
+		} else {
+			resetForm(form);
 		}
-		resetForm(form);
 	});
-
-	// button.on("click", function(e){
-	// 	e.preventDefault();
-	// 	form.trigger("submit");
-	// 	resetForm(form);
-	// });
 }
 
 

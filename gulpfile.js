@@ -32,6 +32,7 @@ $.gulp.task('default', $.gulp.series(
 	'sprites_svg',
 	$.gulp.parallel(
 		'copy_php',
+		'copy_vendor_php',
 		'copy_fonts',
 		'copy_image',
 		'sass',

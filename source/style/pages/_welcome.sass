@@ -18,7 +18,7 @@
 		text-align: center
 		transition: all $transition-time
 		outline: none
-		&::before
+		&::after
 			content: ''
 			position: absolute
 			width: 0
@@ -33,8 +33,8 @@
 			transition: all $transition-time_medium
 		&:hover
 			color: darken($white, 50%)
-			&::before
-				width: 110%
+			&::after
+				width: 101%
 				opacity: .7
 
 
@@ -153,8 +153,8 @@
 				font-size: em(18)
 				line-height: 45px
 				color: $gray
-				border-bottom-left-radius: 5px
-				border-top-left-radius: 5px
+				border-bottom-left-radius: $border-radius
+				border-top-left-radius: $border-radius
 				background-color: $pastel
 				transition: background-color $transition-time
 			&:focus + span

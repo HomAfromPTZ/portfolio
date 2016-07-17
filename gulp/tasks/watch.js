@@ -3,6 +3,7 @@
 module.exports = function() {
 	$.gulp.task('watch', function() {
 		$.gulp.watch('./source/php/*.php', $.gulp.series('copy_php'));
+		$.gulp.watch('./vendor/**/*', $.gulp.series('copy_vendor_php'));
 		$.gulp.watch('./source/js/**/*.js', $.gulp.series('js_lint', 'js_process'));
 		$.gulp.watch('./source/style/**/*.sass', $.gulp.series('sass'));
 		$.gulp.watch('./source/template/**/*.jade', $.gulp.series('jade'));
