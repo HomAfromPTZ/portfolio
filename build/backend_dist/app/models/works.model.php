@@ -8,4 +8,19 @@ class Works_model{
 			return $result['result'];
 		}
 	}
+
+	public function insert_work($title, $tech, $link, $file){
+		$sql = 'INSERT INTO works SET title=:title, tech=:tech, link=:link, img_src=:file';
+
+		$data = array(
+			':title'=>$title,
+			':tech'=>$tech,
+			':link'=>$link,
+			':file'=>$file
+		);
+
+		$result = DB::insert($sql,$data);
+
+		return $result;
+	}
 }
