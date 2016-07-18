@@ -3,8 +3,10 @@
 	var preloader = require("./hm_modules/preloader.js"),
 		adminTabs = require("./hm_modules/tabs.js"),
 		tinyMceL10n = require("./hm_modules/tinymce_l10n.js"),
+		popup = require("./hm_modules/popup.js"),
 		pickMeUp = require("./hm_modules/pickMeUp.js");
 
+	popup.init("#hm-popup", ".hm-popup__text", ".hm-popup__close");
 
 
 	// ==============================
@@ -96,6 +98,39 @@
 			empty_block.before(skills_wrap);
 
 		});
+
+		$("form").on("submit", function(e){
+			var form = $(this);
+			e.preventDefault();
+			form.ajaxSubmit({
+				type: "POST",
+				url: "/admin",
+				dataType: "json",
+				success: function(resp){
+					popup.showPopup(resp.message, 2500);
+				},
+				error: function(){
+					popup.showPopup("Упс. На сервере произошла ошибка.<br/>Попробуйте позже.", 2500);
+				}
+			});
+
+
+
+			// $.ajax({
+			// 	type: "POST",
+			// 	url: "/admin"
+			// 	// data: form.serialize(),
+			// 	// dataType: "json"
+			// }).done(function(resp) {
+			// 	popup.showPopup(resp.message,2000);
+			// 	// resetForm(form);
+			// }).fail(function(){
+			// 	popup.showPopup("Упс. На сервере произошла ошибка.<br/>Попробуйте позже.");
+			// 	// resetForm(form);
+			// });
+			// return false;
+		});
+
 	}
 
 

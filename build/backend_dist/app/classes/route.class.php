@@ -19,6 +19,9 @@ class Route{
 		if(file_exists($controller_file)){
 			require_once ($controller_file);
 			new $controller;
+			// if(!empty($routes[2])){
+			// 	$controller->$routes[2]();
+			// }
 		} else {
 			self::error_404();
 		}
