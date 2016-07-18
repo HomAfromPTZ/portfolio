@@ -46,17 +46,17 @@ class Admin{
 			$this->response["message"] = "Ошибка. Заполнены не все поля";
 		} else {
 			if($file = $this->processFile()) {
-				$sql = 'INSERT INTO works SET title=:title, tech=:tech, link=:link, img_src=:file';
-				$data = array(
-					':title'=>$_POST['project-title'],
-					':tech'=>$_POST['project-tech'],
-					':link'=>$_POST['project-link'],
-					':file'=>$file,
-					);
-				$result = DB::get_insert($sql,$data);
+				require_once('app/models/works.model.php');
+				$mdl = new Works_model;
+				$new = $mdl->insert_work($_POST['project-title'],$_POST['project-tech'],$_POST['project-link'],$file);
 
-				$this->response["status"] = "saved";
-				$this->response["message"] = "Работа сохранена";
+				if($new){
+					$this->response["status"] = "saved";
+					$this->response["message"] = "Работа сохранена";
+				} else {
+					$this->response["status"] = "error";
+					$this->response["message"] = "Ошибка вставки в базу данных!";
+				}
 			}
 		}
 		echo json_encode($this->response);
@@ -92,25 +92,8 @@ class Admin{
 				return $uploaded;
 			}
 
-			// if($file_extension=="jpg" || $file_extension=="jpeg" || $file_extension=="png" || $file_extension=="gif"){
-
-			// 	if($file_extension=="jpg" || $file_extension=="jpeg" ){
-			// 		$src = imagecreatefromjpeg($file_tmp);
-			// 	}else if($file_extension=="png"){
-			// 		$src = imagecreatefrompng($file_tmp);
-			// 	}else{
-			// 		$src = imagecreatefromgif($file_tmp);
-			// 	}
-
-				
-			// 	imagejpeg($src, $save_path, 100);
-			// 	imagedestroy($src);
-			// }
-
-			$i=1;
 			while(file_exists($save_dir.$file_fullname)==true){
-				$file_fullname = $file_name.$i.'.'.$file_extension;
-				$i++;
+				$file_fullname = $file_name . uniqid() . '.' . $file_extension;
 			}
 
 			$save_path = $save_dir.$file_fullname;

@@ -18,7 +18,7 @@
 		tinymce.init({
 			selector: ".tinymce-field",
 			plugins: "link, image",
-			min_height: 200,
+			min_height: 150,
 			menubar: false,
 			toolbar1: "undo redo | bold italic | link image",
 			toolbar2: "alignleft aligncenter alignright"
@@ -108,27 +108,12 @@
 				dataType: "json",
 				success: function(resp){
 					popup.showPopup(resp.message, 2500);
+					form[0].reset();
 				},
 				error: function(){
 					popup.showPopup("Упс. На сервере произошла ошибка.<br/>Попробуйте позже.", 2500);
 				}
 			});
-
-
-
-			// $.ajax({
-			// 	type: "POST",
-			// 	url: "/admin"
-			// 	// data: form.serialize(),
-			// 	// dataType: "json"
-			// }).done(function(resp) {
-			// 	popup.showPopup(resp.message,2000);
-			// 	// resetForm(form);
-			// }).fail(function(){
-			// 	popup.showPopup("Упс. На сервере произошла ошибка.<br/>Попробуйте позже.");
-			// 	// resetForm(form);
-			// });
-			// return false;
 		});
 
 	}
