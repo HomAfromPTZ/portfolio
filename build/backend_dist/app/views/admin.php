@@ -2,7 +2,10 @@
 
 	<body>
 
-		<?php require_once "parts/preloader.php"; ?>
+		<?php
+			require_once "parts/preloader.php";
+			require_once "parts/popup.php";
+		?>
 
 		<div class="admin-page">
 			<div class="header">
@@ -10,8 +13,8 @@
 					<h1 class="header__title">Панель администрирования</h1>
 				</div>
 				<div class="header__link-wrapper">
-					<a href="/" title="Вернуться на сайт" class="header__link preload-link">Вернуться на сайт</a>
-					<a href="/logout" title="Тестовый логаут" class="header__link preload-link">Тестовый логаут</a>
+					<a href="/" title="Вернуться на сайт" class="header__link preload-link">На сайт</a>
+					<a href="/logout" title="Тестовый логаут" class="header__link preload-link">Выход</a>
 				</div>
 			</div>
 			<ul class="tabs-control">
@@ -25,16 +28,17 @@
 						<div class="form">
 							<h2 class="form__heading">Мои работы</h2>
 							<h3 class="form__subtitle">Добавить работу</h3>
+							<input type="hidden" name="action" value="saveWork">
 							<input type="text" placeholder="Название проекта" name="project-title" class="form__field">
 							<input type="text" placeholder="Технологии" name="project-tech" class="form__field">
 							<input type="text" placeholder="Ссылка" name="project-link" class="form__field">
 							<label class="file-label">Загрузить картинку
-								<input type="file" class="form__field form__field_file">
+								<input type="file" name="project-file" class="form__field form__field_file">
 							</label>
 							<div class="form__field form__field_image-preview">
 								<div class="fa fa-file-image-o"></div>
 							</div>
-							<button disabled class="form__button">Добавить</button>
+							<button class="form__button">Добавить</button>
 						</div>
 					</form>
 				</li>

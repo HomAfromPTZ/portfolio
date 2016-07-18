@@ -43,7 +43,7 @@
 			</ul>
 		</div>
 
-		<?php require_once 'parts/navmenu.php';?>;
+		<?php require_once 'parts/navmenu.php'; ?>
 
 		<header class="header table-box">
 			<div class="table-box__row">

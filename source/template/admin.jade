@@ -4,12 +4,14 @@ html(lang="ru")
 	include common/_admin-head
 	body
 		include common/_preloader
+		include common/_popup
 		.admin-page
 			.header
 				.header__title-wrapper
 					h1.header__title Панель администрирования
 				.header__link-wrapper
-					a.header__link.preload-link(href="/" title="Вернуться на сайт") Вернуться на сайт
+					a.header__link.preload-link(href="/" title="Вернуться на сайт") На сайт
+					a.header__link.preload-link(href="/logout" title="Вернуться на сайт") Выход
 
 			ul.tabs-control
 				li.tabs-control__item.active Работы
@@ -22,14 +24,15 @@ html(lang="ru")
 						.form
 							h2.form__heading Мои работы
 							h3.form__subtitle Добавить работу
+							input(type="hidden", name="action", value="saveWork")
 							input.form__field(type="text", placeholder="Название проекта", name="project-title")
 							input.form__field(type="text", placeholder="Технологии", name="project-tech")
 							input.form__field(type="text", placeholder="Ссылка", name="project-link")
 							label(class="file-label") Загрузить картинку
-								input.form__field.form__field_file(type="file")
+								input.form__field.form__field_file(type="file", name="project-file")
 							.form__field.form__field_image-preview
 								.fa.fa-file-image-o
-							button.form__button(disabled) Добавить
+							button.form__button Добавить
 				li.tabs-content__item
 					form
 						.form

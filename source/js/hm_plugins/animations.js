@@ -22,10 +22,13 @@ $.fn.animated = function(inEffect) {
 // ==============================
 $.fn.animatePies = function() {
 	$(this).each(function(){
-		var pie = $(this);
+		var pie = $(this),
+			pie_dasharray = 314.159265,
+			pie_offset = ((100-pie.data("percentage"))/100)*pie_dasharray;
+
 		pie.waypoint(function(dir) {
 			if (dir === "down") {
-				pie.css({strokeDashoffset:pie.data("percentage")});
+				pie.css({strokeDashoffset:pie_offset});
 			}
 		},
 			{

@@ -26,4 +26,11 @@ class DB{
 
 		return array('count' => $count, 'result' => $result);
 	}
+
+	public static function get_insert($sql, $data = array()){
+		$db_link = self::$db_link;
+		$res = $db_link->prepare($sql);
+
+		return $res -> execute($data);
+	}
 }

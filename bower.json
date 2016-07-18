@@ -12,6 +12,7 @@
     "parallax": "wagerfield/parallax#^2.1.3",
     "waypoints": "^4.0.0",
     "animate.css": "^3.5.2",
-    "pickmeup": "nazar-pc/pickmeup#^2.9.1"
+    "pickmeup": "nazar-pc/pickmeup#^2.9.1",
+    "jquery-form": "malsup/form#^3.46.0"
   }
 }
