@@ -48,100 +48,44 @@
 						<div class="form">
 							<h2 class="form__heading">Обо мне</h2>
 							<input type="hidden" name="action" value="saveSkills">
+
 							<div class="skills">
-								<div class="skills__block">
-									<div class="skills__remove fa fa-close"></div>
-									<input type="text" value="Frontend" placeholder="Категория" class="skills__heading"/>
-									<ul class="skills__list">
-										<li class="skill">
-											<input type="text" value="Html 5 &amp; CSS 3" placeholder="Технология" class="skill__name"/>
-											<input type="number" min="0" max="100" step="0.5" value="99" class="skill__percentage"/><span class="skill__misc"><span class="skill__percent-sign">%</span><span class="skill__remove fa fa-close"></span></span>
-										</li>
-										<li class="skill">
-											<input type="text" value="Js &amp; Jquery" placeholder="Технология" class="skill__name"/>
-											<input type="number" min="0" max="100" step="0.5" value="70" class="skill__percentage"/><span class="skill__misc"><span class="skill__percent-sign">%</span><span class="skill__remove fa fa-close"></span></span>
-										</li>
-										<li class="skill">
-											<input type="text" value="Less &amp; Sass" placeholder="Технология" class="skill__name"/>
-											<input type="number" min="0" max="100" step="0.5" value="70" class="skill__percentage"/><span class="skill__misc"><span class="skill__percent-sign">%</span><span class="skill__remove fa fa-close"></span></span>
-										</li>
-										<li class="skill">
-											<input type="text" value="Jade" placeholder="Технология" class="skill__name"/>
-											<input type="number" min="0" max="100" step="0.5" value="55" class="skill__percentage"/><span class="skill__misc"><span class="skill__percent-sign">%</span><span class="skill__remove fa fa-close"></span></span>
-										</li>
-										<li class="fa fa-plus skill skill__new"></li>
-									</ul>
-								</div>
-								<div class="skills__block">
-									<div class="skills__remove fa fa-close"></div>
-									<input type="text" value="Backend" placeholder="Категория" class="skills__heading"/>
-									<ul class="skills__list">
-										<li class="skill">
-											<input type="text" value="Php" placeholder="Технология" class="skill__name"/>
-											<input type="number" min="0" max="100" step="0.5" value="60" class="skill__percentage"/><span class="skill__misc"><span class="skill__percent-sign">%</span><span class="skill__remove fa fa-close"></span></span>
-										</li>
-										<li class="skill">
-											<input type="text" value="MySql" placeholder="Технология" class="skill__name"/>
-											<input type="number" min="0" max="100" step="0.5" value="70" class="skill__percentage"/><span class="skill__misc"><span class="skill__percent-sign">%</span><span class="skill__remove fa fa-close"></span></span>
-										</li>
-										<li class="skill">
-											<input type="text" value="Node.js &amp; npm" placeholder="Технология" class="skill__name"/>
-											<input type="number" min="0" max="100" step="0.5" value="10" class="skill__percentage"/><span class="skill__misc"><span class="skill__percent-sign">%</span><span class="skill__remove fa fa-close"></span></span>
-										</li>
-										<li class="skill">
-											<input type="text" value="Mongo.db" placeholder="Технология" class="skill__name"/>
-											<input type="number" min="0" max="100" step="0.5" value="0" class="skill__percentage"/><span class="skill__misc"><span class="skill__percent-sign">%</span><span class="skill__remove fa fa-close"></span></span>
-										</li>
-										<li class="skill skill__new fa fa-plus"></li>
-									</ul>
-								</div>
-								<div class="skills__block">
-									<div class="skills__remove fa fa-close"></div>
-									<input type="text" value="Workflow" placeholder="Категория" class="skills__heading"/>
-									<ul class="skills__list">
-										<li class="skill">
-											<input type="text" value="Git" placeholder="Технология" class="skill__name"/>
-											<input type="number" min="0" max="100" step="0.5" value="70" class="skill__percentage"/><span class="skill__misc"><span class="skill__percent-sign">%</span><span class="skill__remove fa fa-close"></span></span>
-										</li>
-										<li class="skill">
-											<input type="text" value="Gulp" placeholder="Технология" class="skill__name"/>
-											<input type="number" min="0" max="100" step="0.5" value="80" class="skill__percentage"/><span class="skill__misc"><span class="skill__percent-sign">%</span><span class="skill__remove fa fa-close"></span></span>
-										</li>
-										<li class="skill">
-											<input type="text" value="Bower" placeholder="Технология" class="skill__name"/>
-											<input type="number" min="0" max="100" step="0.5" value="90" class="skill__percentage"/><span class="skill__misc"><span class="skill__percent-sign">%</span><span class="skill__remove fa fa-close"></span></span>
-										</li>
-										<li class="skill">
-											<input type="text" value="Ssh" placeholder="Технология" class="skill__name"/>
-											<input type="number" min="0" max="100" step="0.5" value="20" class="skill__percentage"/><span class="skill__misc"><span class="skill__percent-sign">%</span><span class="skill__remove fa fa-close"></span></span>
-										</li>
-										<li class="skill skill__new fa fa-plus"></li>
-									</ul>
-								</div>
-								<div class="skills__block">
-									<div class="skills__remove fa fa-close"></div>
-									<input type="text" value="CMS" placeholder="Категория" class="skills__heading"/>
-									<ul class="skills__list">
-										<li class="skill">
-											<input type="text" value="Wordpress" placeholder="Технология" class="skill__name"/>
-											<input type="number" min="0" max="100" step="0.5" value="90" class="skill__percentage"/><span class="skill__misc"><span class="skill__percent-sign">%</span><span class="skill__remove fa fa-close"></span></span>
-										</li>
-										<li class="skill">
-											<input type="text" value="Joomla" placeholder="Технология" class="skill__name"/>
-											<input type="number" min="0" max="100" step="0.5" value="30" class="skill__percentage"/><span class="skill__misc"><span class="skill__percent-sign">%</span><span class="skill__remove fa fa-close"></span></span>
-										</li>
-										<li class="skill">
-											<input type="text" value="Борода и усы" placeholder="Технология" class="skill__name"/>
-											<input type="number" min="0" max="100" step="0.5" value="5" class="skill__percentage"/><span class="skill__misc"><span class="skill__percent-sign">%</span><span class="skill__remove fa fa-close"></span></span>
-										</li>
-										<li class="skill skill__new fa fa-plus"></li>
-									</ul>
-								</div>
-								<div class="skills__block skills__block_new">
+
+								<?php
+								$i=0;
+								foreach($skills as $skill_block): ?>
+									<div class="skills__block">
+										<div class="skills__remove fa fa-close"></div>
+										<input class="skills__heading" type="text" value="<?=$skill_block['category']?>" placeholder="Категория" name="skills[<?=$i?>][name]"/>
+										<ul class="skills__list">
+											<?php
+											$j=0;
+											foreach ($skill_block['skills'] as $skill_name => $skill_percentage): ?>
+
+												<li class="skill">
+													<input class="skill__name" type="text" value="<?=$skill_name?>" placeholder="Технология" name="skills[<?=$i?>][skills][<?=$j?>][name]"/>
+													<input class="skill__percentage" type="number" min="0" max="100" step="0.5" value="<?=$skill_percentage?>" name="skills[<?=$i?>][skills][<?=$j?>][percentage]"/>
+													<span class="skill__misc">
+														<span class="skill__percent-sign">%</span>
+														<span class="skill__remove fa fa-close"></span>
+													</span>
+												</li>
+												<?php
+											$j++;
+											endforeach; ?>
+											<li class="fa fa-plus skill skill__new" data-blockcount="<?=$i?>" data-lastcount="<?=$j?>"></li>
+										</ul>
+									</div>
+									<?php
+								$i++;
+								endforeach; ?>
+
+								<div class="skills__block skills__block_new" data-lastblockcount="<?=$i?>">
 									<div class="fa fa-plus"></div>
 								</div>
+
 							</div>
-							<button disabled class="form__button">Сохранить</button>
+							<button class="form__button">Сохранить</button>
 						</div>
 					</form>
 				</li>

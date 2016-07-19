@@ -111,123 +111,21 @@
 								
 							</p>
 						</div>
+
+						<?php foreach($skills as $skill_block): ?>
 						<div class="skills__group">
-							<div class="group__title">Frontend</div>
-							<div class="group__item">
-								<div class="item-title">Html 5 &amp; CSS 3</div>
-								<svg viewBox="0 0 120 120" class="piechart">
-									<circle fill="none" stroke-width="20" stroke-dasharray="314.159265" stroke-dashoffset="314.159265" cx="60" cy="60" r="50" transform="rotate(-90, 60, 60)" class="piechart__bg"></circle>
-									<circle data-percentage='99' fill="none" stroke-width="20" stroke-dasharray="314.159265" stroke-dashoffset="314.159265" cx="60" cy="60" r="50" transform="rotate(-90, 60, 60)" class="piechart__fill"></circle>
-								</svg>
-							</div>
-							<div class="group__item">
-								<div class="item-title">Js &amp; Jquery</div>
-								<svg viewBox="0 0 120 120" class="piechart">
-									<circle fill="none" stroke-width="20" stroke-dasharray="314.159265" stroke-dashoffset="314.159265" cx="60" cy="60" r="50" transform="rotate(-90, 60, 60)" class="piechart__bg"></circle>
-									<circle data-percentage='60' fill="none" stroke-width="20" stroke-dasharray="314.159265" stroke-dashoffset="314.159265" cx="60" cy="60" r="50" transform="rotate(-90, 60, 60)" class="piechart__fill"></circle>
-								</svg>
-							</div>
-							<div class="group__item">
-								<div class="item-title">Less &amp; Sass</div>
-								<svg viewBox="0 0 120 120" class="piechart">
-									<circle fill="none" stroke-width="20" stroke-dasharray="314.159265" stroke-dashoffset="314.159265" cx="60" cy="60" r="50" transform="rotate(-90, 60, 60)" class="piechart__bg"></circle>
-									<circle data-percentage='70' fill="none" stroke-width="20" stroke-dasharray="314.159265" stroke-dashoffset="314.159265" cx="60" cy="60" r="50" transform="rotate(-90, 60, 60)" class="piechart__fill"></circle>
-								</svg>
-							</div>
-							<div class="group__item">
-								<div class="item-title">Jade</div>
-								<svg viewBox="0 0 120 120" class="piechart">
-									<circle fill="none" stroke-width="20" stroke-dasharray="314.159265" stroke-dashoffset="314.159265" cx="60" cy="60" r="50" transform="rotate(-90, 60, 60)" class="piechart__bg"></circle>
-									<circle data-percentage='80' fill="none" stroke-width="20" stroke-dasharray="314.159265" stroke-dashoffset="314.159265" cx="60" cy="60" r="50" transform="rotate(-90, 60, 60)" class="piechart__fill"></circle>
-								</svg>
-							</div>
+							<div class="group__title"><?=$skill_block['category']?></div>
+							<?php foreach ($skill_block['skills'] as $skill_name => $skill_percentage): ?>
+								<div class="group__item">
+									<div class="item-title"><?=$skill_name?></div>
+									<svg viewBox="0 0 120 120" class="piechart">
+										<circle fill="none" stroke-width="20" stroke-dasharray="314.159265" stroke-dashoffset="314.159265" cx="60" cy="60" r="50" transform="rotate(-90, 60, 60)" class="piechart__bg"></circle>
+										<circle data-percentage='<?=$skill_percentage?>' fill="none" stroke-width="20" stroke-dasharray="314.159265" stroke-dashoffset="314.159265" cx="60" cy="60" r="50" transform="rotate(-90, 60, 60)" class="piechart__fill"></circle>
+									</svg>
+								</div>
+							<?php endforeach; ?>
 						</div>
-						<div class="skills__group">
-							<div class="group__title">Backend</div>
-							<div class="group__item">
-								<div class="item-title">Php</div>
-								<svg viewBox="0 0 120 120" class="piechart">
-									<circle fill="none" stroke-width="20" stroke-dasharray="314.159265" stroke-dashoffset="314.159265" cx="60" cy="60" r="50" transform="rotate(-90, 60, 60)" class="piechart__bg"></circle>
-									<circle data-percentage='66' fill="none" stroke-width="20" stroke-dasharray="314.159265" stroke-dashoffset="314.159265" cx="60" cy="60" r="50" transform="rotate(-90, 60, 60)" class="piechart__fill"></circle>
-								</svg>
-							</div>
-							<div class="group__item">
-								<div class="item-title">MySql</div>
-								<svg viewBox="0 0 120 120" class="piechart">
-									<circle fill="none" stroke-width="20" stroke-dasharray="314.159265" stroke-dashoffset="314.159265" cx="60" cy="60" r="50" transform="rotate(-90, 60, 60)" class="piechart__bg"></circle>
-									<circle data-percentage='60' fill="none" stroke-width="20" stroke-dasharray="314.159265" stroke-dashoffset="314.159265" cx="60" cy="60" r="50" transform="rotate(-90, 60, 60)" class="piechart__fill"></circle>
-								</svg>
-							</div>
-							<div class="group__item">
-								<div class="item-title">Node.js &amp; npm</div>
-								<svg viewBox="0 0 120 120" class="piechart">
-									<circle fill="none" stroke-width="20" stroke-dasharray="314.159265" stroke-dashoffset="314.159265" cx="60" cy="60" r="50" transform="rotate(-90, 60, 60)" class="piechart__bg"></circle>
-									<circle data-percentage='10' fill="none" stroke-width="20" stroke-dasharray="314.159265" stroke-dashoffset="314.159265" cx="60" cy="60" r="50" transform="rotate(-90, 60, 60)" class="piechart__fill"></circle>
-								</svg>
-							</div>
-							<div class="group__item">
-								<div class="item-title">Mongo.db</div>
-								<svg viewBox="0 0 120 120" class="piechart">
-									<circle fill="none" stroke-width="20" stroke-dasharray="314.159265" stroke-dashoffset="314.159265" cx="60" cy="60" r="50" transform="rotate(-90, 60, 60)" class="piechart__bg"></circle>
-									<circle data-percentage='0' fill="none" stroke-width="20" stroke-dasharray="314.159265" stroke-dashoffset="314.159265" cx="60" cy="60" r="50" transform="rotate(-90, 60, 60)" class="piechart__fill"></circle>
-								</svg>
-							</div>
-						</div>
-						<div class="skills__group">
-							<div class="group__title">Workflow</div>
-							<div class="group__item">
-								<div class="item-title">Git</div>
-								<svg viewBox="0 0 120 120" class="piechart">
-									<circle fill="none" stroke-width="20" stroke-dasharray="314.159265" stroke-dashoffset="314.159265" cx="60" cy="60" r="50" transform="rotate(-90, 60, 60)" class="piechart__bg"></circle>
-									<circle data-percentage='68' fill="none" stroke-width="20" stroke-dasharray="314.159265" stroke-dashoffset="314.159265" cx="60" cy="60" r="50" transform="rotate(-90, 60, 60)" class="piechart__fill"></circle>
-								</svg>
-							</div>
-							<div class="group__item">
-								<div class="item-title">Gulp</div>
-								<svg viewBox="0 0 120 120" class="piechart">
-									<circle fill="none" stroke-width="20" stroke-dasharray="314.159265" stroke-dashoffset="314.159265" cx="60" cy="60" r="50" transform="rotate(-90, 60, 60)" class="piechart__bg"></circle>
-									<circle data-percentage='80' fill="none" stroke-width="20" stroke-dasharray="314.159265" stroke-dashoffset="314.159265" cx="60" cy="60" r="50" transform="rotate(-90, 60, 60)" class="piechart__fill"></circle>
-								</svg>
-							</div>
-							<div class="group__item">
-								<div class="item-title">Bower</div>
-								<svg viewBox="0 0 120 120" class="piechart">
-									<circle fill="none" stroke-width="20" stroke-dasharray="314.159265" stroke-dashoffset="314.159265" cx="60" cy="60" r="50" transform="rotate(-90, 60, 60)" class="piechart__bg"></circle>
-									<circle data-percentage='90' fill="none" stroke-width="20" stroke-dasharray="314.159265" stroke-dashoffset="314.159265" cx="60" cy="60" r="50" transform="rotate(-90, 60, 60)" class="piechart__fill"></circle>
-								</svg>
-							</div>
-							<div class="group__item">
-								<div class="item-title">Ssh</div>
-								<svg viewBox="0 0 120 120" class="piechart">
-									<circle fill="none" stroke-width="20" stroke-dasharray="314.159265" stroke-dashoffset="314.159265" cx="60" cy="60" r="50" transform="rotate(-90, 60, 60)" class="piechart__bg"></circle>
-									<circle data-percentage='20' fill="none" stroke-width="20" stroke-dasharray="314.159265" stroke-dashoffset="314.159265" cx="60" cy="60" r="50" transform="rotate(-90, 60, 60)" class="piechart__fill"></circle>
-								</svg>
-							</div>
-						</div>
-						<div class="skills__group">
-							<div class="group__title">CMS</div>
-							<div class="group__item">
-								<div class="item-title">Wordpress</div>
-								<svg viewBox="0 0 120 120" class="piechart">
-									<circle fill="none" stroke-width="20" stroke-dasharray="314.159265" stroke-dashoffset="314.159265" cx="60" cy="60" r="50" transform="rotate(-90, 60, 60)" class="piechart__bg"></circle>
-									<circle data-percentage='90' fill="none" stroke-width="20" stroke-dasharray="314.159265" stroke-dashoffset="314.159265" cx="60" cy="60" r="50" transform="rotate(-90, 60, 60)" class="piechart__fill"></circle>
-								</svg>
-							</div>
-							<div class="group__item">
-								<div class="item-title">Joomla</div>
-								<svg viewBox="0 0 120 120" class="piechart">
-									<circle fill="none" stroke-width="20" stroke-dasharray="314.159265" stroke-dashoffset="314.159265" cx="60" cy="60" r="50" transform="rotate(-90, 60, 60)" class="piechart__bg"></circle>
-									<circle data-percentage='30' fill="none" stroke-width="20" stroke-dasharray="314.159265" stroke-dashoffset="314.159265" cx="60" cy="60" r="50" transform="rotate(-90, 60, 60)" class="piechart__fill"></circle>
-								</svg>
-							</div>
-							<div class="group__item">
-								<div class="item-title">Борода и усы</div>
-								<svg viewBox="0 0 120 120" class="piechart">
-									<circle fill="none" stroke-width="20" stroke-dasharray="314.159265" stroke-dashoffset="314.159265" cx="60" cy="60" r="50" transform="rotate(-90, 60, 60)" class="piechart__bg"></circle>
-									<circle data-percentage='10' fill="none" stroke-width="20" stroke-dasharray="314.159265" stroke-dashoffset="314.159265" cx="60" cy="60" r="50" transform="rotate(-90, 60, 60)" class="piechart__fill"></circle>
-								</svg>
-							</div>
-						</div>
+						<?php endforeach; ?>
 					</div>
 				</div>
 			</div>

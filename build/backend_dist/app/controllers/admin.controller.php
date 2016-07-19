@@ -3,11 +3,19 @@ class Admin{
 	private $response = array();
 
 	public function __construct(){
+
+		require_once('app/models/works.model.php');
+		require_once('app/models/skills.model.php');
+		require_once('app/models/blog.model.php');
+
 		if(!isset($_POST['action'])){
 			session_start();
 			$this->is_auth();
 			$page_title = "Администратор";
 			$page_description = 'Frontend разработчик. Административная панель.';
+
+			$mdl = new Skills_model;
+			$skills = $mdl->get_skills();
 
 			require_once ('app/views/admin.php');
 		}else{
@@ -15,7 +23,7 @@ class Admin{
 				$this->saveWork();
 			}
 			if($_POST['action'] == 'saveSkills'){
-
+				$this->saveSkills();
 			}
 			if($_POST['action'] == 'savePost'){
 				$this->savePost();
@@ -54,7 +62,6 @@ class Admin{
 			$file_mime = $file_info['mime'];
 			$file_size = $file['size'];
 			$save_dir = 'assets/img/works/';
-
 
 			if( ($file_type!='image/gif' && $file_type!='image/jpeg' && $file_type!='image/png') ||
 				($file_mime!='image/gif' && $file_mime!='image/jpeg' && $file_mime!='image/png')) {
@@ -101,7 +108,7 @@ class Admin{
 			$this->response["message"] = "Ошибка. Заполнены не все поля";
 		} else {
 			if($file = $this->processFile()) {
-				require_once('app/models/works.model.php');
+
 				$mdl = new Works_model;
 				$new = $mdl->insert_work($_POST['project-title'], $_POST['project-tech'], $_POST['project-link'], $_POST['project-anchor'], $file);
 
@@ -127,7 +134,7 @@ class Admin{
 			$this->response["status"] = "error";
 			$this->response["message"] = "Ошибка. Заполнены не все поля";
 		} else {
-			require_once('app/models/blog.model.php');
+
 			$mdl = new Blog_model;
 			$new = $mdl->insert_post($_POST['post-title'], $_POST['post-date'], $_POST['post-content']);
 
@@ -139,6 +146,24 @@ class Admin{
 				$this->response["message"] = "Ошибка вставки в базу данных!";
 			}
 		}
+		echo json_encode($this->response);
+		exit();
+	}
+
+
+	private function saveSkills(){
+		
+		$mdl = new Skills_model;
+		$new = $mdl->insert_skills($_POST['skills']);
+
+		if($new){
+			$this->response["status"] = "ok";
+			$this->response["message"] = "Навыки сохранены";
+		} else {
+			$this->response["status"] = "error";
+			$this->response["message"] = "Внесены все навыки за исключением пустых!";
+		}
+
 		echo json_encode($this->response);
 		exit();
 	}

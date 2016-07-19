@@ -37,7 +37,7 @@ function blogNavigation() {
 			blog_nav_offset = $(".blog-navigation").offset().top,
 			blog_nav_limit = $(".footer__wrapper").offset().top - $(".blog-navigation__wrapper").outerHeight(),
 			current = scroll_items.map(function(){
-				if ($(this).offset().top <= fromTop+additional_offset){
+				if ($(this).offset().top <= fromTop+additional_offset+1){
 					return this;
 				}
 			});

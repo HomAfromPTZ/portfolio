@@ -83,13 +83,16 @@
 
 			if(clicked.is(".skill__new")){
 				var button = clicked,
+					counter = button.data("lastcount"),
+					block_id = button.data("blockcount"),
 					skill_wrap = $("<li class='skill'></li>"),
-					skill_name = $("<input class='skill__name' type='text' placeholder='Технология'/>"),
-					skill_perc = $("<input class='skill__percentage' type='number' min='0' max='100' step='0.5' value='0'/>"),
+					skill_name = $("<input class='skill__name' type='text' placeholder='Технология "+(counter+1)+"' name='skills["+block_id+"][skills]["+counter+"][name]'/>"),
+					skill_perc = $("<input class='skill__percentage' type='number' min='0' max='100' step='0.5' value='0' name='skills["+block_id+"][skills]["+counter+"][percentage]'/>"),
 					skill_misc = $("<span class='skill__misc'><span class='skill__percent-sign'>%</span><span class='skill__remove fa fa-close'></span></span>");
 
 				skill_wrap.append(skill_name, skill_perc, skill_misc);
 				button.before(skill_wrap);
+				button.data("lastcount", ++counter);
 			}
 		});
 
@@ -97,13 +100,15 @@
 
 		$(".skills__block_new").on("click", function(){
 			var empty_block = $(this),
+				counter = empty_block.data("lastblockcount"),
 				skills_wrap = $("<div class='skills__block'></div>"),
 				skills_remove = $("<div class='skills__remove fa fa-close'></div>"),
-				skills_heading = $("<input class='skills__heading' type='text' placeholder='Категория'/>"),
-				skills_list = $("<ul class='skills__list'><li class='skill skill__new fa fa-plus'></li></ul>");
+				skills_heading = $("<input class='skills__heading' type='text' placeholder='Категория "+(counter+1)+"' name='skills["+counter+"][name]'/>"),
+				skills_list = $("<ul class='skills__list'><li class='skill skill__new fa fa-plus' data-blockcount="+counter+" data-lastcount='0'></li></ul>");
 
 			skills_wrap.append(skills_remove, skills_heading, skills_list);
 			empty_block.before(skills_wrap);
+			empty_block.data("lastblockcount", ++counter);
 
 		});
 
