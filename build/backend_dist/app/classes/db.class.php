@@ -34,4 +34,12 @@ class DB{
 
 		return $res -> execute($data);
 	}
+
+	public static function clear($table = ""){
+		$db_link = self::$db_link;
+		$sql = "TRUNCATE TABLE $table";
+		$res = $db_link->exec($sql);
+
+		return $res;
+	}
 }

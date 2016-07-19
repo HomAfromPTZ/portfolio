@@ -298,13 +298,17 @@ img
 	&__remove
 		text-align: center
 		color: $white
-		width: 30px
-		height: 30px
-		line-height: 28px
+		padding: 5px
 		background-color: $text-color
 		border-radius: 50%
 		cursor: pointer
 		transition: all $transition-time
+		&::before
+			font-size: 18px
+			line-height: 18px
+			width: 18px
+			height: 18px
+			display: inline-block
 		+media(xs)
 			position: absolute
 			left: 50%
