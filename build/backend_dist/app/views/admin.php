@@ -32,6 +32,7 @@
 							<input type="text" placeholder="Название проекта" name="project-title" class="form__field">
 							<input type="text" placeholder="Технологии" name="project-tech" class="form__field">
 							<input type="text" placeholder="Ссылка" name="project-link" class="form__field">
+							<input type="text" placeholder="Текст ссылки" name="project-anchor" class="form__field">
 							<label class="file-label">Загрузить картинку
 								<input type="file" name="project-file" class="form__field form__field_file">
 							</label>
@@ -46,6 +47,7 @@
 					<form>
 						<div class="form">
 							<h2 class="form__heading">Обо мне</h2>
+							<input type="hidden" name="action" value="saveSkills">
 							<div class="skills">
 								<div class="skills__block">
 									<div class="skills__remove fa fa-close"></div>
@@ -148,10 +150,11 @@
 						<div class="form">
 							<h2 class="form__heading">Блог</h2>
 							<h3 class="form__subtitle">Добавить запись</h3>
-							<input type="text" placeholder="Название" name="article-title" class="form__field">
-							<input type="text" placeholder="Дата" name="article-date" class="form__field form__field_date">
-							<textarea placeholder="Содержание" name="article-text" class="form__field form__field_textarea tinymce-field"></textarea>
-							<button disabled class="form__button">Добавить</button>
+							<input type="hidden" name="action" value="savePost">
+							<input type="text" placeholder="Название" name="post-title" class="form__field">
+							<input type="text" placeholder="Дата" name="post-date" class="form__field form__field_date">
+							<textarea placeholder="Содержание" name="post-content" class="form__field form__field_textarea tinymce-field"></textarea>
+							<button class="form__button">Добавить</button>
 						</div>
 					</form>
 				</li>

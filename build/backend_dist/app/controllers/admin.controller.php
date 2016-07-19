@@ -17,8 +17,8 @@ class Admin{
 			if($_POST['action'] == 'saveSkills'){
 
 			}
-			if($_POST['action'] == 'saveArticle'){
-
+			if($_POST['action'] == 'savePost'){
+				$this->savePost();
 			}
 		}
 	}
@@ -38,29 +38,6 @@ class Admin{
 
 	private function filename ($filename){
 		return pathinfo($filename,PATHINFO_FILENAME);
-	}
-
-	private function saveWork(){
-		if($_POST['project-title']=="" || $_POST['project-tech']=="" || $_POST['project-link']==""){
-			$this->response["status"] = "error";
-			$this->response["message"] = "Ошибка. Заполнены не все поля";
-		} else {
-			if($file = $this->processFile()) {
-				require_once('app/models/works.model.php');
-				$mdl = new Works_model;
-				$new = $mdl->insert_work($_POST['project-title'],$_POST['project-tech'],$_POST['project-link'],$file);
-
-				if($new){
-					$this->response["status"] = "saved";
-					$this->response["message"] = "Работа сохранена";
-				} else {
-					$this->response["status"] = "error";
-					$this->response["message"] = "Ошибка вставки в базу данных!";
-				}
-			}
-		}
-		echo json_encode($this->response);
-		exit();
 	}
 
 	private function processFile(){
@@ -111,5 +88,58 @@ class Admin{
 			$this->response["message"] = "Не указан файл для загрузки.";
 			return $uploaded;
 		}
+	}
+
+	private function saveWork(){
+		if(
+			$_POST['project-title']=="" ||
+			$_POST['project-tech']=="" ||
+			$_POST['project-link']=="" ||
+			$_POST['project-anchor']=="")
+		{
+			$this->response["status"] = "error";
+			$this->response["message"] = "Ошибка. Заполнены не все поля";
+		} else {
+			if($file = $this->processFile()) {
+				require_once('app/models/works.model.php');
+				$mdl = new Works_model;
+				$new = $mdl->insert_work($_POST['project-title'], $_POST['project-tech'], $_POST['project-link'], $_POST['project-anchor'], $file);
+
+				if($new){
+					$this->response["status"] = "saved";
+					$this->response["message"] = "Работа сохранена";
+				} else {
+					$this->response["status"] = "error";
+					$this->response["message"] = "Ошибка вставки в базу данных!";
+				}
+			}
+		}
+		echo json_encode($this->response);
+		exit();
+	}
+
+	private function savePost(){
+		if(
+			$_POST['post-title']=="" ||
+			$_POST['post-date']=="" ||
+			$_POST['post-content']=="")
+		{
+			$this->response["status"] = "error";
+			$this->response["message"] = "Ошибка. Заполнены не все поля";
+		} else {
+			require_once('app/models/blog.model.php');
+			$mdl = new Blog_model;
+			$new = $mdl->insert_post($_POST['post-title'], $_POST['post-date'], $_POST['post-content']);
+
+			if($new){
+				$this->response["status"] = "saved";
+				$this->response["message"] = "Запись сохранена";
+			} else {
+				$this->response["status"] = "error";
+				$this->response["message"] = "Ошибка вставки в базу данных!";
+			}
+		}
+		echo json_encode($this->response);
+		exit();
 	}
 }

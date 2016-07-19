@@ -28,6 +28,7 @@ html(lang="ru")
 							input.form__field(type="text", placeholder="Название проекта", name="project-title")
 							input.form__field(type="text", placeholder="Технологии", name="project-tech")
 							input.form__field(type="text", placeholder="Ссылка", name="project-link")
+							input.form__field(type="text", placeholder="Текст ссылки", name="project-anchor")
 							label(class="file-label") Загрузить картинку
 								input.form__field.form__field_file(type="file", name="project-file")
 							.form__field.form__field_image-preview
@@ -81,9 +82,9 @@ html(lang="ru")
 						.form
 							h2.form__heading Блог
 							h3.form__subtitle Добавить запись
-							input.form__field(type="text", placeholder="Название", name="article-title")
-							input.form__field.form__field_date(type="text", placeholder="Дата", name="article-date")
-							textarea.form__field.form__field_textarea.tinymce-field(placeholder="Содержание", name="article-text")
+							input.form__field(type="text", placeholder="Название", name="post-title")
+							input.form__field.form__field_date(type="text", placeholder="Дата", name="post-date")
+							textarea.form__field.form__field_textarea.tinymce-field(placeholder="Содержание", name="post-content")
 							button.form__button(disabled) Добавить
 
 		script(src="//cdn.tinymce.com/4/tinymce.min.js" defer)

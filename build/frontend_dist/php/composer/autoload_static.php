@@ -7,6 +7,13 @@ namespace Composer\Autoload;
 class ComposerStaticInitf257096cf7b459470fee8e2bf705c436
 {
     public static $prefixesPsr0 = array (
+        'k' => 
+        array (
+            'korytoff/helpers/timehelper' => 
+            array (
+                0 => __DIR__ . '/..' . '/korytoff/timehelper/TimeHelper.php',
+            ),
+        ),
         'V' => 
         array (
             'Valitron' => 
