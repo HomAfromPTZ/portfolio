@@ -29,7 +29,7 @@ var prepareTitles = function (title_container, animation_time, letter_class, wor
 			text = "<span class='"+word_class+"'>" + text;
 		}
 		if(letters[i] == " " || letters[i] == "&nbsp;"){
-			text = "</span>\n<span class='"+word_class+"'>";
+			text = "</span><span class='"+word_class+"'>";
 		}
 		if(i == letters.length-1) {
 			text = text + "</span>";

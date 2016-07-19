@@ -108,5 +108,40 @@
             "validation",
             "validator"
         ]
+    },
+    {
+        "name": "korytoff/timehelper",
+        "version": "1.3",
+        "version_normalized": "1.3.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/korytoff/PHP-TimeHelper.git",
+            "reference": "55bf31af8926dc95ba23ce80492b285bb25b9b47"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/korytoff/PHP-TimeHelper/zipball/55bf31af8926dc95ba23ce80492b285bb25b9b47",
+            "reference": "55bf31af8926dc95ba23ce80492b285bb25b9b47",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.4.0"
+        },
+        "time": "2015-12-21 13:59:32",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "korytoff/helpers/timehelper": "/TimeHelper.php"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "authors": [
+            {
+                "name": "korytoff",
+                "email": "korytoff@gmail.com"
+            }
+        ],
+        "description": "Php class helper for formatting datetime"
     }
 ]

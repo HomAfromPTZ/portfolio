@@ -15,14 +15,22 @@
 	if($(".admin-page").length){
 		adminTabs(".tabs-control__item", ".tabs-content__item");
 		pickMeUp(".form__field_date");
-		tinymce.init({
+
+		var tinymce_config = {
 			selector: ".tinymce-field",
 			plugins: "link, image",
 			min_height: 150,
 			menubar: false,
 			toolbar1: "undo redo | bold italic | link image",
-			toolbar2: "alignleft aligncenter alignright"
-		});
+			toolbar2: "alignleft aligncenter alignright",
+			setup: function (editor) {
+				editor.on("change", function () {
+					tinymce.triggerSave();
+				});
+			}
+		};
+
+		tinymce.init(tinymce_config);
 
 		tinyMceL10n();
 
@@ -108,7 +116,9 @@
 				dataType: "json",
 				success: function(resp){
 					popup.showPopup(resp.message, 2500);
-					form[0].reset();
+					if(resp.status=="saved"){
+						form[0].reset();
+					}
 				},
 				error: function(){
 					popup.showPopup("Упс. На сервере произошла ошибка.<br/>Попробуйте позже.", 2500);

@@ -50,7 +50,7 @@
 
 		<div class="table-box__row table-box__row_fullheight">
 			<div class="table-box__vertical-aligned">
-				<h1>За голову ок</h1>
+				<h1 class="hero-heading">За голову ок</h1>
 				<div class="flip-card">
 					<div class="flip-card__front-side">
 						<div class="author-bio">

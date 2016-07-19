@@ -62,7 +62,7 @@
 					<div class="site-author">
 						<div class="avatar"><img src="/assets/img/avatars/avatar_sq.jpg" title="Frontend. Wordpress. Разработка сайтов под ключ." alt="Лембинен Николай"/></div>
 						<p class="site-author__name">Лембинен Николай</p>
-						<p class="site-author__description">Еще одна страничка</p>
+						<p class="site-author__description">Личный сайт веб разработчика</p>
 					</div>
 					<svg class="header__svg-bg">
 						<use xlink:href="#icon-portfolio_header"></use>
@@ -107,7 +107,7 @@
 						<div class="project<?=($i==0) ? ' active':''?>">
 							<div class="project__inner">
 								<h3 class="sidestripes project__title"><?=$work['title'];?></h3>
-								<p class="project__tech"><?=$work['tech'];?></p><a href="<?=$work['link'];?>" target="_blank" class="project__link">Посмотреть сайт</a>
+								<p class="project__tech"><?=$work['tech'];?></p><a href="<?=$work['link'];?>" target="_blank" class="project__link"><?=$work['link_text'];?></a>
 							</div>
 						</div>
 						<?php
@@ -163,22 +163,22 @@
 			</div>
 			<div class="talks__wrapper">
 				<div class="testimonial">
-					<blockquote class="testimonial__text">Этот парень был одним из тех, кто просто хочет спать</blockquote>
+					<blockquote class="testimonial__text">Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!</blockquote>
 					<div class="testimonial__author author">
-						<div class="avatar"><img src="/assets/img/avatars/dima.png" title="Сооснователь школы LoftSchool" alt="Ковальчук Дмитрий"/></div>
+						<div class="avatar"><img src="/assets/img/avatars/dima.png" title="Сооснователь школы Loftschool" alt="Ковальчук Дмитрий"/></div>
 						<div class="author">
 							<p class="author__name">Ковальчук Дмитрий</p>
-							<p class="author__description">сооснователь LoftSchool</p>
+							<p class="author__description">сооснователь Loftschool</p>
 						</div>
 					</div>
 				</div>
 				<div class="testimonial">
-					<blockquote class="testimonial__text">Этот парень был одним из тех, кто просто хочет спать</blockquote>
+					<blockquote class="testimonial__text">Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах!</blockquote>
 					<div class="testimonial__author">
-						<div class="avatar"><img src="/assets/img/avatars/zar.png" title="Сооснователь школы LoftSchool" alt="Зар Захаров"/></div>
+						<div class="avatar"><img src="/assets/img/avatars/zar.png" title="Главный преподаватель" alt="Зар Захаров"/></div>
 						<div class="author">
 							<p class="author__name">Зар Захаров</p>
-							<p class="author__description">сооснователь LoftSchool</p>
+							<p class="author__description">главный преподаватель</p>
 						</div>
 					</div>
 				</div>

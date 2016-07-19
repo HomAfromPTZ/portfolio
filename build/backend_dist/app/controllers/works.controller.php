@@ -6,8 +6,8 @@ class Works{
 		$menu_item = "works";
 
 		require_once('app/models/works.model.php');
-		$class = new Works_model;
-		$works = $class->get_works();
+		$mdl = new Works_model;
+		$works = $mdl->get_works();
 
 		require_once ('app/views/works.php');
 	}

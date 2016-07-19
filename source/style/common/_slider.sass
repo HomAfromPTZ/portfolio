@@ -97,13 +97,16 @@
 						margin-right: 8px
 					&:hover
 						background-color: darken($maincolor, 10%)
-				.word,
+				.word
+					display: inline-block
+					margin: 0 .15em
+					&:first-child
+						// margin-left: 0
 				.letter
 					font-size: inherit
 					line-height: inherit
 					vertical-align: middle
 					display: inline-block
-				.letter
 					opacity: 0
 					will-change: transform
 					&.show

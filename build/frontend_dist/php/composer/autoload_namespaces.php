@@ -6,5 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'korytoff/helpers/timehelper' => array($vendorDir . '/korytoff/timehelper/TimeHelper.php'),
     'Valitron' => array($vendorDir . '/vlucas/valitron/src'),
 );
