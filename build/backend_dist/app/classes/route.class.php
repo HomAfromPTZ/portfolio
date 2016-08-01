@@ -4,9 +4,8 @@ class Route{
 		// echo "<pre>";
 		// print_r($_SERVER);
 		// echo "</pre>";
-		// print_r($routes);
-
 		$routes = explode('/', $_SERVER['REQUEST_URI']);
+		// print_r($routes);
 
 		if(!empty($routes[1])){
 			$controller = $routes[1];
@@ -19,9 +18,6 @@ class Route{
 		if(file_exists($controller_file)){
 			require_once ($controller_file);
 			new $controller;
-			// if(!empty($routes[2])){
-			// 	$controller->$routes[2]();
-			// }
 		} else {
 			self::error_404();
 		}
